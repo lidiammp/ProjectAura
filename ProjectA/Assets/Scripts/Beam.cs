@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Beam : MonoBehaviour
 {
-    // Reference to the trigger collider representing the beam's range
+    // Reference to the trigger collider representing the beams range
     private BoxCollider beamTrigger;
 
     // Beam range forward and upward
@@ -17,7 +17,7 @@ public class Beam : MonoBehaviour
     // Tracks when the player can next fire
     private float nextTimeToFire;
 
-    // Used to filter what the raycast can hit (e.g., enemies only)
+    // Used to filter what the raycast can hit 
     public LayerMask raycastLayerMask;
 
     // Reference to EnemyManager which tracks enemies in range
@@ -33,7 +33,7 @@ public class Beam : MonoBehaviour
 
     void Update()
     {
-        // Press 'E' to fire the beam if cooldown is over
+        // Press E to fire the beam if cooldown is over
         if (Input.GetKeyDown(KeyCode.E) && Time.time > nextTimeToFire)
         {
             Fire();
@@ -56,7 +56,7 @@ public class Beam : MonoBehaviour
                 {
                     // Confirmed hit — draw a debug ray and pause game (for testing)
                     Debug.DrawRay(transform.position, dir, Color.green);
-                    Debug.Break();
+                  enemy.Stun(); // stun or in this case FREEZE
                 }
             }
         }
