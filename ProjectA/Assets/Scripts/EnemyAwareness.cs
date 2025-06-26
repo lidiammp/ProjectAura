@@ -20,4 +20,10 @@ public class EnemyAwareness : MonoBehaviour
             isAggro = true;   
         }   
     }
+
+    private void OnTriggerExit(Collider other){
+        if(other.CompareTag("Player")){
+            isAggro = false;   
+        }   
+    }
 }

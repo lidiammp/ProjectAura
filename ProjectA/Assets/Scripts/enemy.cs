@@ -20,12 +20,13 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private Material stunMat;
-
+    [SerializeField]
+    private Material chillMat;
     private Coroutine stunCoroutine;
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private float waitTimer;
-    private Material origMat;
+    
     
     private EnemyAwareness enemyAwareness;
     private Transform playertransform;
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour
         enemyAwareness = GetComponent<EnemyAwareness>();
         playertransform = FindObjectOfType<PlayerMovement>().transform;
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        origMat = GetComponent<MeshRenderer>().material;
+        chillMat = GetComponent<MeshRenderer>().material;
         startPosition = transform.position;
         PickNewDestination();
     }
@@ -47,13 +48,14 @@ public class Enemy : MonoBehaviour
         if(enemyAwareness.isAggro && !isStunned){
             enemyNavMeshAgent.SetDestination(playertransform.position);
         }//else, just wander
-        else{
+        else if (enemyAwareness.isAggro == false && !isStunned){
             Wander();
-        }
+        } 
 
     }
 
     public void Wander(){
+        GetComponent<MeshRenderer>().material = chillMat;
         //move if not stunned
         if (!isStunned) {
             enemyNavMeshAgent.SetDestination(targetPosition);
@@ -71,10 +73,11 @@ public class Enemy : MonoBehaviour
 
     public void Stun()
     {
+        GetComponent<MeshRenderer>().material = stunMat;
         //stun effect
         Instantiate(stunEffect, transform.position, Quaternion.identity);
         isStunned = true;  
-        GetComponent<MeshRenderer>().material = stunMat;
+        
 
         //stunlock player
         stunCoroutine = StartCoroutine(StunEnemy(stunDuration));
