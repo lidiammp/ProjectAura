@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3894309051090403748}
   - component: {fileID: 4264862127347013659}
   - component: {fileID: 8957089222715809365}
-  - component: {fileID: 4829485668451481181}
   - component: {fileID: 8789354690718195221}
   - component: {fileID: 1258945505165793262}
   - component: {fileID: 6299754299930005270}
@@ -139,27 +138,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &4829485668451481181
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4906274871242975384}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 30
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8789354690718195221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d414958411da38448f9f39222df8482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  awarenessRadius: 30
   isAggro: 0
   aggroMat: {fileID: 2100000, guid: 42cdeac457703ac4bac746e9efb5bc29, type: 2}
 --- !u!195 &6299754299930005270

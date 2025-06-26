@@ -5,7 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    
+
+    public delegate void DeathEvent();
+    public event DeathEvent OnDeath;
+
     //things that can change from other scripts
     public float stunDuration = 3f;
     public float moveSpeed = 2f;
@@ -20,8 +23,10 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private Material stunMat;
+
     [SerializeField]
     private Material chillMat;
+
     private Coroutine stunCoroutine;
     private Vector3 startPosition;
     private Vector3 targetPosition;
@@ -60,7 +65,6 @@ public class Enemy : MonoBehaviour
         if (!isStunned) {
             enemyNavMeshAgent.SetDestination(targetPosition);
         }
-
         //actual wandering
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f){
             waitTimer += Time.deltaTime;
@@ -73,12 +77,12 @@ public class Enemy : MonoBehaviour
 
     public void Stun()
     {
+        //change material to stun
         GetComponent<MeshRenderer>().material = stunMat;
         //stun effect
         Instantiate(stunEffect, transform.position, Quaternion.identity);
         isStunned = true;  
         
-
         //stunlock player
         stunCoroutine = StartCoroutine(StunEnemy(stunDuration));
     }
@@ -91,12 +95,15 @@ public class Enemy : MonoBehaviour
     }
 
     
-    void PickNewDestination()
-    {
+    void PickNewDestination(){
         // Pick a new point within a small circle around the starting position
         Vector2 randomPoint = Random.insideUnitCircle * wanderRadius;
         targetPosition = startPosition + new Vector3(randomPoint.x, 0, randomPoint.y);
     }
     
-    
+    //for death to be recorded to wave manager later
+    public void Die(){
+        OnDeath?.Invoke();
+        Destroy(gameObject);
+    }
 }

@@ -24,8 +24,12 @@ public class Beam : MonoBehaviour
     // Reference to EnemyManager which tracks enemies in range
     public EnemyManager EnemyManager;
 
+    private AudioSource audioSource;
     void Start()
     {
+        //beam sound
+        audioSource = GetComponent<AudioSource>();
+
         // Get the BoxCollider and configure its size/position to match beam range
         beamTrigger = GetComponent<BoxCollider>();
         beamTrigger.size = new Vector3(1, verticalRange, range);
@@ -40,14 +44,21 @@ public class Beam : MonoBehaviour
             Fire();
         }
     }
-
+    // void OnDrawGizmosSelected(){
+    //     Gizmos.color = Color.blue;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    //     Gizmos.DrawWireSphere(transform.position, beamShotRadius);
+    // }
     void Fire()
     {
-
+        //draw sphere for debuggin
+        audioSource.Stop();
+        audioSource.Play();
+        
         //beamshot radius
         Collider[] enemyColliders;
         //each enemy in the area of overlap sphere becomes aggro.
         enemyColliders = Physics.OverlapSphere(transform.position, beamShotRadius, enemyLayerMask);
+        
         foreach (var enemyCollider in enemyColliders){
             enemyCollider.GetComponent<EnemyAwareness>().isAggro = true;
         }
