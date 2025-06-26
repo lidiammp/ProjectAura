@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public List<enemy> enemiesInTrigger = new List<enemy>();
+    public List<Enemy> enemiesInTrigger = new List<Enemy>();
 
-    public void AddEnemy (enemy enemy)
+    public void AddEnemy (Enemy enemy)
     {
         enemiesInTrigger.Add(enemy);
     }
 
-     public void RemoveEnemy (enemy enemy)
+     public void RemoveEnemy (Enemy enemy)
     {
         enemiesInTrigger.Remove(enemy);
     }

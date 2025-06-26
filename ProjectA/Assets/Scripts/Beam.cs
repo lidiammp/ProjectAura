@@ -6,11 +6,12 @@ public class Beam : MonoBehaviour
 {
     // Reference to the trigger collider representing the beams range
     private BoxCollider beamTrigger;
+    public float beamShotRadius = 20f;
 
     // Beam range forward and upward
     public float range = 20f;
     public float verticalRange = 20f;
-
+    
     // How often the beam can be fired
     public float fireRate;
 
@@ -19,7 +20,7 @@ public class Beam : MonoBehaviour
 
     // Used to filter what the raycast can hit 
     public LayerMask raycastLayerMask;
-
+    public LayerMask enemyLayerMask;
     // Reference to EnemyManager which tracks enemies in range
     public EnemyManager EnemyManager;
 
@@ -34,7 +35,7 @@ public class Beam : MonoBehaviour
     void Update()
     {
         // Press E to fire the beam if cooldown is over
-        if (Input.GetKeyDown(KeyCode.E) && Time.time > nextTimeToFire)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextTimeToFire)
         {
             Fire();
         }
@@ -42,6 +43,16 @@ public class Beam : MonoBehaviour
 
     void Fire()
     {
+
+        //beamshot radius
+        Collider[] enemyColliders;
+        //each enemy in the area of overlap sphere becomes aggro.
+        enemyColliders = Physics.OverlapSphere(transform.position, beamShotRadius, enemyLayerMask);
+        foreach (var enemyCollider in enemyColliders){
+            enemyCollider.GetComponent<EnemyAwareness>().isAggro = true;
+        }
+
+        
         // Loop through all enemies currently in beam range
         foreach (var enemy in EnemyManager.enemiesInTrigger)
         {
@@ -54,9 +65,9 @@ public class Beam : MonoBehaviour
             {
                 if (hit.transform == enemy.transform)
                 {
-                    // Confirmed hit — draw a debug ray and pause game (for testing)
+                    // Confirmed hit - draw a debug ray and pause game (for testing)
                     Debug.DrawRay(transform.position, dir, Color.green);
-                  enemy.Stun(); // stun or in this case FREEZE
+                    enemy.Stun(); // stun or in this case FREEZE
                 }
             }
         }
@@ -68,7 +79,7 @@ public class Beam : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // When something enters beam range, check if it's an enemy
-        enemy enemy = other.transform.GetComponent<enemy>();
+        Enemy enemy = other.transform.GetComponent<Enemy>();
         if (enemy)
         {
             // Add enemy to the manager's tracking list
@@ -79,7 +90,7 @@ public class Beam : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // When something exits beam range, check if it's an enemy
-        enemy enemy = other.transform.GetComponent<enemy>();
+        Enemy enemy = other.transform.GetComponent<Enemy>();
         if (enemy)
         {
             // Remove enemy from tracking list

@@ -2,46 +2,92 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
- public float moveSpeed = 2f;
-    public float wanderRadius = 3f;
-    public float waitTime = 2f;
 
+    
+    //things that can change from other scripts
+    public float stunDuration = 3f;
+    public float moveSpeed = 2f;
+    public bool isStunned = false;
+
+    //things that prob shouldnt change from other scripts
+    [SerializeField]
+    private float wanderRadius,waitTime;
+
+    [SerializeField]
+    private GameObject stunEffect;
+
+    [SerializeField]
+    private Material stunMat;
+
+    private Coroutine stunCoroutine;
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private float waitTimer;
-    private bool isStunned = false;
+    private Material origMat;
+    
+    private EnemyAwareness enemyAwareness;
+    private Transform playertransform;
+    private UnityEngine.AI.NavMeshAgent enemyNavMeshAgent;
+    
     void Start()
     {
+        enemyAwareness = GetComponent<EnemyAwareness>();
+        playertransform = FindObjectOfType<PlayerMovement>().transform;
+        enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        origMat = GetComponent<MeshRenderer>().material;
         startPosition = transform.position;
         PickNewDestination();
     }
 
     void Update()
     {
-        if (isStunned) return;
-        // Move toward the target
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        //if aggro and not stunned follow
+        if(enemyAwareness.isAggro && !isStunned){
+            enemyNavMeshAgent.SetDestination(playertransform.position);
+        }//else, just wander
+        else{
+            Wander();
+        }
 
-        // reached the target pick a new one
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
-        {
+    }
+
+    public void Wander(){
+        //move if not stunned
+        if (!isStunned) {
+            enemyNavMeshAgent.SetDestination(targetPosition);
+        }
+
+        //actual wandering
+        if (Vector3.Distance(transform.position, targetPosition) < 0.1f){
             waitTimer += Time.deltaTime;
-            if (waitTimer >= waitTime)
-            {
+            if (waitTimer >= waitTime){
                 PickNewDestination();
                 waitTimer = 0f;
             }
         }
     }
 
-public void Stun()
-{
-   isStunned = true;  
-}
+    public void Stun()
+    {
+        //stun effect
+        Instantiate(stunEffect, transform.position, Quaternion.identity);
+        isStunned = true;  
+        GetComponent<MeshRenderer>().material = stunMat;
 
+        //stunlock player
+        stunCoroutine = StartCoroutine(StunEnemy(stunDuration));
+    }
 
+    //execute stun for duration before making normal
+    IEnumerator StunEnemy(float duration){
+        enemyNavMeshAgent.SetDestination(transform.position);
+        yield return new WaitForSeconds(duration);
+        isStunned = false;
+    }
+
+    
     void PickNewDestination()
     {
         // Pick a new point within a small circle around the starting position
