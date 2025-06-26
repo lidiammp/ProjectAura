@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
         enemyAwareness = GetComponent<EnemyAwareness>();
         playertransform = FindObjectOfType<PlayerMovement>().transform;
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        chillMat = GetComponent<MeshRenderer>().material;
+        // chillMat = GetComponent<MeshRenderer>().material;
         startPosition = transform.position;
         PickNewDestination();
     }
@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
     }
 
     public void Wander(){
-        GetComponent<MeshRenderer>().material = chillMat;
+        // GetComponent<MeshRenderer>().material = chillMat;
         //move if not stunned
         if (!isStunned) {
             enemyNavMeshAgent.SetDestination(targetPosition);
@@ -77,8 +77,8 @@ public class Enemy : MonoBehaviour
 
     public void Stun()
     {
-        //change material to stun
-        GetComponent<MeshRenderer>().material = stunMat;
+        // //change material to stun
+        // GetComponent<MeshRenderer>().material = stunMat;
         //stun effect
         Instantiate(stunEffect, transform.position, Quaternion.identity);
         isStunned = true;  
