@@ -21,9 +21,9 @@ public class EnemyAwareness : MonoBehaviour
         }else if (dist > awarenessRadius){
             isAggro = false;
         }
-        // if(isAggro && enemy.isStunned == false){
-        //     GetComponent<MeshRenderer>().material = aggroMat;
-        // }
+        if(isAggro && enemy.isStunned == false){
+            GetComponent<MeshRenderer>().material = aggroMat;
+        }
     }    
 
 }
