@@ -101,9 +101,9 @@ public class Enemy : MonoBehaviour
         targetPosition = startPosition + new Vector3(randomPoint.x, 0, randomPoint.y);
     }
     
-    //for death to be recorded to wave manager later
-    public void Die(){
-        OnDeath?.Invoke();
-        Destroy(gameObject);
+    public bool IsStunned()
+    {
+        return isStunned;
     }
+    
 }
