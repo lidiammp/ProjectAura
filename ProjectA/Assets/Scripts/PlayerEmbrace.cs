@@ -16,7 +16,7 @@ public class PlayerEmbrace : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             TryEmbrace();
         }
@@ -32,18 +32,18 @@ public class PlayerEmbrace : MonoBehaviour
             
 
         {
-            enemy enemyComponent = hit.GetComponent<enemy>();
+            Enemy enemyComponent = hit.GetComponent<Enemy>();
             if (enemyComponent != null && enemyComponent.IsStunned())
             {
                 EmbraceEnemy(enemyComponent);
                 return; // laddies leave me alone type shift, one at a time 
             } 
         }
-        void EmbraceEnemy(enemy target)
+        void EmbraceEnemy(Enemy target)
         {
             // for now we js destroy it or maybe zion can add animation (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
             enemyManager.RemoveEnemy(target);
-            Destroy(target.gameObject);
+            target.Die();
             Debug.Log("HUG!!!");
         }
     }
