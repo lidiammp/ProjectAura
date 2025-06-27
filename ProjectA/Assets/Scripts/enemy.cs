@@ -49,5 +49,9 @@ public void Stun()
         targetPosition = startPosition + new Vector3(randomPoint.x, 0, randomPoint.y);
     }
     
+    public bool IsStunned()
+    {
+        return isStunned;
+    }
     
 }

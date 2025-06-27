@@ -1,0 +1,45 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerEmbrace : MonoBehaviour
+{
+    public float embraceRange = 2f;
+    // public LayerMask enemyLayer;
+
+
+    // Start is called before the first frame update
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            TryEmbrace();
+        }
+
+    }
+    void TryEmbrace()
+    {
+        // Collider[] hits= Physics.OverlapSphere(transform.position, embraceRange, enemyLayer);
+        // foreach (var hit in hits)
+
+            Collider[] hits = Physics.OverlapSphere(transform.position, embraceRange);
+            foreach (var hit in hits)
+            
+
+        {
+            enemy enemyComponent = hit.GetComponent<enemy>();
+            if (enemyComponent != null && enemyComponent.IsStunned())
+            {
+                EmbraceEnemy(enemyComponent);
+                return; // laddies leave me alone type shift, one at a time 
+            } 
+        }
+        void EmbraceEnemy(enemy target)
+        {
+            // for now we js destroy it or maybe zion can add animation (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
+            Destroy(target.gameObject);
+            Debug.Log("HUG!!!");
+        }
+    }
+
+}
