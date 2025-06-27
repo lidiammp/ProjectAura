@@ -6,11 +6,16 @@ public class PlayerEmbrace : MonoBehaviour
 {
     public float embraceRange = 2f;
     // public LayerMask enemyLayer;
-
+    private EnemyManager enemyManager;
+    void Start()
+    {
+        enemyManager = FindObjectOfType<EnemyManager>();
+    }
 
     // Start is called before the first frame update
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.F))
         {
             TryEmbrace();
@@ -37,6 +42,7 @@ public class PlayerEmbrace : MonoBehaviour
         void EmbraceEnemy(enemy target)
         {
             // for now we js destroy it or maybe zion can add animation (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
+            enemyManager.RemoveEnemy(target);
             Destroy(target.gameObject);
             Debug.Log("HUG!!!");
         }
