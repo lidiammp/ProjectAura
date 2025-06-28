@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-
+    
     public delegate void DeathEvent();
     public event DeathEvent OnDeath;
 
@@ -21,28 +21,30 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject stunEffect;
 
-    [SerializeField]
-    private Material stunMat;
+    // [SerializeField]
+    // private Material stunMat;
 
-    [SerializeField]
-    private Material chillMat;
+    // [SerializeField]
+    // private Material chillMat;
 
     private Coroutine stunCoroutine;
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private float waitTimer;
 
-
+    private Animator enemyAnimator;
     private EnemyAwareness enemyAwareness;
     private Transform playertransform;
     private UnityEngine.AI.NavMeshAgent enemyNavMeshAgent;
 
     void Start()
     {
+        enemyAnimator = GetComponent<Animator>();
         enemyAwareness = GetComponent<EnemyAwareness>();
         playertransform = FindObjectOfType<PlayerMovement>().transform;
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        chillMat = GetComponent<MeshRenderer>().material;
+        // chillMat = GetComponent<MeshRenderer>().material;
+        //set idle
         startPosition = transform.position;
         PickNewDestination();
     }
@@ -63,7 +65,8 @@ public class Enemy : MonoBehaviour
 
     public void Wander()
     {
-        GetComponent<MeshRenderer>().material = chillMat;
+        // GetComponent<MeshRenderer>().material = chillMat;
+        //set idle
         //move if not stunned
         if (!isStunned)
         {
@@ -84,11 +87,13 @@ public class Enemy : MonoBehaviour
     public void Stun()
     {
         //change material to stun
-        GetComponent<MeshRenderer>().material = stunMat;
+        // GetComponent<MeshRenderer>().material = stunMat;
+        
+        //set stun
         //stun effect
         Instantiate(stunEffect, transform.position, Quaternion.identity);
         isStunned = true;
-
+        enemyAnimator.SetBool("isStunned", isStunned);
         //stunlock player
         stunCoroutine = StartCoroutine(StunEnemy(stunDuration));
     }
@@ -99,6 +104,7 @@ public class Enemy : MonoBehaviour
         enemyNavMeshAgent.SetDestination(transform.position);
         yield return new WaitForSeconds(duration);
         isStunned = false;
+        enemyAnimator.SetBool("isStunned", isStunned);
     }
 
 
