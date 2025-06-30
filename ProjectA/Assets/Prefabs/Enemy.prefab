@@ -103,7 +103,7 @@ MonoBehaviour:
   stunDuration: 3
   moveSpeed: 2
   isStunned: 0
-  wanderRadius: 3
+  wanderRadius: 10
   waitTime: 2
   stunEffect: {fileID: 5498020394923245054, guid: 587958f7e3a75ea459a2fd775f34956e, type: 3}
 --- !u!114 &1258945505165793262

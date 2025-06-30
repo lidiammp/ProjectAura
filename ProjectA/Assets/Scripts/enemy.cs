@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
             enemyNavMeshAgent.SetDestination(targetPosition);
         }
         //actual wandering
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        if (Vector3.Distance(transform.position, targetPosition) < enemyNavMeshAgent.stoppingDistance+0.1f)
         {
             waitTimer += Time.deltaTime;
             if (waitTimer >= waitTime)
@@ -113,6 +113,7 @@ public class Enemy : MonoBehaviour
         // Pick a new point within a small circle around the starting position
         Vector2 randomPoint = Random.insideUnitCircle * wanderRadius;
         targetPosition = startPosition + new Vector3(randomPoint.x, 0, randomPoint.y);
+        enemyNavMeshAgent.SetDestination(targetPosition);
     }
 
     public bool IsStunned()
