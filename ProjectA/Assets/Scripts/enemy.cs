@@ -83,12 +83,13 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    
 
     public void Stun()
     {
         //change material to stun
         // GetComponent<MeshRenderer>().material = stunMat;
-        
+
         //set stun
         //stun effect
         Instantiate(stunEffect, transform.position, Quaternion.identity);
