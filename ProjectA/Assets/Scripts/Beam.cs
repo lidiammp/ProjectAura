@@ -34,6 +34,8 @@ public class Beam : MonoBehaviour
         beamTrigger = GetComponent<BoxCollider>();
         beamTrigger.size = new Vector3(1, verticalRange, range);
         beamTrigger.center = new Vector3(0, 0, range * 0.5f);
+
+        
     }
 
     void Update()
@@ -42,6 +44,7 @@ public class Beam : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextTimeToFire)
         {
             Fire();
+            
         }
     }
     // void OnDrawGizmosSelected(){
@@ -77,7 +80,7 @@ public class Beam : MonoBehaviour
                 if (hit.transform == enemy.transform)
                 {
                     // Confirmed hit - draw a debug ray and pause game (for testing)
-                    Debug.DrawRay(transform.position, dir, Color.green);
+                    //Debug.DrawRay(transform.position, dir, Color.green);
                     enemy.Stun(); // stun or in this case FREEZE
                 }
             }

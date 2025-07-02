@@ -52,11 +52,12 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         //if aggro and not stunned follow
-        if (enemyAwareness.isAggro && !isStunned)
+        if (enemyAwareness.isAggro && isStunned == false)
         {
+            startPosition = transform.position;
             enemyNavMeshAgent.SetDestination(playertransform.position);
         }//else, just wander
-        else if (enemyAwareness.isAggro == false && !isStunned)
+        else if (enemyAwareness.isAggro == false && isStunned == false)
         {
             Wander();
         }
@@ -87,25 +88,24 @@ public class Enemy : MonoBehaviour
 
     public void Stun()
     {
-        //change material to stun
-        // GetComponent<MeshRenderer>().material = stunMat;
-
-        //set stun
-        //stun effect
+        
+        //show stun effect 
         Instantiate(stunEffect, transform.position, Quaternion.identity);
+        //set variables
         isStunned = true;
         enemyAnimator.SetBool("isStunned", isStunned);
         //stunlock player
         stunCoroutine = StartCoroutine(StunEnemy(stunDuration));
     }
 
-    //execute stun for duration before making normal
+    //execute stun for duration before unlocking player
     IEnumerator StunEnemy(float duration)
     {
         enemyNavMeshAgent.SetDestination(transform.position);
         yield return new WaitForSeconds(duration);
         isStunned = false;
         enemyAnimator.SetBool("isStunned", isStunned);
+        
     }
 
 

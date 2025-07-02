@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2803795036361225260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6584893184678348886}
+  - component: {fileID: 6064143330418414817}
+  - component: {fileID: 2073446876897686436}
+  m_Layer: 0
+  m_Name: Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6584893184678348886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803795036361225260}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5811378307070669931}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6064143330418414817
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803795036361225260}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.3997233, y: 1, z: 0.92951393}
+  m_Center: {x: -0.076526046, y: 0, z: 0.33857822}
+--- !u!114 &2073446876897686436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803795036361225260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b6d58a61272ca44385e8044010d0b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &4906274871242975384
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,6 +83,7 @@ GameObject:
   - component: {fileID: 6299754299930005270}
   - component: {fileID: -3342248454421977386}
   - component: {fileID: 2045757684686046615}
+  - component: {fileID: 7017576211062060008}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -34,7 +102,8 @@ Transform:
   m_LocalPosition: {x: 2.48, y: 1, z: 20.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6584893184678348886}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -103,7 +172,7 @@ MonoBehaviour:
   stunDuration: 3
   moveSpeed: 2
   isStunned: 0
-  wanderRadius: 10
+  wanderRadius: 3
   waitTime: 2
   stunEffect: {fileID: 5498020394923245054, guid: 587958f7e3a75ea459a2fd775f34956e, type: 3}
 --- !u!114 &1258945505165793262
@@ -118,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d414958411da38448f9f39222df8482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  awarenessRadius: 10
+  awarenessRadius: 20
   isAggro: 0
 --- !u!195 &6299754299930005270
 NavMeshAgent:
@@ -134,7 +203,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 3
+  m_StoppingDistance: 0.001
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -215,3 +284,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7017576211062060008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4906274871242975384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad24695ffa057934bb16a5f4506dd32b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 1

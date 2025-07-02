@@ -16,8 +16,7 @@ public class EnemyAwareness : MonoBehaviour
         playertransform = FindObjectOfType<PlayerMovement>().transform;
     }
     void Update(){
-        var dist = Vector3.Distance(playertransform.position, transform.position
-        );
+        var dist = Vector3.Distance(playertransform.position, transform.position);
         if (dist <= awarenessRadius)
         {
             isAggro = true;
@@ -26,7 +25,9 @@ public class EnemyAwareness : MonoBehaviour
         {
             isAggro = false;
             enemyAnimator.SetBool("isAggro", isAggro);
+            
         }
+        
         if (isAggro && enemy.isStunned == false)
         {
             enemyAnimator.SetBool("isAggro", isAggro);
