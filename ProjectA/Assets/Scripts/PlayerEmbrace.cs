@@ -37,7 +37,7 @@ public class PlayerEmbrace : MonoBehaviour
 
         {
             Enemy enemyComponent = hit.GetComponent<Enemy>();
-            if (enemyComponent != null && enemyComponent.IsStunned())
+            if (enemyComponent != null && enemyComponent.GetIsStunned())
             {
                 EmbraceEnemy(enemyComponent);
                 return; // laddies leave me alone type shift, one at a time 

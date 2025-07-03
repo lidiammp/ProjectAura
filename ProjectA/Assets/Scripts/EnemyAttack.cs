@@ -12,6 +12,7 @@ public class EnemyAttack : MonoBehaviour
     private BoxCollider attackCollider;
     private Enemy enemy;
 
+    [SerializeField] private GameObject Bullet;
     void Start()
     {
         playerTransform = FindObjectOfType<PlayerMovement>().transform;
@@ -23,29 +24,46 @@ public class EnemyAttack : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(transform.position, playerTransform.position);
+        //if in attack range stop and attack
+        //works for both ranged and melee
         if (distance <= attackRange)
         {
             enemy.LockMovement();
             Attack();
         }
     }
-    //function to start attack
-    //function to 
+
+    //function to start attack animation
     public void Attack()
     {
         enemyAnimator.SetTrigger("isAttacking");
 
     }
 
-
+    //                                     melee enemy                                               //
+    //-----------------------------------------------------------------------------------------------//
+    //method to enable collider in animation
     public void EnableCollider()
     {
         attackCollider.enabled = true;
     }
-    
+
+    //method to disable collider in animation
     public void DisableCollider()
     {
         attackCollider.enabled = false;
     }
+
+    //                                     ranged enemy                                               //
+    //-----------------------------------------------------------------------------------------------//
+    public void ShootBullet()
+    {
+        if (Bullet != null) {
+            Instantiate(Bullet);
+        }
+        
+    }
+    
+    
 
 }

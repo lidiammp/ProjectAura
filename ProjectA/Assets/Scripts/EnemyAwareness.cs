@@ -28,7 +28,7 @@ public class EnemyAwareness : MonoBehaviour
             
         }
         
-        if (isAggro && enemy.isStunned == false)
+        if (isAggro && enemy.GetIsStunned() == false)
         {
             enemyAnimator.SetBool("isAggro", isAggro);
             // GetComponent<MeshRenderer>().material = aggroMat;
