@@ -47,10 +47,10 @@ public class PlayerEmbrace : MonoBehaviour
         {
             // for now we js destroy it or maybe zion can add animation 
             // (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
-
+            
             //remove from list
             enemyManager.RemoveEnemy(target);
-
+            target.GetComponent<Animator>().Play("MunchkinHug");
             //25% chance to heal by healvalue
             //might change to a different value based on type of enemy
             if (Random.value <= 0.25)
@@ -58,7 +58,7 @@ public class PlayerEmbrace : MonoBehaviour
                 playerHealth.Heal(healValue);
             }
             
-            target.Die();
+            //target.Die();
             Debug.Log("HUG!!!");
         }
     }

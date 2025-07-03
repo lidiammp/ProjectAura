@@ -29,6 +29,9 @@ public class Enemy : MonoBehaviour
     private Transform playertransform;
     private UnityEngine.AI.NavMeshAgent enemyNavMeshAgent;
 
+    public float waitTime = 2f;
+    private float waitTimer = 0f;
+    private bool isWaiting = false;
     void Start()
     {
         //if no centerpoint use enemys own position
@@ -59,14 +62,21 @@ public class Enemy : MonoBehaviour
 
     public void Wander()
     {
-        
-        if(enemyNavMeshAgent.remainingDistance <= enemyNavMeshAgent.stoppingDistance) //done with path
+        if (!isWaiting)
         {
-            Vector3 point;
-            if (RandomPoint(centrePoint.position, wanderRadius, out point)) //pass in our centre point and radius of area
+            isWaiting = true;
+            waitTimer = waitTime; // Start waiting
+        }
+        waitTimer -= Time.deltaTime;
+        if (waitTimer <= 0f){
+            if (enemyNavMeshAgent.remainingDistance <= enemyNavMeshAgent.stoppingDistance) //done with path
             {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                enemyNavMeshAgent.SetDestination(point);
+                Vector3 point;
+                if (RandomPoint(centrePoint.position, wanderRadius, out point)) //pass in our centre point and radius of area
+                {
+                    Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
+                    enemyNavMeshAgent.SetDestination(point);
+                }
             }
         }
     }
@@ -123,7 +133,7 @@ public class Enemy : MonoBehaviour
     //method to invoke death for wave manager
     public void Die()
     {
-        OnDeath?.Invoke();
+        OnDeath?.Invoke();  
         Destroy(gameObject);
     }
 
