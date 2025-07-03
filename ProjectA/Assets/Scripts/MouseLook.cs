@@ -27,6 +27,7 @@ public class MouseLook : MonoBehaviour
     void GetInput()
     {
         xMousePos = Input.GetAxisRaw("Mouse X");
+        Cursor.visible = false;
     }
 
     void ModifyInput()
