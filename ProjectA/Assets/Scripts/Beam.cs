@@ -11,7 +11,7 @@ public class Beam : MonoBehaviour
     // Beam range forward and upward
     public float range = 20f;
     public float verticalRange = 20f;
-    
+
     // How often the beam can be fired
     public float fireRate;
 
@@ -25,6 +25,8 @@ public class Beam : MonoBehaviour
     private EnemyManager enemyManager;
 
     private AudioSource audioSource;
+    private Animator handAnimator;
+    private GameObject parent;
     void Start()
     {
         //beam sound
@@ -34,8 +36,9 @@ public class Beam : MonoBehaviour
         beamTrigger = GetComponent<BoxCollider>();
         beamTrigger.size = new Vector3(1, verticalRange, range);
         beamTrigger.center = new Vector3(0, 0, range * 0.5f);
+        parent = transform.parent.gameObject;
+        handAnimator = parent.GetComponentInChildren<Animator>();
 
-        
     }
 
     void Update()
@@ -43,8 +46,10 @@ public class Beam : MonoBehaviour
         // Press E to fire the beam if cooldown is over
         if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextTimeToFire)
         {
+            handAnimator.SetTrigger("isAttacking");
+
             Fire();
-            
+
         }
     }
     // void OnDrawGizmosSelected(){
@@ -56,17 +61,18 @@ public class Beam : MonoBehaviour
         //draw sphere for debuggin
         audioSource.Stop();
         audioSource.Play();
-        
+
         //beamshot radius
         Collider[] enemyColliders;
         //each enemy in the area of overlap sphere becomes aggro.
         enemyColliders = Physics.OverlapSphere(transform.position, beamShotRadius, enemyLayerMask);
-        
-        foreach (var enemyCollider in enemyColliders){
+
+        foreach (var enemyCollider in enemyColliders)
+        {
             enemyCollider.GetComponent<EnemyAwareness>().isAggro = true;
         }
 
-        
+
         // Loop through all enemies currently in beam range
         foreach (var enemy in enemyManager.enemiesInTrigger)
         {
@@ -111,5 +117,8 @@ public class Beam : MonoBehaviour
             enemyManager.RemoveEnemy(enemy);
         }
     }
+
+    
+    
 }
 
