@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class EnemyAttack : MonoBehaviour
     private float distance;
     private Animator enemyAnimator;
     private BoxCollider attackCollider;
+    private Enemy enemy;
+
     void Start()
     {
         playerTransform = FindObjectOfType<PlayerMovement>().transform;
-        enemyAnimator = GetComponent<Animator>();
+        enemyAnimator = GetComponentInChildren<Animator>();
         attackCollider = GetComponentInChildren<BoxCollider>();
-        
+        enemy = GetComponent<Enemy>();
     }
 
     void Update()
@@ -22,6 +25,7 @@ public class EnemyAttack : MonoBehaviour
         distance = Vector3.Distance(transform.position, playerTransform.position);
         if (distance <= attackRange)
         {
+            enemy.LockMovement();
             Attack();
         }
     }
@@ -30,18 +34,18 @@ public class EnemyAttack : MonoBehaviour
     public void Attack()
     {
         enemyAnimator.SetTrigger("isAttacking");
-        
+
     }
+
 
     public void EnableCollider()
     {
         attackCollider.enabled = true;
     }
-
+    
     public void DisableCollider()
     {
         attackCollider.enabled = false;
     }
-
 
 }

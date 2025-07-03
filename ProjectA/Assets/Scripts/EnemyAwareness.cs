@@ -11,7 +11,7 @@ public class EnemyAwareness : MonoBehaviour
     private Transform playertransform;
     private Animator enemyAnimator;
     void Start(){
-        enemyAnimator = GetComponent<Animator>();
+        enemyAnimator = GetComponentInChildren<Animator>();
         enemy = GetComponent<Enemy>();
         playertransform = FindObjectOfType<PlayerMovement>().transform;
     }

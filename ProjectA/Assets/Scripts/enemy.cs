@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    
+
     public delegate void DeathEvent();
     public event DeathEvent OnDeath;
 
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        enemyAnimator = GetComponent<Animator>();
+        enemyAnimator = GetComponentInChildren<Animator>();
         enemyAwareness = GetComponent<EnemyAwareness>();
         playertransform = FindObjectOfType<PlayerMovement>().transform;
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
             enemyNavMeshAgent.SetDestination(targetPosition);
         }
         //actual wandering
-        if (Vector3.Distance(transform.position, targetPosition) < enemyNavMeshAgent.stoppingDistance+0.1f)
+        if (Vector3.Distance(transform.position, targetPosition) < enemyNavMeshAgent.stoppingDistance + 0.1f)
         {
             waitTimer += Time.deltaTime;
             if (waitTimer >= waitTime)
@@ -84,11 +84,11 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    
+
 
     public void Stun()
     {
-        
+
         //show stun effect 
         Instantiate(stunEffect, transform.position, Quaternion.identity);
         //set variables
@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(duration);
         isStunned = false;
         enemyAnimator.SetBool("isStunned", isStunned);
-        
+
     }
 
 
@@ -121,9 +121,16 @@ public class Enemy : MonoBehaviour
     {
         return isStunned;
     }
-    
-    public void Die(){
+
+    public void Die()
+    {
         OnDeath?.Invoke();
         Destroy(gameObject);
     }
+
+    public void LockMovement()
+    {
+        enemyNavMeshAgent.ResetPath();
+    }
+
 }
