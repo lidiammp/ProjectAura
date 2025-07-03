@@ -8,9 +8,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 250939644565650423, guid: 3b57cf0c195b15f4e87aa508f0ce6434, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
     - target: {fileID: 1963587191949748548, guid: 3b57cf0c195b15f4e87aa508f0ce6434, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 1963587191949748548, guid: 3b57cf0c195b15f4e87aa508f0ce6434, type: 3}
       propertyPath: m_LocalPosition.x
@@ -62,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7408382148082603734, guid: 3b57cf0c195b15f4e87aa508f0ce6434, type: 3}
       propertyPath: m_VersionIndex
-      value: 8470
+      value: 8476
       objectReference: {fileID: 0}
     - target: {fileID: 7408382148082603734, guid: 3b57cf0c195b15f4e87aa508f0ce6434, type: 3}
       propertyPath: m_Faces.Array.size
@@ -82,11 +86,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7408382148082603734, guid: 3b57cf0c195b15f4e87aa508f0ce6434, type: 3}
       propertyPath: m_SelectedEdges.Array.size
-      value: 56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7408382148082603734, guid: 3b57cf0c195b15f4e87aa508f0ce6434, type: 3}
       propertyPath: m_SelectedFaces.Array.size
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7408382148082603734, guid: 3b57cf0c195b15f4e87aa508f0ce6434, type: 3}
       propertyPath: m_Tangents.Array.data[0].x
@@ -11478,7 +11482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7408382148082603734, guid: 3b57cf0c195b15f4e87aa508f0ce6434, type: 3}
       propertyPath: m_SelectedVertices.Array.size
-      value: 56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7408382148082603734, guid: 3b57cf0c195b15f4e87aa508f0ce6434, type: 3}
       propertyPath: m_Textures0.Array.data[100].x
@@ -23242,7 +23246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8411797828738882024, guid: 3b57cf0c195b15f4e87aa508f0ce6434, type: 3}
       propertyPath: m_Name
-      value: Hallway_Straight (10) Variant
+      value: L_Hallway
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

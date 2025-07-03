@@ -22,14 +22,14 @@ public class Beam : MonoBehaviour
     public LayerMask raycastLayerMask;
     public LayerMask enemyLayerMask;
     // Reference to EnemyManager which tracks enemies in range
-    public EnemyManager EnemyManager;
+    private EnemyManager enemyManager;
 
     private AudioSource audioSource;
     void Start()
     {
         //beam sound
         audioSource = GetComponent<AudioSource>();
-
+        enemyManager = FindObjectOfType<EnemyManager>();
         // Get the BoxCollider and configure its size/position to match beam range
         beamTrigger = GetComponent<BoxCollider>();
         beamTrigger.size = new Vector3(1, verticalRange, range);
@@ -68,7 +68,7 @@ public class Beam : MonoBehaviour
 
         
         // Loop through all enemies currently in beam range
-        foreach (var enemy in EnemyManager.enemiesInTrigger)
+        foreach (var enemy in enemyManager.enemiesInTrigger)
         {
             // Calculate direction from beam to enemy
             var dir = enemy.transform.position - transform.position;
@@ -97,7 +97,7 @@ public class Beam : MonoBehaviour
         if (enemy)
         {
             // Add enemy to the manager's tracking list
-            EnemyManager.AddEnemy(enemy);
+            enemyManager.AddEnemy(enemy);
         }
     }
 
@@ -108,7 +108,7 @@ public class Beam : MonoBehaviour
         if (enemy)
         {
             // Remove enemy from tracking list
-            EnemyManager.RemoveEnemy(enemy);
+            enemyManager.RemoveEnemy(enemy);
         }
     }
 }
