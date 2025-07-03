@@ -21,28 +21,30 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject stunEffect;
 
-    [SerializeField]
-    private Material stunMat;
+    // [SerializeField]
+    // private Material stunMat;
 
-    [SerializeField]
-    private Material chillMat;
+    // [SerializeField]
+    // private Material chillMat;
 
     private Coroutine stunCoroutine;
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private float waitTimer;
 
-
+    private Animator enemyAnimator;
     private EnemyAwareness enemyAwareness;
     private Transform playertransform;
     private UnityEngine.AI.NavMeshAgent enemyNavMeshAgent;
 
     void Start()
     {
+        enemyAnimator = GetComponentInChildren<Animator>();
         enemyAwareness = GetComponent<EnemyAwareness>();
         playertransform = FindObjectOfType<PlayerMovement>().transform;
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        chillMat = GetComponent<MeshRenderer>().material;
+        // chillMat = GetComponent<MeshRenderer>().material;
+        //set idle
         startPosition = transform.position;
         PickNewDestination();
     }
@@ -50,11 +52,12 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         //if aggro and not stunned follow
-        if (enemyAwareness.isAggro && !isStunned)
+        if (enemyAwareness.isAggro && isStunned == false)
         {
+            startPosition = transform.position;
             enemyNavMeshAgent.SetDestination(playertransform.position);
         }//else, just wander
-        else if (enemyAwareness.isAggro == false && !isStunned)
+        else if (enemyAwareness.isAggro == false && isStunned == false)
         {
             Wander();
         }
@@ -63,14 +66,15 @@ public class Enemy : MonoBehaviour
 
     public void Wander()
     {
-        GetComponent<MeshRenderer>().material = chillMat;
+        // GetComponent<MeshRenderer>().material = chillMat;
+        //set idle
         //move if not stunned
         if (!isStunned)
         {
             enemyNavMeshAgent.SetDestination(targetPosition);
         }
         //actual wandering
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        if (Vector3.Distance(transform.position, targetPosition) < enemyNavMeshAgent.stoppingDistance + 0.1f)
         {
             waitTimer += Time.deltaTime;
             if (waitTimer >= waitTime)
@@ -81,24 +85,27 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     public void Stun()
     {
-        //change material to stun
-        GetComponent<MeshRenderer>().material = stunMat;
-        //stun effect
-        Instantiate(stunEffect, transform.position, Quaternion.identity);
-        isStunned = true;
 
+        //show stun effect 
+        Instantiate(stunEffect, transform.position, Quaternion.identity);
+        //set variables
+        isStunned = true;
+        enemyAnimator.SetBool("isStunned", isStunned);
         //stunlock player
         stunCoroutine = StartCoroutine(StunEnemy(stunDuration));
     }
 
-    //execute stun for duration before making normal
+    //execute stun for duration before unlocking player
     IEnumerator StunEnemy(float duration)
     {
         enemyNavMeshAgent.SetDestination(transform.position);
         yield return new WaitForSeconds(duration);
         isStunned = false;
+        enemyAnimator.SetBool("isStunned", isStunned);
+
     }
 
 
@@ -107,15 +114,23 @@ public class Enemy : MonoBehaviour
         // Pick a new point within a small circle around the starting position
         Vector2 randomPoint = Random.insideUnitCircle * wanderRadius;
         targetPosition = startPosition + new Vector3(randomPoint.x, 0, randomPoint.y);
+        enemyNavMeshAgent.SetDestination(targetPosition);
     }
 
     public bool IsStunned()
     {
         return isStunned;
     }
-    
-    public void Die(){
+
+    public void Die()
+    {
         OnDeath?.Invoke();
         Destroy(gameObject);
     }
+
+    public void LockMovement()
+    {
+        enemyNavMeshAgent.ResetPath();
+    }
+
 }
