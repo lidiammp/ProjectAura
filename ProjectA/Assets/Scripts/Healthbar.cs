@@ -43,7 +43,7 @@ public class Healthbar : MonoBehaviour
     }
     public bool Dead()
     {
-        if (maxHealth <= 0)
+        if (currentHealth <= 0)
         {
             return true;
 
@@ -54,6 +54,7 @@ public class Healthbar : MonoBehaviour
         }
     }
 
+    
     public float GetMaxHealth()
     {
         return maxHealth;
