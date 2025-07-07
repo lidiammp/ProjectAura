@@ -5,15 +5,17 @@ using UnityEngine;
 public class Healthbar : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 10f, currentHealth;
+    [SerializeField] private TakeDamage takeDamage;
 
     void Start()
     {
         currentHealth = maxHealth;
+        takeDamage = FindObjectOfType<TakeDamage>();
     }
     //take damage function
     public void TakeDamage(float damage)
     {
-
+        takeDamage.VignetteEffect();
         currentHealth -= damage;
     }
 
