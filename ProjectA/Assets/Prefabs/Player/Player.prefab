@@ -736,7 +736,7 @@ Transform:
   - {fileID: 184687073686121635}
   - {fileID: 8870135562480292654}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &7948643544697218425
 CharacterController:
@@ -789,8 +789,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2326e20145c414a88a818f865fdaeae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 1.5
+  sensitivity: 1.4
   smoothing: 1.5
+  playerCamera: {fileID: 4903250424907792505}
 --- !u!114 &6385783847123003505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
+  takeDamage: {fileID: 0}
 --- !u!136 &3160903934970853454
 CapsuleCollider:
   m_ObjectHideFlags: 0
