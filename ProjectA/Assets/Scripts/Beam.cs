@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Beam : MonoBehaviour
 {
+
+// charge settings
+
+    public float chargeTimeRequired = 2f;
+    private float chargeStartTime;
+    private bool isCharging;
+
+
     // Reference to the trigger collider representing the beams range
     private BoxCollider beamTrigger;
     public float beamShotRadius = 20f;
@@ -46,11 +54,38 @@ public class Beam : MonoBehaviour
         // Press E to fire the beam if cooldown is over
         if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextTimeToFire)
         {
-            handAnimator.SetTrigger("isAttacking");
+            chargeStartTime = Time.time;
+            isCharging = true;
+            handAnimator.SetBool("isCharging", true); // this starts the charging maybe some sound could be added ?
+    
+            // original code below
+            // handAnimator.SetTrigger("isAttacking");
 
-            Fire();
+            // Fire();
 
         }
+
+
+         if (Input.GetKeyUp(KeyCode.Mouse0) && isCharging)
+        {
+             isCharging = false;
+            handAnimator.SetBool("isCharging", false);
+
+             float heldTime = Time.time - chargeStartTime;
+             if (heldTime >= chargeTimeRequired)
+             {
+            // Fire!
+            handAnimator.SetTrigger("isAttacking");
+            Fire();
+             }
+            else
+             {
+           // Play failed charge sound
+            Debug.Log("Charge not long enough!");
+            }
+        }
+
+
     }
     // void OnDrawGizmosSelected(){
     //     Gizmos.color = Color.blue;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
