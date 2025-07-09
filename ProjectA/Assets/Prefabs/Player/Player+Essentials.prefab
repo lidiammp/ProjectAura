@@ -32,7 +32,7 @@ Transform:
   - {fileID: 2166736404860598250}
   - {fileID: 8196066831366632742}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4190270777333771175
 PrefabInstance:
@@ -108,6 +108,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9216235618526268765}
     m_Modifications:
+    - target: {fileID: 1873567530904529400, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
+      propertyPath: smoothing
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873567530904529400, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
+      propertyPath: sensitivity
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5722684246478640152, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: m_Name
       value: Player
