@@ -19,8 +19,9 @@ public class GameOverScreen : MonoBehaviour
         SceneManager.LoadScene(currentSceneName);
     }
 
+    
     public void QuitButton()
     {
-        
+
     }
 }

@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        gameOverScreen.SetUp();
+        gameOverScreen.RestartButton();
     }
     // Update is called once per frame
     

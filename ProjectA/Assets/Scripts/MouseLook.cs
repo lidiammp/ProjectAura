@@ -40,10 +40,10 @@ public class MouseLook : MonoBehaviour
     void ModifyInput()
     {
         xMousePos *= sensitivity * smoothing;
-        yMousePos *= sensitivity * smoothing;
+        yMousePos *= sensitivity;
 
         smoothedX = Mathf.Lerp(smoothedX, xMousePos, Time.deltaTime * smoothing);
-        smoothedY = Mathf.Lerp(smoothedY, yMousePos, Time.deltaTime * smoothing);
+        smoothedY = Mathf.Lerp(smoothedY, yMousePos, Time.deltaTime);
     }
 
     void MovePlayer()
