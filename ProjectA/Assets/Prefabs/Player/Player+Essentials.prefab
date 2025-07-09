@@ -32,7 +32,7 @@ Transform:
   - {fileID: 2166736404860598250}
   - {fileID: 8196066831366632742}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4190270777333771175
 PrefabInstance:
@@ -42,10 +42,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9216235618526268765}
     m_Modifications:
-    - target: {fileID: 339131129664168525, guid: 97c17528d2c252044bd31177270d5ad8, type: 3}
-      propertyPath: gameOverScreen
-      value: 
-      objectReference: {fileID: 186642234538156671}
     - target: {fileID: 5447264595516710529, guid: 97c17528d2c252044bd31177270d5ad8, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -122,15 +118,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7966053861200699305, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 131.94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7966053861200699305, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7966053861200699305, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 315
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7966053861200699305, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -279,17 +275,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d093d330483b66044834e252352dabc2, type: 3}
---- !u!114 &186642234538156671 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5290796734867631336, guid: d093d330483b66044834e252352dabc2, type: 3}
-  m_PrefabInstance: {fileID: 5475173759879974551}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2a16be8026d2f5449b8291502e5a196, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &2166736404860598250 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6190886812717742461, guid: d093d330483b66044834e252352dabc2, type: 3}
