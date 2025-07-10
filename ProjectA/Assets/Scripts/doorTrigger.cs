@@ -8,6 +8,7 @@ public class doorTrigger : MonoBehaviour
     private MeshRenderer buttonRenderer;
     MeshRenderer doorRenderer;
     private BoxCollider doorCollider;
+    private bool playerInRange = false;
 
     void Start()
     {
@@ -26,13 +27,31 @@ public class doorTrigger : MonoBehaviour
         //only open door when Beam Collider is on Button and pressing E P-----------O
         //                                                              |          \|/
         //                                                                          ^
-        if (Input.GetKeyDown(KeyCode.E) && Door != null)
+        if (playerInRange && Input.GetKeyDown(KeyCode.E) && Door != null)
         {
             Door.GetComponent<Animator>().Play("Open");
             buttonRenderer.material.color = Color.green;
         }
 
     }
+    void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                playerInRange = true;
+                Debug.Log("here");
+            }
+        }
+
+        void OnTriggerExit (Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                playerInRange = false;
+                Debug.Log("not here");
+                
+            }
+        }
 }
 
 
