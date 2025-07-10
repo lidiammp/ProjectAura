@@ -90,7 +90,6 @@ public class Beam : MonoBehaviour
     // void OnDrawGizmosSelected(){
     //     Gizmos.color = Color.blue;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     //     Gizmos.DrawWireSphere(transform.position, beamShotRadius);
-    // }
     void Fire()
     {
         //draw sphere for debuggin
