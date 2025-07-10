@@ -5,10 +5,10 @@ using UnityEngine;
 public class Beam : MonoBehaviour
 {
 
-// charge settings
+    // charge settings
 
     public float chargeTimeRequired = 2f;
-    private float chargeStartTime;
+    private float chargeHeldTime;
     private bool isCharging;
 
 
@@ -51,45 +51,54 @@ public class Beam : MonoBehaviour
 
     void Update()
     {
-        // Press E to fire the beam if cooldown is over
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextTimeToFire)
+        ChargeBeam();
+        if (Input.GetKeyUp(KeyCode.Mouse0) && isCharging)
         {
-            chargeStartTime = Time.time;
+            ShootBeam();
+        }
+    }
+    void ChargeBeam()
+    {
+        //charge
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
             isCharging = true;
-            handAnimator.SetBool("isCharging", true); // this starts the charging maybe some sound could be added ?
-    
-            // original code below
-            // handAnimator.SetTrigger("isAttacking");
-
-            // Fire();
-
+            chargeHeldTime = 0f; // reset when charging starts
+            handAnimator.SetBool("isCharging", true);
+            // lidia wants a sound here
         }
 
-
-         if (Input.GetKeyUp(KeyCode.Mouse0) && isCharging)
+        //while its chargin
+        if (isCharging && Input.GetKey(KeyCode.Mouse0))
         {
-             isCharging = false;
-            handAnimator.SetBool("isCharging", false);
-
-             float heldTime = Time.time - chargeStartTime;
-             if (heldTime >= chargeTimeRequired)
-             {
-            // Fire!
-            handAnimator.SetTrigger("isAttacking");
-            Fire();
-             }
-            else
-             {
-           // Play failed charge sound
-            Debug.Log("Charge not long enough!");
-            }
+            chargeHeldTime += Time.deltaTime;
+            //accumulate charge time
         }
-
 
     }
-    // void OnDrawGizmosSelected(){
-    //     Gizmos.color = Color.blue;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    //     Gizmos.DrawWireSphere(transform.position, beamShotRadius);
+    void ShootBeam()
+    {
+        // once its let go 
+        isCharging = false;
+        handAnimator.SetBool("isCharging", false);
+
+        //check if its been long enough
+        if (chargeHeldTime >= chargeTimeRequired)
+        {
+            handAnimator.SetTrigger("isAttacking");
+            Fire();
+        }
+        //if hasnt show in debug
+        else
+        {
+            Debug.Log("Charge not long enough!");
+            // Optional: Play failed charge sound
+        }
+
+        chargeHeldTime = 0f; // Reset after release
+
+    }
+
     void Fire()
     {
         //draw sphere for debuggin
@@ -152,6 +161,15 @@ public class Beam : MonoBehaviour
         }
     }
 
+    public float GetHeldTime()
+    {
+        return chargeHeldTime;
+    }
+
+    public bool IsCharging()
+    {
+        return isCharging;
+    }
     
     
 }
