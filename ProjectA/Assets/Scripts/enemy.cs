@@ -114,6 +114,8 @@ public class Enemy : MonoBehaviour
         StartCoroutine(StunEnemy(stunDuration));
     }
 
+    
+
     //execute stun for duration before unlocking player
     IEnumerator StunEnemy(float duration)
     {

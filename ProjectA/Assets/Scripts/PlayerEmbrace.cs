@@ -22,7 +22,7 @@ public class PlayerEmbrace : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-       
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             isCharging = true;
@@ -30,7 +30,7 @@ public class PlayerEmbrace : MonoBehaviour
             Debug.Log("warming up hands for hug");
         }
 
- 
+
         if (Input.GetKey(KeyCode.E) && isCharging)
         {
             holdTimer += Time.deltaTime;
@@ -62,9 +62,9 @@ public class PlayerEmbrace : MonoBehaviour
         // Collider[] hits= Physics.OverlapSphere(transform.position, embraceRange, enemyLayer);
         // foreach (var hit in hits)
 
-            Collider[] hits = Physics.OverlapSphere(transform.position, embraceRange);
-            foreach (var hit in hits)
-            
+        Collider[] hits = Physics.OverlapSphere(transform.position, embraceRange);
+        foreach (var hit in hits)
+
 
         {
             Enemy enemyComponent = hit.GetComponent<Enemy>();
@@ -72,13 +72,13 @@ public class PlayerEmbrace : MonoBehaviour
             {
                 EmbraceEnemy(enemyComponent);
                 return; // laddies leave me alone type shift, one at a time 
-            } 
+            }
         }
         void EmbraceEnemy(Enemy target)
         {
             // for now we js destroy it or maybe zion can add animation 
             // (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
-            
+
             //remove from list
             enemyManager.RemoveEnemy(target);
             target.GetComponent<Animator>().Play("MunchkinHug");
@@ -88,10 +88,19 @@ public class PlayerEmbrace : MonoBehaviour
             {
                 playerHealth.Heal(healValue);
             }
-            
+
             //target.Die();
             Debug.Log("HUG!!!");
         }
     }
+    
+    public float GetHeldTime()
+    {
+        return holdTimer;
+    }
 
+    public bool IsCharging()
+    {
+        return isCharging;
+    }
 }

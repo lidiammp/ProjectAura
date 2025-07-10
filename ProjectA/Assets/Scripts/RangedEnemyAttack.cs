@@ -30,7 +30,7 @@ public class RangedEnemyAttack : MonoBehaviour
         //if in attack range stop and attack
         //works for both ranged and melee
         fireTimer += Time.deltaTime;
-        if (distance <= attackRange && fireTimer > fireRate)
+        if (distance <= attackRange && fireTimer > fireRate && enemy.GetIsStunned() != true)
         {
             enemy.LockMovement();
             Attack();
