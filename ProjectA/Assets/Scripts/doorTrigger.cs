@@ -5,29 +5,34 @@ using UnityEngine;
 public class doorTrigger : MonoBehaviour
 {
     public GameObject Door;
-    private Renderer renderer;
+    private MeshRenderer buttonRenderer;
+    MeshRenderer doorRenderer;
+    private BoxCollider doorCollider;
 
-     void Start()
+    void Start()
     {
-        renderer = GetComponent<Renderer>();
-        if (renderer != null)
+        doorRenderer = Door.GetComponent<MeshRenderer>();
+        doorCollider = Door.GetComponent<BoxCollider>();
+        buttonRenderer = GetComponent<MeshRenderer>();
+        if (buttonRenderer != null)
         {
-            renderer.material.color = Color.red;
+            buttonRenderer.material.color = Color.red;
         }
     }
     // void OnMouseDown()
     void Update()
     {
-        // if (Door != null)
+        //ADD LOGIC
+        //only open door when Beam Collider is on Button and pressing E P-----------O
+        //                                                              |          \|/
+        //                                                                          ^
         if (Input.GetKeyDown(KeyCode.E) && Door != null)
         {
-            MeshRenderer mesh = Door.GetComponent<MeshRenderer>();
-            if (mesh != null)
-            {
-                mesh.enabled = false;
-                renderer.material.color = Color.green;
-            }
+            Door.GetComponent<Animator>().Play("Open");
+            buttonRenderer.material.color = Color.green;
         }
-    }
 
+    }
 }
+
+
