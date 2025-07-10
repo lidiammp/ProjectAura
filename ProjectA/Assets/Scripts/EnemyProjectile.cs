@@ -14,11 +14,15 @@ public class EnemyProjectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Transform target = GameObject.FindGameObjectWithTag("Player").transform;
         Vector3 direction = target.position - gameObject.transform.position;
-        rb.AddForce(direction * speed * Time.deltaTime);
+        rb.AddForce(direction * speed);
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Healthbar>().TakeDamage(damage);   
+        }
         Destroy(gameObject);
     }
 }
