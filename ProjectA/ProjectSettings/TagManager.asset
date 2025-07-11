@@ -5,18 +5,20 @@ TagManager:
   serializedVersion: 2
   tags:
   - Spawn Manager
+  - Player Healthbar
+  - Player Embracebar
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - EnemyNavZone
   - Water
   - UI
   - Beam
   - Enemy
-  - 
-  - 
-  - 
+  - ' Post Processing'
+  - Projectile
+  - Player
   - 
   - 
   - 
