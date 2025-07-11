@@ -12,9 +12,11 @@ public class EnemyAttack : MonoBehaviour
     private BoxCollider attackCollider;
     private Enemy enemy;
 
+    private bool canAttack;
     [SerializeField] private GameObject Bullet;
     void Start()
     {
+        canAttack = true;
         playerTransform = FindObjectOfType<PlayerMovement>().transform;
         enemyAnimator = GetComponentInChildren<Animator>();
         attackCollider = GetComponentInChildren<BoxCollider>();
@@ -26,7 +28,7 @@ public class EnemyAttack : MonoBehaviour
         distance = Vector3.Distance(transform.position, playerTransform.position);
         //if in attack range stop and attack
         //works for both ranged and melee
-        if (distance <= attackRange)
+        if (distance <= attackRange && canAttack == true)
         {
             enemy.LockMovement();
             Attack();
@@ -58,12 +60,19 @@ public class EnemyAttack : MonoBehaviour
     //-----------------------------------------------------------------------------------------------//
     public void ShootBullet()
     {
-        if (Bullet != null) {
+        if (Bullet != null)
+        {
             Instantiate(Bullet);
         }
-        
+
+    }
+
+    public void DisableAttack()
+    {
+        canAttack = false;
     }
     
+
     
 
 }

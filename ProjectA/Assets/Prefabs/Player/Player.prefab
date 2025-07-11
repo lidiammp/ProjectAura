@@ -379,8 +379,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 20}
+  m_Center: {x: 0, y: 0, z: 10}
 --- !u!114 &8450049345383610133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,7 +396,7 @@ MonoBehaviour:
   chargeTimeRequired: 2
   beamShotRadius: 20
   range: 20
-  verticalRange: 20
+  verticalRange: 1
   fireRate: 2
   raycastLayerMask:
     serializedVersion: 2
@@ -737,7 +737,7 @@ Transform:
   - {fileID: 5832505835711577597}
   - {fileID: 184687073686121635}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &7948643544697218425
 CharacterController:
@@ -807,6 +807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healValue: 0.5
   embraceRange: 2
+  chargeTime: 1
 --- !u!114 &7562049852916459673
 MonoBehaviour:
   m_ObjectHideFlags: 0
