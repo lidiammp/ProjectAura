@@ -129,10 +129,22 @@ public class Beam : MonoBehaviour
                 if (hit.transform == enemy.transform)
                 {
                     // Confirmed hit - draw a debug ray and pause game (for testing)
-                    //Debug.DrawRay(transform.position, dir, Color.green);
+                    // Debug.DrawRay(transform.position, dir, Color.green);
+                    // Time.timeScale = 0;
                     enemy.Stun(); // stun or in this case FREEZE
                 }
+                // else
+                // {
+                //     Debug.DrawRay(transform.position, dir, Color.red, 0.1f); // RED if blocked
+                //     Debug.Log(hit);
+                //     Time.timeScale = 0;
+                // }
             }
+            // else
+            // {
+            //     Debug.DrawRay(transform.position, dir.normalized * range * 1.5f, Color.gray, 0.1f); // GRAY if nothing hit
+            //     Time.timeScale = 0;
+            // }
         }
 
         // Reset the fire cooldown timer
