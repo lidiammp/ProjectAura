@@ -68,7 +68,8 @@ public class Enemy : MonoBehaviour
             waitTimer = waitTime; // Start waiting
         }
         waitTimer -= Time.deltaTime;
-        if (waitTimer <= 0f){
+        if (waitTimer <= 0f)
+        {
             if (enemyNavMeshAgent.remainingDistance <= enemyNavMeshAgent.stoppingDistance) //done with path
             {
                 Vector3 point;
@@ -114,7 +115,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(StunEnemy(stunDuration));
     }
 
-    
+
 
     //execute stun for duration before unlocking player
     IEnumerator StunEnemy(float duration)
@@ -135,7 +136,7 @@ public class Enemy : MonoBehaviour
     //method to invoke death for wave manager
     public void Die()
     {
-        OnDeath?.Invoke();  
+        OnDeath?.Invoke();
         Destroy(gameObject);
     }
 
@@ -145,4 +146,8 @@ public class Enemy : MonoBehaviour
         enemyNavMeshAgent.ResetPath();
     }
 
+    public void DisableBodyCollider()
+    {
+        gameObject.GetComponent<Collider>().enabled = false;
+    }
 }
