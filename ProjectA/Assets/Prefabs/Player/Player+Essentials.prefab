@@ -148,7 +148,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0.463
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -178,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 3946948906194369447}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4269373798158248033}
@@ -309,7 +309,7 @@ Transform:
   - {fileID: 2190557724909502520}
   - {fileID: 8196066831366632742}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4190270777333771175
 PrefabInstance:
@@ -532,7 +532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3719679961273499207, guid: d093d330483b66044834e252352dabc2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3719679961273499207, guid: d093d330483b66044834e252352dabc2, type: 3}
       propertyPath: m_LocalScale.y
@@ -548,7 +548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3719679961273499207, guid: d093d330483b66044834e252352dabc2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 146
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 5113046066606302516, guid: d093d330483b66044834e252352dabc2, type: 3}
       propertyPath: m_AnchorMax.x
@@ -644,7 +644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6574902326680951777, guid: d093d330483b66044834e252352dabc2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7214502661454306738, guid: d093d330483b66044834e252352dabc2, type: 3}
       propertyPath: m_Color.a
