@@ -35,23 +35,23 @@ public class doorTrigger : MonoBehaviour
 
     }
     void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-            {
-                playerInRange = true;
-                Debug.Log("here");
-            }
+            playerInRange = true;
+            Debug.Log("here");
         }
+    }
 
-        void OnTriggerExit (Collider other)
+    void OnTriggerExit (Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-            {
-                playerInRange = false;
-                Debug.Log("not here");
-                
-            }
+            playerInRange = false;
+            Debug.Log("not here");
+            
         }
+    }
 }
 
 
