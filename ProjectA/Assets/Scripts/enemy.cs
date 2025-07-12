@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using OpenCover.Framework.Model;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 

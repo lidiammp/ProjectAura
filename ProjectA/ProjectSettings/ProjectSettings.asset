@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Gameheads-Kusagi Kuties
   productName: ProjectA
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -154,7 +154,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.ProjectA
+    Standalone: com.Gameheads-Kusagi-Kuties.ProjectA
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -926,7 +926,14 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -946,11 +953,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 36532633-e81e-496b-8e9c-5c9c443b97cc
+  cloudProjectId: b20b237a-f7c3-47b1-a5fc-2e4b577e0219
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: ProjectA
-  organizationId: lidiamartin
+  organizationId: kodesone
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
