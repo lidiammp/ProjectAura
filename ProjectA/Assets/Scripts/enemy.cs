@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using OpenCover.Framework.Model;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -28,10 +29,11 @@ public class Enemy : MonoBehaviour
     private EnemyAwareness enemyAwareness;
     private Transform playertransform;
     private UnityEngine.AI.NavMeshAgent enemyNavMeshAgent;
-
     public float waitTime = 2f;
     private float waitTimer = 0f;
     private bool isWaiting = false;
+    private float maxDistance;
+    public LayerMask layersToHit;
     void Start()
     {
         //if no centerpoint use enemys own position
@@ -39,17 +41,19 @@ public class Enemy : MonoBehaviour
         {
             centrePoint = transform;
         }
+        //add player to obstacle checkrer
+        layersToHit |= 1 << LayerMask.NameToLayer("Player");
         enemyAnimator = GetComponentInChildren<Animator>();
         enemyAwareness = GetComponent<EnemyAwareness>();
         playertransform = FindObjectOfType<PlayerMovement>().transform;
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-
+        maxDistance = enemyAwareness.awarenessRadius;
     }
 
     void Update()
     {
         //if aggro and not stunned follow player 
-        if (enemyAwareness.isAggro && isStunned == false)
+        if (enemyAwareness.isAggro && isStunned == false && CheckForObstacle())
         {
             enemyNavMeshAgent.SetDestination(playertransform.position);
         }//else, just wander
@@ -60,6 +64,21 @@ public class Enemy : MonoBehaviour
 
     }
 
+    private bool CheckForObstacle()
+    {
+        Vector3 dir = (playertransform.position - transform.position).normalized;
+        Ray ray = new Ray(transform.position, dir);
+        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, layersToHit) && hit.collider.gameObject.tag == "Player")
+        {
+            //return hit only if the hit hits a playr
+            return true;
+            //Time.timeScale = 0;
+
+        }
+        //if it hits anything else just chill
+        return false;
+
+    }
     public void Wander()
     {
         if (!isWaiting)
