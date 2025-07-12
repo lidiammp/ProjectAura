@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using UnityEngine;
 
 public class PlayerEmbrace : MonoBehaviour
@@ -83,11 +82,9 @@ public class PlayerEmbrace : MonoBehaviour
             enemyManager.RemoveEnemy(target);
             target.GetComponent<Animator>().Play("MunchkinHug");
             //25% chance to heal by healvalue
-            //might change to a different value based on type of enemy
-            if (Random.value <= 0.25)
-            {
-                playerHealth.Heal(healValue);
-            }
+    
+            playerHealth.Heal(healValue);
+
 
             //target.Die();
             Debug.Log("HUG!!!");
