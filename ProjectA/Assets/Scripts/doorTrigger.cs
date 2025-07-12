@@ -9,6 +9,8 @@ public class doorTrigger : MonoBehaviour
     MeshRenderer doorRenderer;
     private BoxCollider doorCollider;
     private bool playerInRange = false;
+    public GameObject UIpopup;
+    private Animator uianimator;
 
     void Start()
     {
@@ -19,6 +21,9 @@ public class doorTrigger : MonoBehaviour
         {
             buttonRenderer.material.color = Color.red;
         }
+        UIpopup.SetActive(false);
+        //uianimator = UIpopup.GetComponent<Animator>(); when adding  animation to door 
+
     }
     // void OnMouseDown()
     void Update()
@@ -34,22 +39,26 @@ public class doorTrigger : MonoBehaviour
         }
 
     }
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             playerInRange = true;
             Debug.Log("here");
+            UIpopup.SetActive(true);
+            //uianimator.enabled = true; when adding  animation to door 
         }
     }
 
-    void OnTriggerExit (Collider other)
+    void OnCollisionExit (Collision other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             playerInRange = false;
             Debug.Log("not here");
-            
+            UIpopup.SetActive(false);
+            //uianimator.enabled = false;  when adding  animation to door 
+
         }
     }
 }
