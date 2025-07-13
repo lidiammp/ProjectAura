@@ -39,7 +39,7 @@ public class doorTrigger : MonoBehaviour
         }
 
     }
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -50,7 +50,7 @@ public class doorTrigger : MonoBehaviour
         }
     }
 
-    void OnCollisionExit (Collision other)
+    void OnTriggerExit (Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
