@@ -64,7 +64,7 @@ public class Beam : MonoBehaviour
         {
             isCharging = true;
             chargeHeldTime = 0f; // reset when charging starts
-            handAnimator.SetBool("isCharging", true);
+            // handAnimator.SetBool("isCharging", true);
             // lidia wants a sound here
         }
 
@@ -80,12 +80,12 @@ public class Beam : MonoBehaviour
     {
         // once its let go 
         isCharging = false;
-        handAnimator.SetBool("isCharging", false);
+
 
         //check if its been long enough
         if (chargeHeldTime >= chargeTimeRequired)
         {
-            handAnimator.SetTrigger("isAttacking");
+            handAnimator.Play("HandBlast");
             Fire();
         }
         //if hasnt show in debug

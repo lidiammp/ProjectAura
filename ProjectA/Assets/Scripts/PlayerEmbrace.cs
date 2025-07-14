@@ -12,8 +12,10 @@ public class PlayerEmbrace : MonoBehaviour
     // public LayerMask enemyLayer;
     private EnemyManager enemyManager;
     private Healthbar playerHealth;
+    private Animator handAnimator;
     void Start()
     {
+        handAnimator = GetComponentInChildren<Animator>();
         enemyManager = FindObjectOfType<EnemyManager>();
         playerHealth = FindObjectOfType<PlayerMovement>().GetComponent<Healthbar>();
     }
@@ -24,36 +26,39 @@ public class PlayerEmbrace : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            isCharging = true;
-            holdTimer = 0f;
-            Debug.Log("warming up hands for hug");
+            //new stuff
+            handAnimator.Play("HandHug");
+
+            // isCharging = true;
+            // holdTimer = 0f;
+            // Debug.Log("warming up hands for hug");
         }
 
 
-        if (Input.GetKey(KeyCode.E) && isCharging)
-        {
-            holdTimer += Time.deltaTime;
+        // if (Input.GetKey(KeyCode.E) && isCharging)
+        // {
+        //     holdTimer += Time.deltaTime;
 
-            if (holdTimer >= chargeTime)
-            {
-                Debug.Log("bring it in brother");
-                Debug.Log($" Embrace charge complete: held for {holdTimer:F2} seconds (needed {chargeTime} seconds).");
+        //     if (holdTimer >= chargeTime)
+        //     {
+        //         Debug.Log("bring it in brother");
+        //         Debug.Log($" Embrace charge complete: held for {holdTimer:F2} seconds (needed {chargeTime} seconds).");
 
-                TryEmbrace();
+        //         TryEmbrace();
 
-                // reset
-                holdTimer = 0f;
-                isCharging = false;
-            }
-        }
+        //         // reset
+        //         holdTimer = 0f;
+        //         isCharging = false;
+        //     }
+        // }
 
-        // Cancel charge if player releases early
-        if (Input.GetKeyUp(KeyCode.E) && isCharging)
-        {
-            Debug.Log("Im not warmed up enough");
-            holdTimer = 0f;
-            isCharging = false;
-        }
+        // // Cancel charge if player releases early
+        // if (Input.GetKeyUp(KeyCode.E) && isCharging)
+        // {
+        //     Debug.Log("Im not warmed up enough");
+        //     holdTimer = 0f;
+        //     isCharging = false;
+        // }
 
     }
     void TryEmbrace()
