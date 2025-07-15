@@ -6,7 +6,7 @@ public class MouseLook : MonoBehaviour
 {
     public float lookSpeed = 2f;
     public Transform playerCamera;
-
+    private bool lockMouse = false;
     private float rotationX = 0;
     [SerializeField] private float lookXLimit = 45f;
     private Vector3 moveDirection = Vector3.zero;
@@ -21,17 +21,29 @@ public class MouseLook : MonoBehaviour
     void Update()
     {
         characterController.Move(moveDirection * Time.deltaTime);
+        if (!lockMouse)
+        {
+            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+            //limit rotation so u dont break ur neck
+            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
 
-        //rotate camera up and down based on mouse position
-        rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-        //limit rotation so u dont break ur neck
-        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+            //rotate player left and right based on mouse position
+            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
 
-        //rotate player left and right based on mouse position
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+
     }
 
+    public void LockMouse()
+    {
+        lockMouse = true;
+    }
+
+    public void UnlockMouse()
+    {
+        lockMouse = false;
+    }
 
 
 }

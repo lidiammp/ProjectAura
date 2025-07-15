@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-   
+
     // Speed at which the player moves
     public float playerSpeed = 20f;
 
@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     // Custom gravity value applied to the player
     private float myGravity = -10f;
 
+    private bool lockMovement = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,9 +34,13 @@ public class PlayerMovement : MonoBehaviour
     {
         // Handle player input
         GetInput();
-
+        if (lockMovement)
+        {
+            StopMovement();
+            return;
+        }
         // Move the player based on calculated movement vector
-        MovePlayer();   
+        MovePlayer();
     }
 
     // Handles player input and calculates movement direction
@@ -60,4 +66,19 @@ public class PlayerMovement : MonoBehaviour
         myCC.Move(movementVector * Time.deltaTime);
     }
 
+    void StopMovement()
+    {
+        movementVector = Vector3.zero;
+        myCC.Move(movementVector); // ensures no residual movement
+    }
+
+    public void LockMovement()
+    {
+        lockMovement = true;
+    }
+
+    public void UnlockMovement()
+    {
+        lockMovement = false;
+    }
 }
