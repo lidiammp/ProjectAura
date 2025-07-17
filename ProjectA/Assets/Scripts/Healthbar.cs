@@ -6,7 +6,7 @@ public class Healthbar : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 10f, currentHealth;
     [SerializeField] private TakeDamage takeDamage;
-
+    [SerializeField] private bool isInvincible = false;
     void Start()
     {
         currentHealth = maxHealth;
@@ -15,8 +15,12 @@ public class Healthbar : MonoBehaviour
     //take damage function
     public void TakeDamage(float damage)
     {
-        takeDamage.VignetteEffect();
-        currentHealth -= damage;
+        if (!isInvincible)
+        {
+            takeDamage.VignetteEffect();
+            currentHealth -= damage;
+        }
+        
     }
 
     //heal function

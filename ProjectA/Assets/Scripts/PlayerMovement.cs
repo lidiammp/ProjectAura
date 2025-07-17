@@ -6,8 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
 
     // Speed at which the player moves
-    public float playerSpeed = 20f;
-
+    private float playerSpeed;
+    public float walkSpeed = 20f;
+    public float sprintSpeed = 30f;
     // Reference to the CharacterController component
     private CharacterController myCC;
 
@@ -32,6 +33,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerSpeed = walkSpeed;
+        if (Input.GetKey("left shift") || Input.GetKey("right shift"))
+        {
+            playerSpeed = sprintSpeed;
+        }
+        
         // Handle player input
         GetInput();
         if (lockMovement)
@@ -39,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
             StopMovement();
             return;
         }
+        
         // Move the player based on calculated movement vector
         MovePlayer();
     }

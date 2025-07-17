@@ -2442,6 +2442,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1718939808833395107, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: walkSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718939808833395107, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sprintSpeed
+      value: 8.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2383454521733281811, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2452,11 +2460,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2423255616980497573, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: embraceRange
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3946948906194369447, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: chargeTimeRequired
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7456123767231913174, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_IsActive
