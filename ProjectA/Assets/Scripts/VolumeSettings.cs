@@ -6,7 +6,7 @@ public class VolumeSettings : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
         [SerializeField] private Volume gameVolume;
-        [SerializeField] private float percentPerPress = 0.1f; // 10% per press
+        [SerializeField] private float startingIntensity = 0.1f; // 10% per press
         [SerializeField] private float currentLerp = 0f;
         [SerializeField] private ShadowsMidtonesHighlights smh;
         [SerializeField] private ColorAdjustments colorAdjust;
@@ -68,12 +68,11 @@ public class VolumeSettings : MonoBehaviour
 
      private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            // Increase interpolation progress by set percentage
-            currentLerp = Mathf.Clamp01(currentLerp + percentPerPress);
-            SetLerpedValues(currentLerp);
-        }
+        currentLerp = (float)GetComponentInParent<Room>().GetAliveEnemies() / GetComponentInParent<Room>().GetTotalEnemies();
+        // Increase interpolation progress by set percentage
+        // currentLerp = Mathf.Clamp01(currentLerp + percentPerPress);
+        SetLerpedValues(1-currentLerp+startingIntensity);
+        
     }
 
     private void SetLerpedValues(float t)

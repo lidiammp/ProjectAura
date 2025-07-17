@@ -22,10 +22,10 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 625145290, guid: 8289419d9146c1d4cb4b633e00301691, type: 3}
-    - time: 1.0166667
+    - time: 1
       value: {fileID: 625145290, guid: 8289419d9146c1d4cb4b633e00301691, type: 3}
     attribute: m_Sprite
-    path: 
+    path: HeartHands
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -37,7 +37,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 4007341784
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -53,7 +53,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0333333
+    m_StopTime: 1.0166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

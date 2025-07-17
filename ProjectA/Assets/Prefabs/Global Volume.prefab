@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8291373173506096028}
   - component: {fileID: 5511238940227500940}
-  - component: {fileID: 623152480258741814}
+  - component: {fileID: 7199903814386980440}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5511238940227500940
 MonoBehaviour:
@@ -50,7 +50,7 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 9056fc243ce3eaf428c0d6879fcb5981, type: 2}
---- !u!114 &623152480258741814
+--- !u!114 &7199903814386980440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
