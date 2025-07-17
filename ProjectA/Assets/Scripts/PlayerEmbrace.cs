@@ -74,11 +74,17 @@ public class PlayerEmbrace : MonoBehaviour
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, embraceRange, enemyLayer)){
             Enemy enemyComponent = hit.collider.gameObject.GetComponent<Enemy>();
-            if (enemyComponent != null && enemyComponent.GetIsStunned()){
+            if (enemyComponent != null && enemyComponent.GetIsStunned())
+            {
                 EmbraceEnemy(enemyComponent);
                 return; // laddies leave me alone type shift, one at a time 
             }
+            
+        }else
+        {
+            handAnimator.Play("HandHugMiss");
         }
+
         void EmbraceEnemy(Enemy target)
         {
             // for now we js destroy it or maybe zion can add animation 
