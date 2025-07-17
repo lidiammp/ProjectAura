@@ -64,7 +64,7 @@ public class Beam : MonoBehaviour
         {
             isCharging = true;
             chargeHeldTime = 0f; // reset when charging starts
-            handAnimator.SetBool("isCharging", true);
+            // handAnimator.SetBool("isCharging", true);
             // lidia wants a sound here
         }
 
@@ -80,12 +80,12 @@ public class Beam : MonoBehaviour
     {
         // once its let go 
         isCharging = false;
-        handAnimator.SetBool("isCharging", false);
+
 
         //check if its been long enough
         if (chargeHeldTime >= chargeTimeRequired)
         {
-            handAnimator.SetTrigger("isAttacking");
+            handAnimator.Play("HandBlast");
             Fire();
         }
         //if hasnt show in debug
@@ -117,35 +117,7 @@ public class Beam : MonoBehaviour
 
 
         // Loop through all enemies currently in beam range
-        foreach (var enemy in enemyManager.enemiesInTrigger)
-        {
-            // Calculate direction from beam to enemy
-            var dir = enemy.transform.position - transform.position;
-            RaycastHit hit;
-
-            // Shoot a ray toward enemy, check if it's actually visible (no obstacles)
-            if (Physics.Raycast(transform.position, dir, out hit, range * 1.5f, raycastLayerMask))
-            {
-                if (hit.transform == enemy.transform)
-                {
-                    // Confirmed hit - draw a debug ray and pause game (for testing)
-                    // Debug.DrawRay(transform.position, dir, Color.green);
-                    // Time.timeScale = 0;
-                    enemy.Stun(); // stun or in this case FREEZE
-                }
-                // else
-                // {
-                //     Debug.DrawRay(transform.position, dir, Color.red, 0.1f); // RED if blocked
-                //     Debug.Log(hit);
-                //     Time.timeScale = 0;
-                // }
-            }
-            // else
-            // {
-            //     Debug.DrawRay(transform.position, dir.normalized * range * 1.5f, Color.gray, 0.1f); // GRAY if nothing hit
-            //     Time.timeScale = 0;
-            // }
-        }
+        CheckIfHitEnemy();
 
         // Reset the fire cooldown timer
         nextTimeToFire = Time.time + fireRate;
@@ -161,7 +133,27 @@ public class Beam : MonoBehaviour
             enemyManager.AddEnemy(enemy);
         }
     }
+    public void CheckIfHitEnemy()
+    {
+        foreach (var enemy in enemyManager.enemiesInTrigger)
+        {
+            // Calculate direction from beam to enemy
+            var dir = enemy.transform.position - transform.position;
+            RaycastHit hit;
 
+            // Shoot a ray toward enemy, check if it's actually visible (no obstacles)
+            if (Physics.Raycast(transform.position, dir, out hit, range * 1.5f, raycastLayerMask))
+            {
+                if (hit.transform == enemy.transform)
+                {
+                    // If it hit an enemy, stun them
+                    enemy.Stun(); // stun or in this case FREEZE
+                }
+
+            }
+
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         // When something exits beam range, check if it's an enemy
