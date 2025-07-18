@@ -22,12 +22,14 @@ public class PlayerMovement : MonoBehaviour
     private float myGravity = -10f;
 
     private bool lockMovement = false;
+    private Animator handAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
         // Get and store the CharacterController component attached to the player GameObject
         myCC = GetComponent<CharacterController>();
+        handAnimator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -59,7 +61,14 @@ public class PlayerMovement : MonoBehaviour
 
         // Get raw input from keyboard/controller for horizontal (A/D or left/right) and vertical (W/S or up/down)
         inputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-
+        if (inputVector.magnitude > 0)
+        {
+            handAnimator.SetBool("isWalking", true);
+        }
+        else
+        {
+            handAnimator.SetBool("isWalking", false);
+        }
         // Convert local input direction to world space based on player's orientation
         inputVector = transform.TransformDirection(inputVector);
 

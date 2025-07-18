@@ -31,15 +31,17 @@ public class Headbob : MonoBehaviour
     }
     void CheckForHeadbobTrigger()
     {
-        float inputMagnitude = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).magnitude;
-        if (inputMagnitude > 0)
+        // float inputMagnitude = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).magnitude;
+        if (controller.velocity.magnitude > 0.1f)
         {
             StartHeadbob();
         }else
         {
-            // Idle - reset position smoothly
-            timer = 0f;
-            transform.localPosition = Vector3.Lerp(transform.localPosition, startPosition, Time.deltaTime * 5);
+            transform.localPosition = Vector3.Lerp(
+                transform.localPosition,
+                startPosition,
+                Time.deltaTime * 12f
+            );
         }
     }
 
