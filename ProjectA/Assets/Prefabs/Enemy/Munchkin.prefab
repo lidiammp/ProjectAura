@@ -20,22 +20,6 @@ PrefabInstance:
       propertyPath: awarenessRadius
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 4264862127347013659, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
-      propertyPath: m_Height
-      value: 1.8411517
-      objectReference: {fileID: 0}
-    - target: {fileID: 4264862127347013659, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
-      propertyPath: m_Radius
-      value: 0.7650833
-      objectReference: {fileID: 0}
-    - target: {fileID: 4264862127347013659, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
-      propertyPath: m_Center.x
-      value: -0.0040512085
-      objectReference: {fileID: 0}
-    - target: {fileID: 4264862127347013659, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
-      propertyPath: m_Center.y
-      value: -0.13555837
-      objectReference: {fileID: 0}
     - target: {fileID: 4906274871242975384, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_Name
       value: Munchkin
@@ -74,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5811378307070669931, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.7
+      value: 24.592457
       objectReference: {fileID: 0}
     - target: {fileID: 5811378307070669931, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalRotation.w
