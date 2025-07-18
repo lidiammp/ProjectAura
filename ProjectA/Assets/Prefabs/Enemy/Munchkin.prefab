@@ -20,25 +20,41 @@ PrefabInstance:
       propertyPath: awarenessRadius
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4264862127347013659, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
+      propertyPath: m_Height
+      value: 2.2607079
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264862127347013659, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
+      propertyPath: m_Radius
+      value: 0.869061
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264862127347013659, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
+      propertyPath: m_Center.x
+      value: 0.06606531
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264862127347013659, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
+      propertyPath: m_Center.y
+      value: 0.033358574
+      objectReference: {fileID: 0}
     - target: {fileID: 4906274871242975384, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_Name
       value: Munchkin
       objectReference: {fileID: 0}
     - target: {fileID: 4914406681668271148, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 4914406681668271148, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 4914406681668271148, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 4914406681668271148, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.76
+      value: -0.91
       objectReference: {fileID: 0}
     - target: {fileID: 4914406681668271148, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalPosition.y
@@ -50,15 +66,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5811378307070669931, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.310969
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: 5811378307070669931, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.3358488
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5811378307070669931, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.592457
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 5811378307070669931, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalRotation.w
@@ -103,7 +119,7 @@ PrefabInstance:
     - target: {fileID: 7838142388346267374, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: -876546973899608171, guid: 321ebc2d6c768fc49962facb6958dbdf, type: 3}
     - target: {fileID: 8789354690718195221, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: layersToHit.m_Bits
       value: 1025
