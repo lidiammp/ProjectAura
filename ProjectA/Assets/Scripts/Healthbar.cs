@@ -15,12 +15,13 @@ public class Healthbar : MonoBehaviour
     //take damage function
     public void TakeDamage(float damage)
     {
-        if (!isInvincible)
+        if (isInvincible == false)
         {
             takeDamage.VignetteEffect();
             currentHealth -= damage;
         }
-        
+        //way to show that invinicible
+
     }
 
     //heal function
@@ -60,7 +61,7 @@ public class Healthbar : MonoBehaviour
         }
     }
 
-    
+
     public float GetMaxHealth()
     {
         return maxHealth;
@@ -70,4 +71,10 @@ public class Healthbar : MonoBehaviour
     {
         return currentHealth;
     }
+
+    public void SetInvincible(bool inv)
+    {
+        isInvincible = inv;
+    }
+
 }

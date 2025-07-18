@@ -16,6 +16,7 @@ public class PlayerEmbrace : MonoBehaviour
     private Healthbar playerHealth;
     private Animator handAnimator;
     private PlayerMovement playerMovement;
+    [SerializeField] private float invDuration = 0.5f;
     [SerializeField] private GameObject playerCamera;
     void Start()
     {
@@ -72,15 +73,17 @@ public class PlayerEmbrace : MonoBehaviour
         // Collider[] hits= Physics.OverlapSphere(transform.position, embraceRange, enemyLayer);
         // foreach (var hit in hits)
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, embraceRange, enemyLayer)){
+        if (Physics.Raycast(ray, out RaycastHit hit, embraceRange, enemyLayer))
+        {
             Enemy enemyComponent = hit.collider.gameObject.GetComponent<Enemy>();
             if (enemyComponent != null && enemyComponent.GetIsStunned())
             {
                 EmbraceEnemy(enemyComponent);
                 return; // laddies leave me alone type shift, one at a time 
             }
-            
-        }else
+
+        }
+        else
         {
             handAnimator.Play("HandHugMiss");
         }
@@ -118,11 +121,35 @@ public class PlayerEmbrace : MonoBehaviour
     {
         mouseLook.LockMouse();
         playerMovement.LockMovement();
+        playerHealth.SetInvincible(true);
     }
 
     public void EndEmbraceCutscene()
     {
         mouseLook.UnlockMouse();
         playerMovement.UnlockMovement();
+        //playerHealth.SetInvincible(false);
+        StartCoroutine(LingeringInvincibility(invDuration));
+    }
+
+    public void BeginMissEmbraceCutscene()
+    {
+        mouseLook.LockMouse();
+        playerMovement.LockMovement();
+    }
+
+    public void EndEmbraceMissCutscene()
+    {
+        mouseLook.UnlockMouse();
+        playerMovement.UnlockMovement();
+    }
+
+    IEnumerator LingeringInvincibility(float duration)
+    {
+        Debug.Log("Invincibility ON");
+        playerHealth.SetInvincible(true);
+        yield return new WaitForSeconds(duration);
+        Debug.Log("Invincibility OFF");
+        playerHealth.SetInvincible(false);
     }
 }
