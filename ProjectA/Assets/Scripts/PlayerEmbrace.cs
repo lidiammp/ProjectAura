@@ -98,7 +98,8 @@ public class PlayerEmbrace : MonoBehaviour
             // (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
             staminabarController.StaminaRegain(30f);
             //remove from list
-            handAnimator.Play("HandHug");
+            string animationName = target.GetComponent<Enemy>().enemyType;
+            handAnimator.Play("HandHug" + animationName);
             enemyManager.RemoveEnemy(target);
             target.GetComponent<Animator>().Play("MunchkinPassing");
             //25% chance to heal by healvalue
@@ -110,6 +111,7 @@ public class PlayerEmbrace : MonoBehaviour
             Debug.Log("HUG!!!");
         }
     }
+
 
     public float GetHeldTime()
     {

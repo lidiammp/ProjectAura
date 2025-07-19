@@ -6,7 +6,10 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
 
+    public int maxHealth = 100;
+    private int currentHealth;
 
+    public string enemyType;
     public delegate void DeathEvent();
     public event DeathEvent OnDeath;
 
@@ -32,8 +35,15 @@ public class Enemy : MonoBehaviour
     private bool isWaiting = false;
     private float maxDistance;
     public LayerMask layersToHit;
+    private Color originalColor;
+    private SpriteRenderer spriteRenderer;
+    [ColorUsage(true) ] public Color pinkColor = new Color(1f, 0.75f, 0.8f, 1f);
+    
     void Start()
-    {
+    {   
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+        currentHealth = maxHealth;
         //if no centerpoint use enemys own position
         if (centrePoint == null)
         {
@@ -76,6 +86,24 @@ public class Enemy : MonoBehaviour
         //if it hits anything else just chill
         return false;
 
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (isStunned) return; // Can't take damage while stunned
+
+        currentHealth -= amount;
+        StartCoroutine(FlashRed());
+        if (currentHealth <= 0)
+        {
+            Stun();
+        }
+    }
+    private IEnumerator FlashRed()
+    {
+        spriteRenderer.color = pinkColor;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.color = originalColor;
     }
     public void Wander()
     {
@@ -139,6 +167,7 @@ public class Enemy : MonoBehaviour
     {
         enemyNavMeshAgent.SetDestination(transform.position);
         yield return new WaitForSeconds(duration);
+        currentHealth = maxHealth;
         isStunned = false;
         enemyAnimator.SetBool("isStunned", isStunned);
 

@@ -10,7 +10,7 @@ public class Beam : MonoBehaviour
     public float chargeTimeRequired = 2f;
     private float chargeHeldTime;
     private bool isCharging;
-
+    [SerializeField] private int beamDamage = 25;
 
     // Reference to the trigger collider representing the beams range
     private BoxCollider beamTrigger;
@@ -158,7 +158,7 @@ public class Beam : MonoBehaviour
                 if (hit.transform == enemy.transform)
                 {
                     // If it hit an enemy, stun them
-                    enemy.Stun(); // stun or in this case FREEZE
+                    enemy.TakeDamage(beamDamage); // stun or in this case FREEZE
                 }
 
             }
