@@ -26,6 +26,12 @@ public class PlayerMovement : MonoBehaviour
     private Animator handAnimator;
     private bool isWalking = true;
 
+    public float normalFOV = 60f;
+    public float sprintFOV = 70f;
+    public float fovTransitionSpeed = 5f;
+
+    private Camera playerCamera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,28 +39,39 @@ public class PlayerMovement : MonoBehaviour
         myCC = GetComponent<CharacterController>();
         handAnimator = GetComponentInChildren<Animator>();
         staminabarController = FindObjectOfType<StaminabarController>();
+        playerCamera = gameObject.GetComponentInChildren<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");
         bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         bool isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
 
+
+        //camera
+        float targetFOV;
+
         if (shiftHeld && isMoving && staminabarController.playerStamina > 0)
         {
+            targetFOV = sprintFOV;
             isWalking = false;
             staminabarController.isSprinting = true;
             staminabarController.Sprinting();
         }
         else
         {
+            targetFOV = normalFOV;
             isWalking = true;
             staminabarController.isSprinting = false;
         }
+
+        //lerp to target fov
+        playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, fovTransitionSpeed * Time.deltaTime);
 
         playerSpeed = isWalking ? walkSpeed : sprintSpeed;
         // handle player input left right up down
