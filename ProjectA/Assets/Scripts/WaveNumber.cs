@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 public class WaveNumber : MonoBehaviour
 {
     // Start is called before the first frame update
-    private GameObject SpawnManager;
     private EnemySpawner enemySpawner;
     public TextMeshProUGUI Text;
 
     int waveNumber;
     void Start()
     {
-        SpawnManager = GameObject.FindGameObjectWithTag("SpawnManager");
-        enemySpawner = SpawnManager.GetComponent<EnemySpawner>();
-        Text = gameObject.GetComponent<TextMeshProUGUI>();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 
     // Update is called once per frame

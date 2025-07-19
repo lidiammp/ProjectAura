@@ -23,6 +23,7 @@ public class Room : MonoBehaviour
         aliveEnemies = totalEnemies.Length;
     }
 
+
     void OnEnemyDied()
     {
         aliveEnemies--;
@@ -43,4 +44,22 @@ public class Room : MonoBehaviour
     {
         return totalEnemies.Length;
     }
+    public void RefreshEnemies()
+    {
+        totalEnemies = GetComponentsInChildren<Enemy>();
+
+        aliveEnemies = 0;
+
+        foreach (Enemy e in totalEnemies)
+        {
+            // Prevent duplicate event subscriptions
+            e.OnDeath -= OnEnemyDied;
+            e.OnDeath += OnEnemyDied;
+            aliveEnemies++;
+        }
+        aliveEnemies = totalEnemies.Length;
+
+        Debug.Log($"[{roomName}] Refreshed enemy list. Alive: {aliveEnemies}, Total: {totalEnemies.Length}");
+    }
+
 }

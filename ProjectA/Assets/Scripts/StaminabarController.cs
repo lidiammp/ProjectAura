@@ -66,7 +66,7 @@ public class StaminabarController : MonoBehaviour
     }
     public void Sprinting()
     {
-        Debug.Log("Sprinting called: " + playerStamina);
+
         if (hasRegenerated)
         {
             isSprinting = true;
