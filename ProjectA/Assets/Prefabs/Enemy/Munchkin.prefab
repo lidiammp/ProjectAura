@@ -66,15 +66,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5811378307070669931, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.8
+      value: -12.310969
       objectReference: {fileID: 0}
     - target: {fileID: 5811378307070669931, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 3.3358488
       objectReference: {fileID: 0}
     - target: {fileID: 5811378307070669931, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.97
+      value: -7.7
       objectReference: {fileID: 0}
     - target: {fileID: 5811378307070669931, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_LocalRotation.w
@@ -117,9 +117,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -1492943795, guid: 78f27be6e03768845b46f6e6aa26cc8f, type: 3}
     - target: {fileID: 7838142388346267374, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838142388346267374, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 321ebc2d6c768fc49962facb6958dbdf, type: 3}
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8789354690718195221, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: layersToHit.m_Bits
       value: 1025

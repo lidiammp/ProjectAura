@@ -36,6 +36,8 @@ public class Beam : MonoBehaviour
     private Animator handAnimator;
     private GameObject parent;
     // private Screenshake screenshake;
+    // private RayCastGun gunLaser;
+    private HeartLaser heartLaser;
     void Start()
     {
         //beam sound
@@ -48,6 +50,9 @@ public class Beam : MonoBehaviour
         parent = transform.parent.gameObject;
         handAnimator = parent.GetComponentInChildren<Animator>();
         // screenshake = FindObjectOfType<Screenshake>();
+        // gunLaser = FindObjectOfType<RayCastGun>();
+        heartLaser = FindObjectOfType<HeartLaser>();
+
     }
 
     void Update()
@@ -56,6 +61,8 @@ public class Beam : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0) && isCharging)
         {
             ShootBeam();
+            
+            // gunLaser.LaserVisual();
         }
     }
     void ChargeBeam()
@@ -87,7 +94,7 @@ public class Beam : MonoBehaviour
         if (chargeHeldTime >= chargeTimeRequired)
         {
             // screenshake.StartShaking(0.5f);
-            
+            heartLaser.SpawnBullet();
             handAnimator.Play("HandBlast");
             Fire();
         }
