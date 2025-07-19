@@ -93,9 +93,10 @@ public class Beam : MonoBehaviour
         //check if its been long enough
         if (chargeHeldTime >= chargeTimeRequired)
         {
+            handAnimator.Play("HandBlast");
             // screenshake.StartShaking(0.5f);
             heartLaser.SpawnBullet();
-            handAnimator.Play("HandBlast");
+            
             Fire();
         }
         //if hasnt show in debug
