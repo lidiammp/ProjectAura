@@ -13,7 +13,7 @@ public class MouseLook : MonoBehaviour
     private CharacterController characterController;
     private void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        characterController = GetComponentInParent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

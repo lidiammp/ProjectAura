@@ -6,8 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
 
     // Speed at which the player moves
-    public float playerSpeed = 20f;
-
+    private float playerSpeed;
+    public float walkSpeed = 20f;
+    public float sprintSpeed = 30f;
     // Reference to the CharacterController component
     private CharacterController myCC;
 
@@ -21,17 +22,25 @@ public class PlayerMovement : MonoBehaviour
     private float myGravity = -10f;
 
     private bool lockMovement = false;
+    private Animator handAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
         // Get and store the CharacterController component attached to the player GameObject
         myCC = GetComponent<CharacterController>();
+        handAnimator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        playerSpeed = walkSpeed;
+        if (Input.GetKey("left shift") || Input.GetKey("right shift"))
+        {
+            playerSpeed = sprintSpeed;
+        }
+        
         // Handle player input
         GetInput();
         if (lockMovement)
@@ -39,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
             StopMovement();
             return;
         }
+        
         // Move the player based on calculated movement vector
         MovePlayer();
     }
@@ -51,7 +61,14 @@ public class PlayerMovement : MonoBehaviour
 
         // Get raw input from keyboard/controller for horizontal (A/D or left/right) and vertical (W/S or up/down)
         inputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-
+        if (inputVector.magnitude > 0)
+        {
+            handAnimator.SetBool("isWalking", true);
+        }
+        else
+        {
+            handAnimator.SetBool("isWalking", false);
+        }
         // Convert local input direction to world space based on player's orientation
         inputVector = transform.TransformDirection(inputVector);
 

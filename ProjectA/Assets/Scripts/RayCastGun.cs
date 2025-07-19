@@ -24,23 +24,26 @@ public class RayCastGun : MonoBehaviour
         fireTimer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Mouse0) && fireTimer > fireRate)
         {
-            fireTimer = 0;
-            laserLine.SetPosition(0, laserOrigin.position);
-            Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
-            RaycastHit hit;
-            if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, gunRange))
-            {
-                laserLine.SetPosition(1, hit.point);
-                Destroy(hit.transform.gameObject);
-            }
-            else
-            {
-                laserLine.SetPosition(1, rayOrigin + (playerCamera.transform.forward * gunRange));
-            }
-            StartCoroutine(ShootLaser());
+
+            
         }
     }
-
+    public void LaserVisual()
+    {
+        laserLine.SetPosition(0, laserOrigin.position);
+        Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, gunRange))
+        {
+            laserLine.SetPosition(1, hit.point);
+            // Destroy(hit.transform.gameObject);
+        }
+        else
+        {
+            laserLine.SetPosition(1, rayOrigin + (playerCamera.transform.forward * gunRange));
+        }
+        StartCoroutine(ShootLaser());
+    }
     IEnumerator ShootLaser()
     {
         laserLine.enabled = true;

@@ -35,6 +35,9 @@ public class Beam : MonoBehaviour
     private AudioSource audioSource;
     private Animator handAnimator;
     private GameObject parent;
+    // private Screenshake screenshake;
+    // private RayCastGun gunLaser;
+    private HeartLaser heartLaser;
     void Start()
     {
         //beam sound
@@ -46,6 +49,9 @@ public class Beam : MonoBehaviour
         beamTrigger.center = new Vector3(0, 0, range * 0.5f);
         parent = transform.parent.gameObject;
         handAnimator = parent.GetComponentInChildren<Animator>();
+        // screenshake = FindObjectOfType<Screenshake>();
+        // gunLaser = FindObjectOfType<RayCastGun>();
+        heartLaser = FindObjectOfType<HeartLaser>();
 
     }
 
@@ -55,6 +61,8 @@ public class Beam : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0) && isCharging)
         {
             ShootBeam();
+            
+            // gunLaser.LaserVisual();
         }
     }
     void ChargeBeam()
@@ -64,7 +72,7 @@ public class Beam : MonoBehaviour
         {
             isCharging = true;
             chargeHeldTime = 0f; // reset when charging starts
-            // handAnimator.SetBool("isCharging", true);
+            handAnimator.SetBool("isCharging", true);
             // lidia wants a sound here
         }
 
@@ -80,11 +88,13 @@ public class Beam : MonoBehaviour
     {
         // once its let go 
         isCharging = false;
-
+        handAnimator.SetBool("isCharging", false);
 
         //check if its been long enough
         if (chargeHeldTime >= chargeTimeRequired)
         {
+            // screenshake.StartShaking(0.5f);
+            heartLaser.SpawnBullet();
             handAnimator.Play("HandBlast");
             Fire();
         }
