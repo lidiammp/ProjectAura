@@ -15,9 +15,12 @@ public class PlayerEmbrace : MonoBehaviour
     private EnemyManager enemyManager;
     private Healthbar playerHealth;
     private Animator handAnimator;
+    [SerializeField] private float embraceCooldown = 3;
+    private float embraceTimer = 0;
     private PlayerMovement playerMovement;
     [SerializeField] private float invDuration = 0.5f;
     [SerializeField] private GameObject playerCamera;
+    private StaminabarController staminabarController;
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -25,17 +28,18 @@ public class PlayerEmbrace : MonoBehaviour
         handAnimator = GetComponent<Animator>();
         enemyManager = FindObjectOfType<EnemyManager>();
         playerHealth = FindObjectOfType<PlayerMovement>().GetComponent<Healthbar>();
+        staminabarController = FindObjectOfType<StaminabarController>();
     }
 
     // Start is called before the first frame update
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.E))
+        embraceTimer += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.E) && embraceTimer > embraceCooldown)
         {
-            //new stuff
-            TryEmbrace();
 
+            staminabarController.StaminaEmbrace();
+            embraceTimer = 0;
             // isCharging = true;
             // holdTimer = 0f;
             // Debug.Log("warming up hands for hug");
@@ -68,7 +72,7 @@ public class PlayerEmbrace : MonoBehaviour
         // }
 
     }
-    void TryEmbrace()
+    public void TryEmbrace()
     {
         // Collider[] hits= Physics.OverlapSphere(transform.position, embraceRange, enemyLayer);
         // foreach (var hit in hits)
@@ -92,7 +96,7 @@ public class PlayerEmbrace : MonoBehaviour
         {
             // for now we js destroy it or maybe zion can add animation 
             // (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
-
+            staminabarController.StaminaRegain(30f);
             //remove from list
             handAnimator.Play("HandHug");
             enemyManager.RemoveEnemy(target);
