@@ -3032,6 +3032,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1171622568}
     - target: {fileID: 6888153414617251794, guid: 5f048596899cc1340a9cf05290016bfd, type: 3}
+      propertyPath: waves.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888153414617251794, guid: 5f048596899cc1340a9cf05290016bfd, type: 3}
       propertyPath: spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 248130302}
@@ -3088,6 +3092,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6888153414617251794, guid: 5f048596899cc1340a9cf05290016bfd, type: 3}
+      propertyPath: waves.Array.data[10].enemyCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888153414617251794, guid: 5f048596899cc1340a9cf05290016bfd, type: 3}
       propertyPath: waves.Array.data[1].enemyTypes.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3117,6 +3125,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6888153414617251794, guid: 5f048596899cc1340a9cf05290016bfd, type: 3}
       propertyPath: waves.Array.data[9].enemyTypes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888153414617251794, guid: 5f048596899cc1340a9cf05290016bfd, type: 3}
+      propertyPath: waves.Array.data[10].enemyTypes.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6888153414617251794, guid: 5f048596899cc1340a9cf05290016bfd, type: 3}
@@ -3203,6 +3215,14 @@ PrefabInstance:
       propertyPath: waves.Array.data[9].enemyTypes.Array.data[1]
       value: 
       objectReference: {fileID: 723085960713270536, guid: ac0af2f2a2ae34a4a97e7cfecf68aa7e, type: 3}
+    - target: {fileID: 6888153414617251794, guid: 5f048596899cc1340a9cf05290016bfd, type: 3}
+      propertyPath: waves.Array.data[10].enemyTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 2546278390263673458, guid: d880a04793d157b4aacc954d02cdfdfa, type: 3}
+    - target: {fileID: 6888153414617251794, guid: 5f048596899cc1340a9cf05290016bfd, type: 3}
+      propertyPath: waves.Array.data[10].enemyTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 2366862147602725188, guid: 0053bc8f90fe1ad45ba45854ce42879c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5787539380649065758, guid: 5f048596899cc1340a9cf05290016bfd, type: 3}

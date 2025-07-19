@@ -89,7 +89,8 @@ public class PlayerEmbrace : MonoBehaviour
         }
         else
         {
-            handAnimator.Play("HandHugMiss");
+            handAnimator.SetTrigger("isHandHugMiss");
+            
         }
 
         void EmbraceEnemy(Enemy target)
@@ -99,7 +100,8 @@ public class PlayerEmbrace : MonoBehaviour
             staminabarController.StaminaRegain(30f);
             //remove from list
             string animationName = target.GetComponent<Enemy>().enemyType;
-            handAnimator.Play("HandHug" + animationName);
+            handAnimator.SetTrigger("isHandHug" + animationName);
+            
             enemyManager.RemoveEnemy(target);
             target.GetComponent<Animator>().Play("MunchkinPassing");
             //25% chance to heal by healvalue

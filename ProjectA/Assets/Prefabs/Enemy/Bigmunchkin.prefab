@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5269365963332773551, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: maxHealth
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5889005766329092946, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: attackRange
@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6952619042830781649, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6952619042830781649, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: m_LocalScale.x
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7473647447173068716, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: m_Speed
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7473647447173068716, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: m_Radius
@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7473647447173068716, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: m_Acceleration
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8416124795213369378, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: m_Name
