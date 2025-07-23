@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,9 @@ public class Healthbar : MonoBehaviour
     [SerializeField] private float maxHealth = 10f, currentHealth;
     [SerializeField] private TakeDamage takeDamage;
     [SerializeField] private bool isInvincible = false;
-    void Start()
+    public static event Action OnPlayerDamaged;
+
+    void Awake()
     {
         currentHealth = maxHealth;
         takeDamage = FindObjectOfType<TakeDamage>();
@@ -19,6 +22,7 @@ public class Healthbar : MonoBehaviour
         {
             takeDamage.VignetteEffect();
             currentHealth -= damage;
+            OnPlayerDamaged?.Invoke();
         }
         //way to show that invinicible
 
