@@ -21,6 +21,8 @@ public class PlayerEmbrace : MonoBehaviour
     [SerializeField] private float invDuration = 0.5f;
     [SerializeField] private GameObject playerCamera;
     private StaminabarController staminabarController;
+
+    [SerializeField] private float embraceAngle = 45f;
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -76,23 +78,50 @@ public class PlayerEmbrace : MonoBehaviour
     {
         // Collider[] hits= Physics.OverlapSphere(transform.position, embraceRange, enemyLayer);
         // foreach (var hit in hits)
-        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, embraceRange, enemyLayer))
-        {
-            Enemy enemyComponent = hit.collider.gameObject.GetComponent<Enemy>();
-            if (enemyComponent != null && enemyComponent.GetIsStunned())
-            {
-                EmbraceEnemy(enemyComponent);
-                return; // laddies leave me alone type shift, one at a time 
-            }
+        // Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+        // if (Physics.Raycast(ray, out RaycastHit hit, embraceRange, enemyLayer))
+        // {
+        //     Enemy enemyComponent = hit.collider.gameObject.GetComponent<Enemy>();
+        //     if (enemyComponent != null && enemyComponent.GetIsStunned())
+        //     {
+        //         EmbraceEnemy(enemyComponent);
+        //         return; // laddies leave me alone type shift, one at a time 
+        //     }
 
+        // }
+            
+        
+        Vector3 origin = transform.position;
+        Vector3 forward = transform.forward;
+        Collider[] hits = Physics.OverlapSphere(origin, embraceRange,enemyLayer);
+        bool huggedSomeone = false;
+        foreach (var hit in hits)
+        {
+            Vector3 toTarget = (hit.transform.position - origin).normalized;
+            float dot = Vector3.Dot(forward, toTarget);
+            float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+            if (currentAngle <= embraceAngle)
+            {
+                // Optional: check for line of sight or HP threshold
+                if (hit.GetComponent<Enemy>())
+                {
+                    EmbraceEnemy(hit.GetComponent<Enemy>());
+                    huggedSomeone = true;
+                    break;
+                }
+            }
         }
-        else
+        if (huggedSomeone == false)
         {
             handAnimator.SetTrigger("isHandHugMiss");
             
         }
+        
 
+        
+    
+        
         void EmbraceEnemy(Enemy target)
         {
             // for now we js destroy it or maybe zion can add animation 
@@ -114,7 +143,17 @@ public class PlayerEmbrace : MonoBehaviour
         }
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, embraceRange);
 
+        Vector3 left = Quaternion.Euler(0, -embraceAngle, 0) * transform.forward;
+        Vector3 right = Quaternion.Euler(0, embraceAngle, 0) * transform.forward;
+
+        Gizmos.DrawLine(transform.position, transform.position + left * embraceRange);
+        Gizmos.DrawLine(transform.position, transform.position + right * embraceRange);
+    }
     public float GetHeldTime()
     {
         return holdTimer;
