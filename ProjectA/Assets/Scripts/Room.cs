@@ -27,12 +27,12 @@ public class Room : MonoBehaviour
     void OnEnemyDied()
     {
         aliveEnemies--;
-        Debug.Log($"Enemy died in {roomName}. Enemies left: {aliveEnemies}");
+        // Debug.Log($"Enemy died in {roomName}. Enemies left: {aliveEnemies}");
 
-        if (aliveEnemies <= 0)
-        {
-            Debug.Log($"{roomName} is cleared!");
-        }
+        // if (aliveEnemies <= 0)
+        // {
+            // Debug.Log($"{roomName} is cleared!");
+        // }
     }
 
     public int GetAliveEnemies()
@@ -59,7 +59,7 @@ public class Room : MonoBehaviour
         }
         aliveEnemies = totalEnemies.Length;
 
-        Debug.Log($"[{roomName}] Refreshed enemy list. Alive: {aliveEnemies}, Total: {totalEnemies.Length}");
+        // Debug.Log($"[{roomName}] Refreshed enemy list. Alive: {aliveEnemies}, Total: {totalEnemies.Length}");
     }
 
 }

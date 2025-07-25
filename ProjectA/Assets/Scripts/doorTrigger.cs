@@ -44,7 +44,7 @@ public class doorTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInRange = true;
-            Debug.Log("here");
+            // Debug.Log("here");
             UIpopup.SetActive(true);
             //uianimator.enabled = true; when adding  animation to door 
         }
@@ -55,7 +55,7 @@ public class doorTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInRange = false;
-            Debug.Log("not here");
+            // Debug.Log("not here");
             UIpopup.SetActive(false);
             //uianimator.enabled = false;  when adding  animation to door 
 
