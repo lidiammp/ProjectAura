@@ -30,6 +30,7 @@ public class StaminabarController : MonoBehaviour
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
         playerEmbrace = FindObjectOfType<PlayerEmbrace>();
+        normalSpeed = playerMovement.sprintSpeed;
     }
     private void Update()
     {
