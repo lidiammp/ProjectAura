@@ -45,6 +45,15 @@ public class MouseLook : MonoBehaviour
         lockMouse = false;
     }
 
-
+    public void RotateToPoint(Transform point)
+{
+    Vector3 direction = point.position - transform.position;
+    direction.y = 0; // Keep only the horizontal direction
+    if (direction != Vector3.zero)
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = targetRotation;
+    }
+}
 }
 

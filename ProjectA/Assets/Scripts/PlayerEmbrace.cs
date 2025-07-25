@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerEmbrace : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class PlayerEmbrace : MonoBehaviour
     [SerializeField] private GameObject playerCamera;
     private StaminabarController staminabarController;
 
+    private TimeManager timeManager;
     [SerializeField] private float embraceAngle = 45f;
     void Start()
     {
@@ -31,8 +33,10 @@ public class PlayerEmbrace : MonoBehaviour
         enemyManager = FindObjectOfType<EnemyManager>();
         playerHealth = FindObjectOfType<PlayerMovement>().GetComponent<Healthbar>();
         staminabarController = FindObjectOfType<StaminabarController>();
+        timeManager = FindObjectOfType<TimeManager>();
     }
 
+    
     // Start is called before the first frame update
     void Update()
     {
@@ -46,7 +50,7 @@ public class PlayerEmbrace : MonoBehaviour
             // holdTimer = 0f;
             // Debug.Log("warming up hands for hug");
         }
-
+        // HighlightEnemies();
 
         // if (Input.GetKey(KeyCode.E) && isCharging)
         // {
@@ -74,6 +78,55 @@ public class PlayerEmbrace : MonoBehaviour
         // }
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (((1 << other.gameObject.layer) & enemyLayer) == 0)
+        {
+            return;
+        }
+        Debug.Log("incollider");
+    }
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (((1 << other.gameObject.layer) & enemyLayer) == 0)
+        {
+            return;
+        }
+        Debug.Log("out of collider");
+
+    }
+    
+    public void HighlightEnemies()
+    {
+        Vector3 origin = transform.position;
+        Vector3 forward = transform.forward;
+        Collider[] hits = Physics.OverlapSphere(origin, embraceRange, enemyLayer);
+        foreach (var hit in hits)
+        {
+            Vector3 toTarget = (hit.transform.position - origin).normalized;
+            float dot = Vector3.Dot(forward, toTarget);
+            float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+            if (currentAngle <= embraceAngle)
+            {
+                if (hit.GetComponent<Enemy>())
+                {
+                    hit.GetComponentInChildren<OutlineManager>().EnableOutline();
+                }
+
+            }
+            else
+            {
+                if (hit.GetComponent<Enemy>())
+                {
+                    hit.GetComponentInChildren<OutlineManager>().DisableOutline();
+                }
+            }
+        }
+    }
     public void TryEmbrace()
     {
         // Collider[] hits= Physics.OverlapSphere(transform.position, embraceRange, enemyLayer);
@@ -89,11 +142,11 @@ public class PlayerEmbrace : MonoBehaviour
         //     }
 
         // }
-            
-        
+
+
         Vector3 origin = transform.position;
         Vector3 forward = transform.forward;
-        Collider[] hits = Physics.OverlapSphere(origin, embraceRange,enemyLayer);
+        Collider[] hits = Physics.OverlapSphere(origin, embraceRange, enemyLayer);
         bool huggedSomeone = false;
         foreach (var hit in hits)
         {
@@ -103,43 +156,49 @@ public class PlayerEmbrace : MonoBehaviour
 
             if (currentAngle <= embraceAngle)
             {
-                // Optional: check for line of sight or HP threshold
-                if (hit.GetComponent<Enemy>())
+
+
+                // if enemy and stunned
+                if (hit.GetComponent<Enemy>() && hit.GetComponent<Enemy>().GetIsStunned())
                 {
+                    //highlight
+
                     EmbraceEnemy(hit.GetComponent<Enemy>());
                     huggedSomeone = true;
                     break;
                 }
             }
+
         }
         if (huggedSomeone == false)
         {
             handAnimator.SetTrigger("isHandHugMiss");
-            
-        }
-        
 
-        
-    
-        
+        }
+
+
+
+
+
         void EmbraceEnemy(Enemy target)
         {
+            playerMovement.GetComponent<MouseLook>().RotateToPoint(target.transform);
             // for now we js destroy it or maybe zion can add animation 
             // (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
             staminabarController.StaminaRegain(30f);
             //remove from list
             string animationName = target.GetComponent<Enemy>().enemyType;
             handAnimator.SetTrigger("isHandHug" + animationName);
-            
+
             enemyManager.RemoveEnemy(target);
             target.GetComponent<Animator>().Play("MunchkinPassing");
             //25% chance to heal by healvalue
 
             playerHealth.Heal(healValue);
-
-
+            
+            
             //target.Die();
-            Debug.Log("HUG!!!");
+            // Debug.Log("HUG!!!");
         }
     }
 
@@ -169,6 +228,8 @@ public class PlayerEmbrace : MonoBehaviour
         mouseLook.LockMouse();
         playerMovement.LockMovement();
         playerHealth.SetInvincible(true);
+        timeManager.SlowMo();
+        
     }
 
     public void EndEmbraceCutscene()
@@ -177,6 +238,8 @@ public class PlayerEmbrace : MonoBehaviour
         playerMovement.UnlockMovement();
         //playerHealth.SetInvincible(false);
         StartCoroutine(LingeringInvincibility(invDuration));
+        //reset cooldown
+        embraceTimer += embraceCooldown;
     }
 
     public void BeginMissEmbraceCutscene()
@@ -193,10 +256,10 @@ public class PlayerEmbrace : MonoBehaviour
 
     IEnumerator LingeringInvincibility(float duration)
     {
-        Debug.Log("Invincibility ON");
+        // Debug.Log("Invincibility ON");
         playerHealth.SetInvincible(true);
         yield return new WaitForSeconds(duration);
-        Debug.Log("Invincibility OFF");
+        // Debug.Log("Invincibility OFF");
         playerHealth.SetInvincible(false);
     }
 }
