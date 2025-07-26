@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
 
     // Speed at which the player moves
     private float playerSpeed;
-    public float walkSpeed = 20f;
-    public float sprintSpeed = 30f;
+    public float walkSpeed = 6f;
+    public float sprintSpeed = 8.5f;
     // Reference to the CharacterController component
     private CharacterController myCC;
     private StaminabarController staminabarController;
