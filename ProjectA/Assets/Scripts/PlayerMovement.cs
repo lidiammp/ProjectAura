@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -46,17 +47,17 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        
+
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");
         bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         bool isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
-
+        bool isMovingForward = inputZ > 0f;
 
         //camera
         float targetFOV;
 
-        if (shiftHeld && isMoving && staminabarController.playerStamina > 0)
+        if (shiftHeld && isMoving && staminabarController.playerStamina > 0 && isMovingForward)
         {
             targetFOV = sprintFOV;
             isWalking = false;
@@ -71,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //lerp to target fov
-        playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, fovTransitionSpeed * Time.deltaTime);
+        playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, fovTransitionSpeed * Time.unscaledDeltaTime);
 
         playerSpeed = isWalking ? walkSpeed : sprintSpeed;
         // handle player input left right up down
@@ -82,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             StopMovement();
             return;
         }
-        
+
         // Move the player based on calculated movement vector
         MovePlayer();
     }
@@ -119,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         // Apply movement to the CharacterController over time
-        myCC.Move(movementVector * Time.deltaTime);
+        myCC.Move(movementVector * Time.unscaledDeltaTime);
     }
 
     void StopMovement()
@@ -137,4 +138,6 @@ public class PlayerMovement : MonoBehaviour
     {
         lockMovement = false;
     }
+
+    
 }

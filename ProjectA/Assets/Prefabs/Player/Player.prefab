@@ -164,6 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b130ff4cb491e414595764259d4b9e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSpawnPoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  bulletSpeed: 0
 --- !u!1 &3294396011009296573
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,6 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeTimeRequired: 2
+  beamDamage: 25
   beamShotRadius: 20
   range: 20
   verticalRange: 1
@@ -854,8 +858,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68b7d122d5014e00961adf0aef0785a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 20
+  walkSpeed: 15
   sprintSpeed: 30
+  normalFOV: 60
+  sprintFOV: 70
+  fovTransitionSpeed: 5
 --- !u!114 &1873567530904529400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -889,8 +896,10 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  embraceCooldown: 3
   invDuration: 0.5
   playerCamera: {fileID: 0}
+  embraceAngle: 45
 --- !u!114 &7562049852916459673
 MonoBehaviour:
   m_ObjectHideFlags: 0

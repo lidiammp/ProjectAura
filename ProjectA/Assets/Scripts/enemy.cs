@@ -38,9 +38,10 @@ public class Enemy : MonoBehaviour
     private Color originalColor;
     private SpriteRenderer spriteRenderer;
     [ColorUsage(true) ] public Color pinkColor = new Color(1f, 0.75f, 0.8f, 1f);
-    
+    private TimeManager timeManager;
+
     void Start()
-    {   
+    {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         currentHealth = maxHealth;
@@ -56,6 +57,7 @@ public class Enemy : MonoBehaviour
         playertransform = FindObjectOfType<PlayerMovement>().transform;
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         maxDistance = enemyAwareness.awarenessRadius;
+        timeManager = FindObjectOfType<TimeManager>();
     }
 
     void Update()
@@ -94,6 +96,8 @@ public class Enemy : MonoBehaviour
 
         currentHealth -= amount;
         StartCoroutine(FlashRed());
+        timeManager.Stop(0.1f);
+
         if (currentHealth <= 0)
         {
             Stun();
@@ -120,7 +124,7 @@ public class Enemy : MonoBehaviour
                 Vector3 point;
                 if (RandomPoint(centrePoint.position, wanderRadius, out point)) //pass in our centre point and radius of area
                 {
-                    Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
+                    // Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
                     enemyNavMeshAgent.SetDestination(point);
                 }
             }

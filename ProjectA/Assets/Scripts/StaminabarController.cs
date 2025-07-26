@@ -30,6 +30,7 @@ public class StaminabarController : MonoBehaviour
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
         playerEmbrace = FindObjectOfType<PlayerEmbrace>();
+        normalSpeed = playerMovement.sprintSpeed;
     }
     private void Update()
     {
@@ -81,13 +82,18 @@ public class StaminabarController : MonoBehaviour
     }
     public void StaminaEmbrace()
     {
-        if (playerStamina >= (maxStamina * embraceCost / maxStamina))
+        if (playerStamina >= embraceCost)
         {
             playerStamina -= embraceCost;
-            //allow player to embrace
+
+        }
+        else
+        {
+            playerStamina = 0;
+        }
+        //allow player to embrace
             playerEmbrace.TryEmbrace();
             UpdateStamina(1);
-        }
     }
 
     public void StaminaRegain(float amount)
