@@ -82,50 +82,74 @@ public class PlayerEmbrace : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (((1 << other.gameObject.layer) & enemyLayer) == 0)
+        if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
-            return;
+            Enemy enemy = other.GetComponent<Enemy>();
+            var outline = other.GetComponentInChildren<OutlineManager>();
+            if (outline != null && enemy.GetIsStunned())
+            {
+                outline.EnableOutline();
+                Debug.Log("incollider");
+            }
+        
         }
-        Debug.Log("incollider");
+            
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //while in trigger if the enemy is not in angle disable its collider
+        if (((1 << other.gameObject.layer) & enemyLayer) != 0)
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            var outline = other.GetComponentInChildren<OutlineManager>();
+
+            if (!enemy.GetIsStunned())
+            {
+                outline.DisableOutline();
+                Debug.Log("Enemy not stunned: outline disabled");
+                return;
+            }
+
+            if (outline != null && CheckAngle(other.GetComponent<Enemy>()) == false)
+            {
+                outline.DisableOutline();
+                Debug.Log("out of range");
+            }
+            else
+            {
+                outline.EnableOutline();
+                Debug.Log("in range");
+            }
+        }
     }
     private void OnTriggerExit(Collider other)
     {
 
-        if (((1 << other.gameObject.layer) & enemyLayer) == 0)
+        if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
-            return;
+            var outline = other.GetComponentInChildren<OutlineManager>();
+            if (outline != null)
+            {
+                outline.DisableOutline();
+                Debug.Log("out of collider");
+            }
         }
-        Debug.Log("out of collider");
 
     }
-    
-    public void HighlightEnemies()
+
+    public bool CheckAngle(Enemy enemy)
     {
+        if (enemy == null) return false;
+
         Vector3 origin = transform.position;
         Vector3 forward = transform.forward;
-        Collider[] hits = Physics.OverlapSphere(origin, embraceRange, enemyLayer);
-        foreach (var hit in hits)
-        {
-            Vector3 toTarget = (hit.transform.position - origin).normalized;
-            float dot = Vector3.Dot(forward, toTarget);
-            float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+        Vector3 toTarget = (enemy.transform.position - origin).normalized;
 
-            if (currentAngle <= embraceAngle)
-            {
-                if (hit.GetComponent<Enemy>())
-                {
-                    hit.GetComponentInChildren<OutlineManager>().EnableOutline();
-                }
+        float dot = Vector3.Dot(forward, toTarget);
+        float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
-            }
-            else
-            {
-                if (hit.GetComponent<Enemy>())
-                {
-                    hit.GetComponentInChildren<OutlineManager>().DisableOutline();
-                }
-            }
-        }
+        return currentAngle <= embraceAngle;
     }
     public void TryEmbrace()
     {
@@ -162,7 +186,6 @@ public class PlayerEmbrace : MonoBehaviour
                 if (hit.GetComponent<Enemy>() && hit.GetComponent<Enemy>().GetIsStunned())
                 {
                     //highlight
-
                     EmbraceEnemy(hit.GetComponent<Enemy>());
                     huggedSomeone = true;
                     break;
@@ -225,6 +248,7 @@ public class PlayerEmbrace : MonoBehaviour
 
     public void BeginEmbraceCutscene()
     {
+
         mouseLook.LockMouse();
         playerMovement.LockMovement();
         playerHealth.SetInvincible(true);
