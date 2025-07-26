@@ -56,7 +56,7 @@ public class VolumeSettings : MonoBehaviour
             smh.highlightsStart.overrideState = true;
             smh.highlightsEnd.overrideState = true;
 
-            colorAdjust.postExposure.overrideState = true;
+            // colorAdjust.postExposure.overrideState = true;
             colorAdjust.hueShift.overrideState = true;
             colorAdjust.saturation.overrideState = true;
 
@@ -90,7 +90,7 @@ public class VolumeSettings : MonoBehaviour
         smh.highlightsStart.value = Mathf.Lerp(0f, targetHighlightStart, t);
         smh.highlightsEnd.value = Mathf.Lerp(0f, targetHighlightEnd, t);
 
-        colorAdjust.postExposure.value = Mathf.Lerp(0f, targetExposure, t);
+        // colorAdjust.postExposure.value = Mathf.Lerp(0f, targetExposure, t);
         colorAdjust.hueShift.value = Mathf.Lerp(0f, targetHueShift, t);
         colorAdjust.saturation.value = Mathf.Lerp(0f, targetSaturation, t);
         // colorAdjust.light.color = Color.Lerp(teal, pink, t);

@@ -96,15 +96,16 @@ public class Beam : MonoBehaviour
             handAnimator.Play("HandBlast");
             // screenshake.StartShaking(0.5f);
             heartLaser.SpawnBullet();
-            
+
             Fire();
         }
         //if hasnt show in debug
-        else
-        {
-            Debug.Log("Charge not long enough!");
+        // else
+        // {
+            // Debug.Log("Charge not long enough!");
             // Optional: Play failed charge sound
-        }
+            //shoot weak bullet
+        // }
 
         chargeHeldTime = 0f; // Reset after release
 
