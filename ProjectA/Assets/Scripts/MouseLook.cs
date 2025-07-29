@@ -20,7 +20,11 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        characterController.Move(moveDirection * Time.deltaTime);
+        if (characterController.enabled)
+        {
+            characterController.Move(moveDirection * Time.deltaTime);
+        }
+        
         if (!lockMouse)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;

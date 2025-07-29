@@ -203,7 +203,11 @@ public class Enemy : MonoBehaviour
     //execute stun for duration before unlocking player
     IEnumerator StunEnemy(float duration)
     {
-        enemyNavMeshAgent.SetDestination(transform.position);
+        if (enemyNavMeshAgent.enabled)
+        {
+            enemyNavMeshAgent.SetDestination(transform.position);
+        }
+        
         yield return new WaitForSeconds(duration);
         currentHealth = maxHealth;
         isStunned = false;

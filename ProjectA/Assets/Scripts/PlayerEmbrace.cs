@@ -79,14 +79,39 @@ public class PlayerEmbrace : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     //if enemy
+    //     if (((1 << other.gameObject.layer) & enemyLayer) == 0) return;
+    //     Enemy enemy = other.GetComponent<Enemy>();
+    //     //if no enemy component
+    //     if (enemy == null) return;
+    //     //eneable outline
+    //     enemy.GetComponentInChildren<OutlineManager>()?.EnableOutline();
 
-        if (((1 << other.gameObject.layer) & enemyLayer) == 0)
+    // }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //if enemy
+        if (((1 << other.gameObject.layer) & enemyLayer) == 0) return;
+        Enemy enemy = other.GetComponent<Enemy>();
+        //if no enemy component
+        if (enemy == null) return;
+        //eneable outline
+        Vector3 toTarget = (enemy.transform.position - playerMovement.transform.position).normalized;
+        float dot = Vector3.Dot(transform.forward, toTarget);
+        float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+        if (currentAngle <= embraceAngle && enemy.GetIsStunned())
         {
-            return;
+            enemy.GetComponentInChildren<OutlineManager>().EnableOutline();
         }
-        Debug.Log("incollider");
+        else
+        {
+            enemy.GetComponentInChildren<OutlineManager>().DisableOutline();
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {
@@ -95,7 +120,9 @@ public class PlayerEmbrace : MonoBehaviour
         {
             return;
         }
-        Debug.Log("out of collider");
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy == null) return;
+        enemy.GetComponentInChildren<OutlineManager>()?.DisableOutline();
 
     }
     
