@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    
     // Speed at which the player moves
     private float playerSpeed;
     public float walkSpeed = 6f;
@@ -121,13 +121,21 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         // Apply movement to the CharacterController over time
-        myCC.Move(movementVector * Time.unscaledDeltaTime);
+        if (myCC.enabled)
+        {
+            myCC.Move(movementVector * Time.unscaledDeltaTime);
+        }
+        
     }
 
     void StopMovement()
     {
-        movementVector = Vector3.zero;
-        myCC.Move(movementVector); // ensures no residual movement
+        if (myCC.enabled)
+        {
+            movementVector = Vector3.zero;
+            myCC.Move(movementVector); // ensures no residual movement
+        }
+        
     }
 
     public void LockMovement()
