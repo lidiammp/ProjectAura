@@ -5,18 +5,22 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float lifetime = 5f;
+    public float lifetime = 3f;
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, lifetime);
+        Destroy(transform.parent.gameObject, lifetime);
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Default")
         {
-            Destroy(gameObject);
+            if (transform.parent != null)
+            {
+                Destroy(transform.parent.gameObject);
+            }
+
         }
     }
     

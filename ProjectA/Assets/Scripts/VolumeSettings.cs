@@ -21,51 +21,72 @@ public class VolumeSettings : MonoBehaviour
         private Color targetSplitShadow, targetSplitHighlight;
         private float targetSplitBalance;
 
+        
+        // NIGHT (purple tones)
+        private readonly Vector4 nightShadows = new Vector4(0.6f, 0.4f, 0.9f, 0.5f); // purplish
+        private readonly Vector4 nightHighlights = new Vector4(0.4f, 0.3f, 0.6f, 0.5f); // darker purples
+        private readonly Color nightSplitShadow = new Color(0.3f, 0.1f, 0.4f); // deep purple
+        
+        private readonly Color nightSplitHighlight = new Color(0.4f, 0.3f, 0.6f); // lavender
+        private readonly float nightBalance = -50f;
+        private readonly float nightSaturation = -10f;
+        private readonly float nightHueShift = -20f;
+        // private readonly float nightExposure = -0.5f;
+
+        // DAY (warm pinkish tones)
+        private readonly Vector4 dayShadows = new Vector4(1.0f, 0.7f, 0.8f, 0.5f); // pinkish
+        private readonly Vector4 dayHighlights = new Vector4(1.0f, 0.9f, 0.8f, 0.5f); // warm highlights
+        private readonly Color daySplitShadow = new Color(0.9f, 0.6f, 0.7f); // rosy
+        private readonly Color daySplitHighlight = new Color(1.0f, 0.8f, 0.7f); // peachy
+        private readonly float dayBalance = 20f;
+        private readonly float daySaturation = 15f;
+        private readonly float dayHueShift = 10f;
+        // private readonly float dayExposure = 0.2f;
         private void Start()
-        {
-            // Copies the volume bc I really dont need this stuff all changing for every room
-            gameVolume.profile = Instantiate(gameVolume.profile);
+    {
+        // Copies the volume bc I really dont need this stuff all changing for every room
+        gameVolume.profile = Instantiate(gameVolume.profile);
 
-            gameVolume.profile.TryGet(out smh);
-            gameVolume.profile.TryGet(out colorAdjust);
-            gameVolume.profile.TryGet(out splitToning);
+        gameVolume.profile.TryGet(out smh);
+        gameVolume.profile.TryGet(out colorAdjust);
+        gameVolume.profile.TryGet(out splitToning);
 
-            
-            targetShadows = smh.shadows.value;
-            targetMidtones = smh.midtones.value;
-            targetHighlights = smh.highlights.value;
-            targetShadowStart = smh.shadowsStart.value;
-            targetShadowEnd = smh.shadowsEnd.value;
-            targetHighlightStart = smh.highlightsStart.value;
-            targetHighlightEnd = smh.highlightsEnd.value;
 
-            targetExposure = colorAdjust.postExposure.value;
-            targetHueShift = colorAdjust.hueShift.value;
-            targetSaturation = colorAdjust.saturation.value;
+        targetShadows = smh.shadows.value;
+        targetMidtones = smh.midtones.value;
+        targetHighlights = smh.highlights.value;
+        targetShadowStart = smh.shadowsStart.value;
+        targetShadowEnd = smh.shadowsEnd.value;
+        targetHighlightStart = smh.highlightsStart.value;
+        targetHighlightEnd = smh.highlightsEnd.value;
 
-            targetSplitShadow = splitToning.shadows.value;
-            targetSplitHighlight = splitToning.highlights.value;
-            targetSplitBalance = splitToning.balance.value;
+        // targetExposure = colorAdjust.postExposure.value;
+        targetHueShift = colorAdjust.hueShift.value;
+        targetSaturation = colorAdjust.saturation.value;
 
-            // Activating all of the overrides
-            smh.shadows.overrideState = true;
-            smh.midtones.overrideState = true;
-            smh.highlights.overrideState = true;
-            smh.shadowsStart.overrideState = true;
-            smh.shadowsEnd.overrideState = true;
-            smh.highlightsStart.overrideState = true;
-            smh.highlightsEnd.overrideState = true;
+        targetSplitShadow = splitToning.shadows.value;
+        targetSplitHighlight = splitToning.highlights.value;
+        targetSplitBalance = splitToning.balance.value;
 
-            // colorAdjust.postExposure.overrideState = true;
-            colorAdjust.hueShift.overrideState = true;
-            colorAdjust.saturation.overrideState = true;
+        // Activating all of the overrides
+        smh.shadows.overrideState = true;
+        smh.midtones.overrideState = true;
+        smh.highlights.overrideState = true;
+        smh.shadowsStart.overrideState = true;
+        smh.shadowsEnd.overrideState = true;
+        smh.highlightsStart.overrideState = true;
+        smh.highlightsEnd.overrideState = true;
 
-            splitToning.shadows.overrideState = true;
-            splitToning.highlights.overrideState = true;
-            splitToning.balance.overrideState = true;
+        // colorAdjust.postExposure.overrideState = true;
+        colorAdjust.hueShift.overrideState = true;
+        colorAdjust.saturation.overrideState = true;
 
-            // Setting these to 0 so I can lerp later
-           SetLerpedValues(0f);
+        splitToning.shadows.overrideState = true;
+        splitToning.highlights.overrideState = true;
+        splitToning.balance.overrideState = true;
+
+        // Setting these to 0 so I can lerp later
+        SetLerpedValues(0f);
     }
 
      private void Update()
@@ -81,22 +102,18 @@ public class VolumeSettings : MonoBehaviour
 
     private void SetLerpedValues(float t)
     {
-        smh.shadows.value = Vector4.Lerp(Vector4.zero, targetShadows, t);
-        smh.midtones.value = Vector4.Lerp(Vector4.zero, targetMidtones, t);
-        smh.highlights.value = Vector4.Lerp(Vector4.zero, targetHighlights, t);
-        
-        smh.shadowsStart.value = Mathf.Lerp(0f, targetShadowStart, t);
-        smh.shadowsEnd.value = Mathf.Lerp(0f, targetShadowEnd, t);
-        smh.highlightsStart.value = Mathf.Lerp(0f, targetHighlightStart, t);
-        smh.highlightsEnd.value = Mathf.Lerp(0f, targetHighlightEnd, t);
+        // Shadows/Midtones/Highlights
+        smh.shadows.value = Vector4.Lerp(nightShadows, dayShadows, t);
+        smh.highlights.value = Vector4.Lerp(nightHighlights, dayHighlights, t);
 
-        // colorAdjust.postExposure.value = Mathf.Lerp(0f, targetExposure, t);
-        colorAdjust.hueShift.value = Mathf.Lerp(0f, targetHueShift, t);
-        colorAdjust.saturation.value = Mathf.Lerp(0f, targetSaturation, t);
-        // colorAdjust.light.color = Color.Lerp(teal, pink, t);
+        // Color Adjustments
+        colorAdjust.hueShift.value = Mathf.Lerp(nightHueShift, dayHueShift, t);
+        colorAdjust.saturation.value = Mathf.Lerp(nightSaturation, daySaturation, t);
+        // colorAdjust.postExposure.value = Mathf.Lerp(nightExposure, dayExposure, t); // optional if used
 
-        splitToning.shadows.value = Color.Lerp(Color.black, targetSplitShadow, t);
-        splitToning.highlights.value = Color.Lerp(Color.black, targetSplitHighlight, t);
-        splitToning.balance.value = Mathf.Lerp(0f, targetSplitBalance, t);
+        // Split Toning
+        splitToning.shadows.value = Color.Lerp(nightSplitShadow, daySplitShadow, t);
+        splitToning.highlights.value = Color.Lerp(nightSplitHighlight, daySplitHighlight, t);
+        splitToning.balance.value = Mathf.Lerp(nightBalance, dayBalance, t);
     }
 }

@@ -40,6 +40,8 @@ public class Enemy : MonoBehaviour
     [ColorUsage(true) ] public Color pinkColor = new Color(1f, 0.75f, 0.8f, 1f);
     private TimeManager timeManager;
 
+    private Rigidbody enemyRigidBody;
+
     void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -58,12 +60,13 @@ public class Enemy : MonoBehaviour
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         maxDistance = enemyAwareness.awarenessRadius;
         timeManager = FindObjectOfType<TimeManager>();
+        enemyRigidBody = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         //if aggro and not stunned follow player 
-        if (enemyAwareness.isAggro && isStunned == false && CheckForObstacle())
+        if (enemyAwareness.isAggro && isStunned == false && CheckForObstacle() && enemyNavMeshAgent.enabled && enemyNavMeshAgent.isOnNavMesh)
         {
             enemyNavMeshAgent.SetDestination(playertransform.position);
         }//else, just wander
@@ -92,17 +95,21 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        enemyAnimator.SetTrigger("isTakingDamage");
+        StartCoroutine(FlashRed());
+        timeManager.Stop(0.15f);
+        ApplyKnockback(10*-transform.forward + Vector3.up, 0.3f);
         if (isStunned) return; // Can't take damage while stunned
 
         currentHealth -= amount;
-        StartCoroutine(FlashRed());
-        timeManager.Stop(0.1f);
-
+        
         if (currentHealth <= 0)
         {
             Stun();
+            return;
         }
     }
+
     private IEnumerator FlashRed()
     {
         spriteRenderer.color = pinkColor;
@@ -117,7 +124,7 @@ public class Enemy : MonoBehaviour
             waitTimer = waitTime; // Start waiting
         }
         waitTimer -= Time.deltaTime;
-        if (waitTimer <= 0f)
+        if (waitTimer <= 0f && enemyNavMeshAgent.enabled && enemyNavMeshAgent.isOnNavMesh)
         {
             if (enemyNavMeshAgent.remainingDistance <= enemyNavMeshAgent.stoppingDistance) //done with path
             {
@@ -130,7 +137,34 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    public void ApplyKnockback(Vector3 force, float duration)
+    {
+        StartCoroutine(KnockbackRoutine(force, duration));
+    }
 
+    private IEnumerator KnockbackRoutine(Vector3 force, float duration)
+    {
+        // Disable NavMeshAgent
+        enemyNavMeshAgent.enabled = false;
+
+        // Enable physics
+        enemyRigidBody.isKinematic = false;
+
+        // Apply force
+        enemyRigidBody.AddForce(force, ForceMode.Impulse);
+
+        // Wait for knockback to play out
+        yield return new WaitForSeconds(duration);
+
+        // Stop movement
+        enemyRigidBody.velocity = Vector3.zero;
+
+        // Re-disable physics
+        enemyRigidBody.isKinematic = true;
+
+        // Re-enable NavMeshAgent
+        enemyNavMeshAgent.enabled = true;
+    }
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     //out thing means that before it returns, it needs the result to not be null
     {

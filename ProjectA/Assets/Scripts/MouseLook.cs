@@ -46,14 +46,14 @@ public class MouseLook : MonoBehaviour
     }
 
     public void RotateToPoint(Transform point)
-{
-    Vector3 direction = point.position - transform.position;
-    direction.y = 0; // Keep only the horizontal direction
-    if (direction != Vector3.zero)
     {
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = targetRotation;
+        Vector3 direction = point.position - transform.position;
+        direction.y = 0; // Keep only the horizontal direction
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = targetRotation;
+        }
     }
-}
 }
 

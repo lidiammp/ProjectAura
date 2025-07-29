@@ -205,15 +205,16 @@ public class PlayerEmbrace : MonoBehaviour
 
         void EmbraceEnemy(Enemy target)
         {
+            enemyManager.RemoveEnemy(target);
             playerMovement.GetComponent<MouseLook>().RotateToPoint(target.transform);
             // for now we js destroy it or maybe zion can add animation 
             // (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
-            staminabarController.StaminaRegain(30f);
+            staminabarController.StaminaRegain(45f);
             //remove from list
             string animationName = target.GetComponent<Enemy>().enemyType;
             handAnimator.SetTrigger("isHandHug" + animationName);
 
-            enemyManager.RemoveEnemy(target);
+            
             target.GetComponent<Animator>().Play("MunchkinPassing");
             //25% chance to heal by healvalue
 
@@ -252,7 +253,7 @@ public class PlayerEmbrace : MonoBehaviour
         mouseLook.LockMouse();
         playerMovement.LockMovement();
         playerHealth.SetInvincible(true);
-        timeManager.SlowMo();
+        timeManager.Stop(2);
         
     }
 
