@@ -953,11 +953,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: b20b237a-f7c3-47b1-a5fc-2e4b577e0219
+  cloudProjectId: fbef712d-dcb0-4c52-a898-34b34e7846cb
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: ProjectA
-  organizationId: kodesone
+  organizationId: mliziz
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
