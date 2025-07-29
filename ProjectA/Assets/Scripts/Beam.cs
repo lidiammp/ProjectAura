@@ -38,8 +38,11 @@ public class Beam : MonoBehaviour
     // private Screenshake screenshake;
     // private RayCastGun gunLaser;
     private HeartLaser heartLaser;
+
+    private PlayerMovement playerMovement;
     void Start()
     {
+        playerMovement = GetComponentInParent<PlayerMovement>();
         //beam sound
         audioSource = GetComponent<AudioSource>();
         enemyManager = FindObjectOfType<EnemyManager>();
@@ -113,6 +116,9 @@ public class Beam : MonoBehaviour
 
     void Fire()
     {
+        //apply knockback
+        playerMovement.ApplyKnockback(-10*transform.forward, 0.3f);
+
         //draw sphere for debuggin
         audioSource.Stop();
         audioSource.Play();
