@@ -10,7 +10,8 @@ public class splashscreenmanager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void QuitGame()
-    { 
+    {
+        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 }
