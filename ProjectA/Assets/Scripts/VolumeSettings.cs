@@ -31,7 +31,7 @@ public class VolumeSettings : MonoBehaviour
         private readonly float nightBalance = -50f;
         private readonly float nightSaturation = -10f;
         private readonly float nightHueShift = -20f;
-        private readonly float nightExposure = -0.5f;
+        // private readonly float nightExposure = -0.5f;
 
         // DAY (warm pinkish tones)
         private readonly Vector4 dayShadows = new Vector4(1.0f, 0.7f, 0.8f, 0.5f); // pinkish
@@ -41,7 +41,7 @@ public class VolumeSettings : MonoBehaviour
         private readonly float dayBalance = 20f;
         private readonly float daySaturation = 15f;
         private readonly float dayHueShift = 10f;
-        private readonly float dayExposure = 0.2f;
+        // private readonly float dayExposure = 0.2f;
         private void Start()
     {
         // Copies the volume bc I really dont need this stuff all changing for every room

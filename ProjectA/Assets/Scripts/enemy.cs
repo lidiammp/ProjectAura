@@ -95,20 +95,21 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        enemyAnimator.SetTrigger("isTakingDamage");
+        StartCoroutine(FlashRed());
+        timeManager.Stop(0.15f);
+        ApplyKnockback(10*-transform.forward + Vector3.up, 0.3f);
         if (isStunned) return; // Can't take damage while stunned
 
         currentHealth -= amount;
-        StartCoroutine(FlashRed());
+        
         if (currentHealth <= 0)
         {
             Stun();
             return;
         }
-        ApplyKnockback(-transform.forward + Vector3.up, 0.3f);
-        timeManager.Stop(0.1f);
-
-        
     }
+
     private IEnumerator FlashRed()
     {
         spriteRenderer.color = pinkColor;

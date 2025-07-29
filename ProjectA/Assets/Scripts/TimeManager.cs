@@ -10,10 +10,10 @@ public class TimeManager : MonoBehaviour
     bool waiting;
     void Update()
     {
-        //slowly raise time
-        Time.timeScale += (1f / slowDownDuration) * Time.unscaledDeltaTime;
-        //clamp it from 0 -> 1
-        Time.timeScale = Mathf.Clamp01(Time.timeScale);
+        // //slowly raise time
+        // Time.timeScale += (1f / slowDownDuration) * Time.unscaledDeltaTime;
+        // //clamp it from 0 -> 1
+        // Time.timeScale = Mathf.Clamp01(Time.timeScale);
 
     }
     public void SlowMo()

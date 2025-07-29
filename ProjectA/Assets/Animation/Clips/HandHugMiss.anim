@@ -101,7 +101,7 @@ AnimationClip:
     - time: 0.65
       value: {fileID: 21300000, guid: 0af393b486c339145a84515479d52981, type: 3}
     - time: 0.8
-      value: {fileID: 21300000, guid: 21ae895d6d5c5594bbafe75af5beff13, type: 3}
+      value: {fileID: 21300000, guid: dd080373512a45840ae9af06ce73b82c, type: 3}
     attribute: m_Sprite
     path: HeartHands
     classID: 212
@@ -164,7 +164,7 @@ AnimationClip:
     - {fileID: 21300000, guid: 4aa10c421d08ca14d95a11b1febf588b, type: 3}
     - {fileID: 21300000, guid: f2cd623aa8387df448359b712b157e16, type: 3}
     - {fileID: 21300000, guid: 0af393b486c339145a84515479d52981, type: 3}
-    - {fileID: 21300000, guid: 21ae895d6d5c5594bbafe75af5beff13, type: 3}
+    - {fileID: 21300000, guid: dd080373512a45840ae9af06ce73b82c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

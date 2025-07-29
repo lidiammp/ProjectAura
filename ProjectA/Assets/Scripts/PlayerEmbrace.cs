@@ -229,7 +229,7 @@ public class PlayerEmbrace : MonoBehaviour
         mouseLook.LockMouse();
         playerMovement.LockMovement();
         playerHealth.SetInvincible(true);
-        timeManager.SlowMo();
+        timeManager.Stop(2);
         
     }
 

@@ -30,23 +30,24 @@ public class PlayerMovement : MonoBehaviour
     public float normalFOV = 60f;
     public float sprintFOV = 70f;
     public float fovTransitionSpeed = 5f;
-
+    public Rigidbody rb;
     private Camera playerCamera;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         // Get and store the CharacterController component attached to the player GameObject
         myCC = GetComponent<CharacterController>();
         handAnimator = GetComponentInChildren<Animator>();
         staminabarController = FindObjectOfType<StaminabarController>();
         playerCamera = gameObject.GetComponentInChildren<Camera>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
 
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");
@@ -140,4 +141,30 @@ public class PlayerMovement : MonoBehaviour
     }
 
     
+    public void ApplyKnockback(Vector3 force, float duration)
+    {
+        StartCoroutine(KnockbackRoutine(force, duration));
+    }
+
+    private IEnumerator KnockbackRoutine(Vector3 force, float duration)
+    {
+        LockMovement(); // stop CharacterController from overriding knockback
+        rb.isKinematic = false; // enable physics for knockback 
+        myCC.enabled = false;
+        float timer = 0f;
+        Vector3 initialForce = force;
+
+        while (timer < duration)
+        {
+            // Apply diminishing force
+            float dampFactor = 1f - (timer / duration); // goes from 1 to 0
+            rb.velocity = initialForce * dampFactor;
+
+            timer += Time.deltaTime;
+            yield return null;
+        }   
+        rb.isKinematic = true; // disable physics again
+        myCC.enabled = true;
+        UnlockMovement();
+    }
 }
