@@ -95,7 +95,11 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        
+    
         enemyAnimator.SetTrigger("isTakingDamage");
+        
+        
         StartCoroutine(FlashRed());
         timeManager.Stop(0.15f);
         ApplyKnockback(10*-transform.forward + Vector3.up, 0.3f);
@@ -231,7 +235,11 @@ public class Enemy : MonoBehaviour
     //method to lock movement on attack
     public void LockMovement()
     {
-        enemyNavMeshAgent.ResetPath();
+        if (enemyNavMeshAgent.enabled)
+        {
+            enemyNavMeshAgent.ResetPath();
+        }
+        
     }
 
     public void DisableBodyCollider()

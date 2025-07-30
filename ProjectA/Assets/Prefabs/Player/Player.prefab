@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 2924375426382986062}
   - component: {fileID: 5962653251518897013}
   - component: {fileID: 6949642554748440939}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -863,6 +863,8 @@ MonoBehaviour:
   normalFOV: 60
   sprintFOV: 70
   fovTransitionSpeed: 5
+  rb: {fileID: 0}
+  ignoreHitStop: 0
 --- !u!114 &1873567530904529400
 MonoBehaviour:
   m_ObjectHideFlags: 0
