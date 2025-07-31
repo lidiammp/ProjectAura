@@ -117,7 +117,7 @@ public class Beam : MonoBehaviour
     void Fire()
     {
         //apply knockback
-        playerMovement.ApplyKnockback(-1*transform.forward, 0.3f);
+        // playerMovement.ApplyKnockback(-1*transform.forward, 0.3f);
 
         //draw sphere for debuggin
         audioSource.Stop();

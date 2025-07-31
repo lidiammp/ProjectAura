@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public float fovTransitionSpeed = 5f;
     public Rigidbody rb;
     private Camera playerCamera;
+    public bool ignoreHitStop = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         handAnimator = GetComponentInChildren<Animator>();
         staminabarController = FindObjectOfType<StaminabarController>();
         playerCamera = gameObject.GetComponentInChildren<Camera>();
+        
 
     }
 
@@ -86,7 +88,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Move the player based on calculated movement vector
-        MovePlayer();
+        if (ignoreHitStop)
+        {
+            MovePlayer(Time.unscaledDeltaTime);
+        }
+        else
+        {
+            MovePlayer(Time.deltaTime);
+        }
+        
     }
 
     public void SetRunSpeed(float speed)
@@ -118,13 +128,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Moves the player character using CharacterController
-    void MovePlayer()
+    void MovePlayer(float time)
     {
-        // Apply movement to the CharacterController over time
-        if (myCC.enabled)
-        {
-            myCC.Move(movementVector * Time.unscaledDeltaTime);
-        }
+        myCC.Move(movementVector * time);
+
         
     }
 
@@ -147,8 +154,6 @@ public class PlayerMovement : MonoBehaviour
     {
         lockMovement = false;
     }
-
-    
     public void ApplyKnockback(Vector3 force, float duration)
     {
         StartCoroutine(KnockbackRoutine(force, duration));

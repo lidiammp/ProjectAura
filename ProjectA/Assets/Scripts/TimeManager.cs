@@ -8,6 +8,12 @@ public class TimeManager : MonoBehaviour
     public float slowDownFactor = 0.05f;
     public float slowDownDuration = 2f;
     bool waiting;
+
+    private PlayerMovement playerMovement;
+    void Start()
+    {
+        playerMovement = FindObjectOfType<PlayerMovement>();
+    }
     void Update()
     {
         // //slowly raise time
@@ -16,25 +22,29 @@ public class TimeManager : MonoBehaviour
         // Time.timeScale = Mathf.Clamp01(Time.timeScale);
 
     }
-    public void SlowMo()
-    {
-        Time.timeScale = slowDownFactor;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
-    }
+    // public void SlowMo()
+    // {
+    //     Time.timeScale = slowDownFactor;
+    //     Time.fixedDeltaTime = Time.timeScale * 0.02f;
+    // }
 
     public void Stop(float duration)
     {
+        
         if (waiting)
             return;
         Time.timeScale = 0;
+        
         StartCoroutine(Wait(duration));
     }
 
     IEnumerator Wait(float duration)
     {
         waiting = true;
+        playerMovement.ignoreHitStop = true;
         yield return new WaitForSecondsRealtime(duration);
         Time.timeScale = 1f;
+        playerMovement.ignoreHitStop = false;
         waiting = false;
     }
 }

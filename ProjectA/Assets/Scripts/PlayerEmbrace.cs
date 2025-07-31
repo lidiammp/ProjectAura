@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +26,7 @@ public class PlayerEmbrace : MonoBehaviour
 
     private TimeManager timeManager;
     [SerializeField] private float embraceAngle = 45f;
+    private EmbraceRetical reticalManager;
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -34,6 +36,7 @@ public class PlayerEmbrace : MonoBehaviour
         playerHealth = FindObjectOfType<PlayerMovement>().GetComponent<Healthbar>();
         staminabarController = FindObjectOfType<StaminabarController>();
         timeManager = FindObjectOfType<TimeManager>();
+        reticalManager = FindObjectOfType<EmbraceRetical>();
     }
 
     
@@ -105,11 +108,13 @@ public class PlayerEmbrace : MonoBehaviour
 
         if (currentAngle <= embraceAngle && enemy.GetIsStunned())
         {
-            enemy.GetComponentInChildren<OutlineManager>().EnableOutline();
+            enemy.GetComponentInChildren<OutlineManager>()?.EnableOutline();
+            reticalManager.SetEmbraceRetical();
         }
         else
         {
-            enemy.GetComponentInChildren<OutlineManager>().DisableOutline();
+            enemy.GetComponentInChildren<OutlineManager>()?.DisableOutline();
+            reticalManager.SetDefaultRetical();
         }
 
     }
@@ -123,37 +128,38 @@ public class PlayerEmbrace : MonoBehaviour
         Enemy enemy = other.GetComponent<Enemy>();
         if (enemy == null) return;
         enemy.GetComponentInChildren<OutlineManager>()?.DisableOutline();
+        reticalManager.SetDefaultRetical();
 
     }
     
-    public void HighlightEnemies()
-    {
-        Vector3 origin = transform.position;
-        Vector3 forward = transform.forward;
-        Collider[] hits = Physics.OverlapSphere(origin, embraceRange, enemyLayer);
-        foreach (var hit in hits)
-        {
-            Vector3 toTarget = (hit.transform.position - origin).normalized;
-            float dot = Vector3.Dot(forward, toTarget);
-            float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+    // public void HighlightEnemies()
+    // {
+    //     Vector3 origin = transform.position;
+    //     Vector3 forward = transform.forward;
+    //     Collider[] hits = Physics.OverlapSphere(origin, embraceRange, enemyLayer);
+    //     foreach (var hit in hits)
+    //     {
+    //         Vector3 toTarget = (hit.transform.position - origin).normalized;
+    //         float dot = Vector3.Dot(forward, toTarget);
+    //         float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
-            if (currentAngle <= embraceAngle)
-            {
-                if (hit.GetComponent<Enemy>())
-                {
-                    hit.GetComponentInChildren<OutlineManager>().EnableOutline();
-                }
+    //         if (currentAngle <= embraceAngle)
+    //         {
+    //             if (hit.GetComponent<Enemy>())
+    //             {
+    //                 hit.GetComponentInChildren<OutlineManager>().EnableOutline();
+    //             }
 
-            }
-            else
-            {
-                if (hit.GetComponent<Enemy>())
-                {
-                    hit.GetComponentInChildren<OutlineManager>().DisableOutline();
-                }
-            }
-        }
-    }
+    //         }
+    //         else
+    //         {
+    //             if (hit.GetComponent<Enemy>())
+    //             {
+    //                 hit.GetComponentInChildren<OutlineManager>().DisableOutline();
+    //             }
+    //         }
+    //     }
+    // }
     public void TryEmbrace()
     {
         // Collider[] hits= Physics.OverlapSphere(transform.position, embraceRange, enemyLayer);
@@ -189,7 +195,7 @@ public class PlayerEmbrace : MonoBehaviour
                 if (hit.GetComponent<Enemy>() && hit.GetComponent<Enemy>().GetIsStunned())
                 {
                     //highlight
-
+                    // reticalManager.SetEmbraceRetical();
                     EmbraceEnemy(hit.GetComponent<Enemy>());
                     huggedSomeone = true;
                     break;
@@ -208,7 +214,7 @@ public class PlayerEmbrace : MonoBehaviour
 
 
         void EmbraceEnemy(Enemy target)
-        {
+        {   
             enemyManager.RemoveEnemy(target);
             playerMovement.GetComponent<MouseLook>().RotateToPoint(target.transform);
             // for now we js destroy it or maybe zion can add animation 
@@ -223,7 +229,7 @@ public class PlayerEmbrace : MonoBehaviour
             //25% chance to heal by healvalue
 
             playerHealth.Heal(healValue);
-            
+            reticalManager.SetDefaultRetical();
             
             //target.Die();
             // Debug.Log("HUG!!!");
@@ -256,7 +262,7 @@ public class PlayerEmbrace : MonoBehaviour
         mouseLook.LockMouse();
         playerMovement.LockMovement();
         playerHealth.SetInvincible(true);
-        timeManager.Stop(2);
+        timeManager.Stop(1);
         
     }
 
@@ -264,10 +270,12 @@ public class PlayerEmbrace : MonoBehaviour
     {
         mouseLook.UnlockMouse();
         playerMovement.UnlockMovement();
+        reticalManager.SetDefaultRetical();
         //playerHealth.SetInvincible(false);
         StartCoroutine(LingeringInvincibility(invDuration));
         //reset cooldown
         embraceTimer += embraceCooldown;
+        
     }
 
     public void BeginMissEmbraceCutscene()
