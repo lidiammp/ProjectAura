@@ -7,7 +7,7 @@ public class MovetoTarget : MonoBehaviour
     
     public Transform target;
     private Vector3 originalPosition;
-    private bool isMoving = false;
+    // private bool isMoving = false;
     private bool hasMoved = false;
 
     [SerializeField] private Enemy enemy;
@@ -27,7 +27,7 @@ public class MovetoTarget : MonoBehaviour
 
     IEnumerator MoveToPosition(Vector3 destination, float duration)
     {
-        isMoving = true;
+        // isMoving = true;
         Vector3 start = transform.position;
         float elapsed = 0f;
 
@@ -39,7 +39,7 @@ public class MovetoTarget : MonoBehaviour
         }
 
         transform.position = destination;
-        isMoving = false;
+        // isMoving = false;
 
         if (!hasMoved)
         {
