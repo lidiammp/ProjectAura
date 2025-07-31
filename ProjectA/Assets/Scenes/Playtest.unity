@@ -1513,7 +1513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6023334360039436479, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 60.04
+      value: 125.27
       objectReference: {fileID: 0}
     - target: {fileID: 6023334360039436479, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1521,11 +1521,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6023334360039436479, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.25
+      value: 14.12
       objectReference: {fileID: 0}
     - target: {fileID: 6191316090980681615, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: maxHealth
-      value: 5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7244893160032419824, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_Layer
