@@ -10,6 +10,8 @@ public class MovetoTarget : MonoBehaviour
     private bool isMoving = false;
     private bool hasMoved = false;
 
+    [SerializeField] private Enemy enemy;
+
     void Start()
     {
         originalPosition = transform.position;
@@ -17,7 +19,7 @@ public class MovetoTarget : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B) && !isMoving && !hasMoved)
+        if (enemy.GetIsStunned())
         {
             StartCoroutine(MoveToPosition(target.position, 1f)); 
         }

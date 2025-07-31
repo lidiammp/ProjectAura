@@ -8,21 +8,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3258345035954065892, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155154325261496431, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 221c7c1c20b6aeb4abc34e0ceb884faf, type: 2}
+    - target: {fileID: 6713789169247565282, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 62.69
       objectReference: {fileID: 0}
     - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 7.23
       objectReference: {fileID: 0}
     - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 12.42
       objectReference: {fileID: 0}
     - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8672187749250674322, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
       propertyPath: m_Name
-      value: Bigmunchkin
+      value: PermaStunnedMunchkin
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

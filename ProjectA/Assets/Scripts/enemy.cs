@@ -55,10 +55,15 @@ public class Enemy : MonoBehaviour
         //add player to obstacle checkrer
         layersToHit |= 1 << LayerMask.NameToLayer("Player");
         enemyAnimator = GetComponentInChildren<Animator>();
-        enemyAwareness = GetComponent<EnemyAwareness>();
+        if (GetComponent<EnemyAwareness>())
+        {
+            enemyAwareness = GetComponent<EnemyAwareness>();
+            maxDistance = enemyAwareness.awarenessRadius;
+        }
+        
         playertransform = FindObjectOfType<PlayerMovement>().transform;
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        maxDistance = enemyAwareness.awarenessRadius;
+        
         timeManager = FindObjectOfType<TimeManager>();
         enemyRigidBody = GetComponent<Rigidbody>();
     }
@@ -200,6 +205,18 @@ public class Enemy : MonoBehaviour
         enemyAnimator.SetBool("isStunned", isStunned);
         //stunlock player
         StartCoroutine(StunEnemy(stunDuration));
+    }
+
+    public void PermaStun()
+    {
+
+        // //show stun effect 
+        // Instantiate(stunEffect, transform.position, Quaternion.identity);
+        //set variables
+        isStunned = true;
+        // enemyAnimator.SetBool("isStunned", isStunned);
+        //stunlock player
+        StartCoroutine(StunEnemy(10000));
     }
 
 
