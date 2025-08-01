@@ -35,6 +35,7 @@ public class PlayerEmbrace : MonoBehaviour
     // characterController ← your movement system
     [SerializeField] private float snapSpeed = 10f;
     [SerializeField] private bool isSnapping = false;
+    private bool embraceAnimationEnded = true;
 
 
     void Start()
@@ -49,16 +50,38 @@ public class PlayerEmbrace : MonoBehaviour
         reticalManager = FindObjectOfType<EmbraceRetical>();
     }
 
-    
+    void EmbraceAnimationEndEvent()
+    {
+        embraceAnimationEnded = false;
+    }
+    public void EndEmbraceCutscene()
+    {
+        mouseLook.UnlockMouse();
+        playerMovement.UnlockMovement();
+        reticalManager.SetDefaultRetical();
+        //playerHealth.SetInvincible(false);
+        StartCoroutine(LingeringInvincibility(invDuration));
+        //reset cooldown
+        embraceTimer += embraceCooldown;
+
+    }
     // Start is called before the first frame update
     void Update()
     {
         embraceTimer += Time.deltaTime;
-        if ((Input.GetKeyDown(KeyCode.E)|| Input.GetKeyDown(KeyCode.JoystickButton2)) && embraceTimer > embraceCooldown && isSnapping == false)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2)) && embraceTimer > embraceCooldown && isSnapping == false)
         {
+            mouseLook.LockMouse();
+            playerMovement.LockMovement();
             staminabarController.StaminaEmbrace();
             embraceTimer = 0;
 
+        }
+
+        if (embraceAnimationEnded)
+        {
+            embraceAnimationEnded = false;
+            EndEmbraceCutscene();
         }
 
 
@@ -142,7 +165,7 @@ public class PlayerEmbrace : MonoBehaviour
     IEnumerator SnapToEnemy(Enemy enemy)
     {
         isSnapping = true;
-        playerMovement.LockMovement();
+        // playerMovement.LockMovement();
         while ((enemy.transform.position - transform.position).magnitude > enemy.snapThreshold)
         {
             Vector3 direction = (enemy.transform.position - transform.position).normalized;
@@ -152,10 +175,12 @@ public class PlayerEmbrace : MonoBehaviour
         }
 
         isSnapping = false;
+        timeManager.Stop(1);
         EmbraceEnemy(enemy);
     }
     void EmbraceEnemy(Enemy target)
     {   
+        playerHealth.SetInvincible(true);
         enemyManager.RemoveEnemy(target);
         
         // for now we js destroy it or maybe zion can add animation 
@@ -197,32 +222,14 @@ public class PlayerEmbrace : MonoBehaviour
         return isCharging;
     }
 
-    public void BeginEmbraceCutscene()
-    {
-        mouseLook.LockMouse();
-        playerMovement.LockMovement();
-        playerHealth.SetInvincible(true);
-        timeManager.Stop(1);
-        
-    }
 
-    public void EndEmbraceCutscene()
-    {
-        mouseLook.UnlockMouse();
-        playerMovement.UnlockMovement();
-        reticalManager.SetDefaultRetical();
-        //playerHealth.SetInvincible(false);
-        StartCoroutine(LingeringInvincibility(invDuration));
-        //reset cooldown
-        embraceTimer += embraceCooldown;
-        
-    }
 
-    public void BeginMissEmbraceCutscene()
-    {
-        mouseLook.LockMouse();
-        playerMovement.LockMovement();
-    }
+
+    // public void BeginMissEmbraceCutscene()
+    // {
+    //     mouseLook.LockMouse();
+    //     playerMovement.LockMovement();
+    // }
 
     public void EndEmbraceMissCutscene()
     {
