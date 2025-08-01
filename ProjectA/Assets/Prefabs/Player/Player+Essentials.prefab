@@ -782,6 +782,7 @@ MonoBehaviour:
   playerStamina: 100
   maxStamina: 100
   embraceCost: 20
+  dashCost: 20
   slowedSpeed: 6.5
   normalSpeed: 8.5
   staminaRegen: 5
@@ -883,6 +884,10 @@ PrefabInstance:
     - target: {fileID: 3080695026976290485, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: sprintSpeed
       value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080695026976290485, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
+      propertyPath: dashDistance
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3080695026976290485, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: fovTransitionSpeed
@@ -1099,11 +1104,6 @@ MonoBehaviour:
   bobFrequency: 10
   bobHorizontalAmplitude: 0.05
   bobVerticalAmplitude: 0.05
---- !u!1 &4893161094444282567 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9147432612735606225, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
-  m_PrefabInstance: {fileID: 4402890307036851990}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5186429705710255063 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8855153558712325313, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
@@ -1208,8 +1208,9 @@ MonoBehaviour:
     m_Bits: 128
   embraceCooldown: 1
   invDuration: 1
-  playerCamera: {fileID: 4893161094444282567}
   embraceAngle: 45
+  snapSpeed: 30
+  isSnapping: 0
 --- !u!135 &1973727216441934250
 SphereCollider:
   m_ObjectHideFlags: 0

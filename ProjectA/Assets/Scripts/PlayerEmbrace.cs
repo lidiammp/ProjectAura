@@ -146,7 +146,7 @@ public class PlayerEmbrace : MonoBehaviour
         while ((enemy.transform.position - transform.position).magnitude > enemy.snapThreshold)
         {
             Vector3 direction = (enemy.transform.position - transform.position).normalized;
-            playerMovement.Move(snapSpeed, direction);
+            playerMovement.Move(snapSpeed, new Vector3 (direction.x, 0, direction.z));
             playerMovement.GetComponent<MouseLook>().RotateToPoint(enemy.transform);
             yield return null;
         }
