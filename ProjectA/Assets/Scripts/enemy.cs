@@ -42,6 +42,8 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody enemyRigidBody;
     public float snapThreshold = 2f;
+
+    private Coroutine stunRoutine;
     void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -100,21 +102,27 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        
-    
+
+
         enemyAnimator.SetTrigger("isTakingDamage");
-        
-        
+
+
         StartCoroutine(FlashRed());
         timeManager.Stop(0.15f);
-        ApplyKnockback(10*-transform.forward + Vector3.up, 0.3f);
-        if (isStunned) return; // Can't take damage while stunned
+        ApplyKnockback(10 * -transform.forward + Vector3.up, 0.3f);
+        // if (isStunned) return; // Can't take damage while stunned
 
         currentHealth -= amount;
-        
+
         if (currentHealth <= 0)
         {
-            Stun();
+            Stun(stunDuration);
+            return;
+        }
+        
+        if (isStunned)
+        {
+            Stun(stunDuration);  // Re-trigger the stun effect and coroutine
             return;
         }
     }
@@ -195,16 +203,19 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void Stun()
+    public void Stun(float stunDuration)
     {
-
+        if (stunRoutine != null)
+        {
+            StopCoroutine(stunRoutine);
+        }
         //show stun effect 
         Instantiate(stunEffect, transform.position, Quaternion.identity);
         //set variables
         isStunned = true;
         enemyAnimator.SetBool("isStunned", isStunned);
         //stunlock player
-        StartCoroutine(StunEnemy(stunDuration));
+        stunRoutine = StartCoroutine(StunEnemy(stunDuration));
     }
 
     public void PermaStun()

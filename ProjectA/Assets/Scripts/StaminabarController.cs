@@ -9,6 +9,7 @@ public class StaminabarController : MonoBehaviour
     public float playerStamina = 100f;
     [SerializeField] private float maxStamina = 100f;
     [SerializeField] private float embraceCost = 20f;
+    [SerializeField] private float dashCost = 20f;
     [SerializeField] private float slowedSpeed = 4f;
     [SerializeField] private float normalSpeed = 20f;
 
@@ -94,6 +95,19 @@ public class StaminabarController : MonoBehaviour
         //allow player to embrace
         playerEmbrace.TryEmbrace();
         UpdateStamina(1);
+    }
+
+    public void StaminaDash(Vector3 inputDirection)
+    {
+        if (playerStamina >= dashCost)
+        {
+            playerStamina -= dashCost;
+            playerMovement.StartDash(inputDirection);
+            UpdateStamina(1);
+        }
+
+        //allow player to embrace
+        
     }
 
     public void StaminaRegain(float amount)

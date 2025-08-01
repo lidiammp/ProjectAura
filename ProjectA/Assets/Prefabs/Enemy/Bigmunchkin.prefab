@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 5269365963332773551, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+      propertyPath: snapThreshold
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5889005766329092946, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: attackRange
       value: 5

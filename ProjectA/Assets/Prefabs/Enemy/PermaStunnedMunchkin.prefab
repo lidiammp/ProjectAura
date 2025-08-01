@@ -16,13 +16,17 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 221c7c1c20b6aeb4abc34e0ceb884faf, type: 2}
+    - target: {fileID: 5023013637487564831, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: snapThreshold
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6713789169247565282, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
       propertyPath: m_LocalPosition.x

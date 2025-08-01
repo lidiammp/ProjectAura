@@ -33,6 +33,19 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     private Camera playerCamera;
     public bool ignoreHitStop = false;
+    [Header("Dash Parameters")]
+    // isDashing ← false
+    // canDash ← true
+    // dashDuration ← small value (e.g., 0.2 seconds)
+    // dashCooldown ← longer value (e.g., 1 second)
+    // dashDistance ← how far you want to dash
+    // inputDirection ← direction from player input (normalized)
+    private bool isDashing = false;
+    private bool canDash = true;
+    [SerializeField]private float dashDuration = 0.2f;
+    [SerializeField]private float dashCooldown = 1;
+    [SerializeField]private float dashDistance = 2f;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -56,49 +69,83 @@ public class PlayerMovement : MonoBehaviour
         bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Input.GetAxis("Controller LT") > 0.1f;
         bool isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
 
-
-        //camera
-        float targetFOV;
-
-        if (shiftHeld && isMoving && staminabarController.playerStamina > 0)
+        if (isDashing == false)
         {
-            targetFOV = sprintFOV;
-            isWalking = false;
-            staminabarController.isSprinting = true;
-            staminabarController.Sprinting();
+
+            //camera
+            float targetFOV;
+
+            if (shiftHeld && isMoving && staminabarController.playerStamina > 0)
+            {
+                targetFOV = sprintFOV;
+                isWalking = false;
+                staminabarController.isSprinting = true;
+                staminabarController.Sprinting();
+            }
+            else
+            {
+                targetFOV = normalFOV;
+                isWalking = true;
+                staminabarController.isSprinting = false;
+            }
+
+            //lerp to target fov
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, fovTransitionSpeed * Time.unscaledDeltaTime);
+
+            playerSpeed = isWalking ? walkSpeed : sprintSpeed;
+            // handle player input left right up down
+            // get direction for player input
+            GetInput(inputX, inputZ);
+            if (lockMovement)
+            {
+                StopMovement();
+                return;
+            }
+
+            // Move the player based on calculated movement vector
+            if (ignoreHitStop)
+            {
+                MovePlayer(Time.unscaledDeltaTime);
+            }
+            else
+            {
+                MovePlayer(Time.deltaTime);
+            }
         }
-        else
+        if (Input.GetKeyDown(KeyCode.Space) && canDash && isMoving)
         {
-            targetFOV = normalFOV;
-            isWalking = true;
-            staminabarController.isSprinting = false;
+            //start dash in input direction
+            staminabarController.StaminaDash(inputVector);
         }
-
-        //lerp to target fov
-        playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, fovTransitionSpeed * Time.unscaledDeltaTime);
-
-        playerSpeed = isWalking ? walkSpeed : sprintSpeed;
-        // handle player input left right up down
-        // get direction for player input
-        GetInput(inputX, inputZ);
-        if (lockMovement)
+        else if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
-            StopMovement();
-            return;
-        }
-
-        // Move the player based on calculated movement vector
-        if (ignoreHitStop)
-        {
-            MovePlayer(Time.unscaledDeltaTime);
-        }
-        else
-        {
-            MovePlayer(Time.deltaTime);
+            //start dash forward
+            staminabarController.StaminaDash(transform.forward);
         }
 
     }
+    public void StartDash(Vector3 inputDirection)
+    {
+        StartCoroutine(Dash(inputDirection));
+    }
 
+    IEnumerator Dash(Vector3 inputDirection) {
+        // playerCamera.fieldOfView = sprintFOV;
+        isDashing = true;
+        canDash = false;
+        float dashSpeed = dashDistance / dashDuration;
+        float elapsed = 0;
+        while (elapsed < dashDuration)
+        {
+            myCC.Move(inputDirection * dashSpeed * Time.unscaledDeltaTime);
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        isDashing = false;
+        // playerCamera.fieldOfView = normalFOV;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
     public void SetRunSpeed(float speed)
     {
         sprintSpeed = speed;
@@ -107,11 +154,12 @@ public class PlayerMovement : MonoBehaviour
     // Handles player input and calculates movement direction
     void GetInput(float inputx, float inputz)
     {
+        // Get raw input from keyboard/controller for horizontal (A/D or left/right) and vertical (W/S or up/down)
+        inputVector = new Vector3(inputx, 0f, inputz);
         // Normalize input vector to prevent faster diagonal movement
         inputVector.Normalize();
 
-        // Get raw input from keyboard/controller for horizontal (A/D or left/right) and vertical (W/S or up/down)
-        inputVector = new Vector3(inputx, 0f, inputz);
+        
         if (inputVector.magnitude > 0)
         {
             handAnimator.SetBool("isWalking", true);
