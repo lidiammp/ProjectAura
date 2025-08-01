@@ -1981,7 +1981,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-483558
+  m_Name: pb_Mesh32580
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7331,7 +7331,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh51750
+  m_Name: pb_Mesh32870
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -12597,6 +12597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1235297471}
   enemy: {fileID: 636388731}
+  gate: {fileID: 153846287}
 --- !u!1 &1086103952
 GameObject:
   m_ObjectHideFlags: 0

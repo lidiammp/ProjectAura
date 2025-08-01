@@ -6,15 +6,16 @@ public class MovetoTarget : MonoBehaviour
 {
     
     public Transform target;
-    private Vector3 originalPosition;
-    // private bool isMoving = false;
-    private bool hasMoved = false;
+    // private Vector3 originalPosition;
+    // // private bool isMoving = false;
+    // private bool hasMoved = false;
 
     [SerializeField] private Enemy enemy;
+    [SerializeField] private GameObject gate;
 
     void Start()
     {
-        originalPosition = transform.position;
+        // originalPosition = transform.position;
     }
 
     void Update()
@@ -40,17 +41,17 @@ public class MovetoTarget : MonoBehaviour
 
         transform.position = destination;
         // isMoving = false;
-
-        if (!hasMoved)
-        {
-            hasMoved = true;
-            yield return new WaitForSeconds(8f);
-            StartCoroutine(MoveToPosition(originalPosition, 1f)); 
-        }
-        else
-        {
-            hasMoved = false;
-        }
+        gate.SetActive(false);
+        // if (!hasMoved)
+        // {
+        //     hasMoved = true;
+        //     yield return new WaitForSeconds(8f);
+        //     StartCoroutine(MoveToPosition(originalPosition, 1f)); 
+        // }
+        // else
+        // {
+        //     hasMoved = false;
+        // }
     }
 }
 
