@@ -126,11 +126,11 @@ public class Enemy : MonoBehaviour
             return;
         }
     }
-
+    //doesnt work rn cuz the animator has control :(
     private IEnumerator FlashRed()
     {
         spriteRenderer.color = pinkColor;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
         spriteRenderer.color = originalColor;
     }
     public void Wander()
