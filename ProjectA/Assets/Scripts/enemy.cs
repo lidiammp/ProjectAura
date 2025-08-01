@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
     private TimeManager timeManager;
 
     private Rigidbody enemyRigidBody;
-
+    public float snapThreshold = 2f;
     void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();

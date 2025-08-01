@@ -2664,6 +2664,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2423255616980497573, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: snapSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423255616980497573, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: closeEnoughThreshold
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8339778338135484084, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_Name
       value: Player+Essentials

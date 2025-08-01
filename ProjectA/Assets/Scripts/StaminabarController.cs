@@ -92,8 +92,8 @@ public class StaminabarController : MonoBehaviour
             playerStamina = 0;
         }
         //allow player to embrace
-            playerEmbrace.TryEmbrace();
-            UpdateStamina(1);
+        playerEmbrace.TryEmbrace();
+        UpdateStamina(1);
     }
 
     public void StaminaRegain(float amount)

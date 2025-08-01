@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
+
     // Speed at which the player moves
     private float playerSpeed;
     public float walkSpeed = 6f;
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         handAnimator = GetComponentInChildren<Animator>();
         staminabarController = FindObjectOfType<StaminabarController>();
         playerCamera = gameObject.GetComponentInChildren<Camera>();
-        
+
 
     }
 
@@ -53,14 +53,14 @@ public class PlayerMovement : MonoBehaviour
 
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");
-        bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Input.GetAxis("Controller LT") > 0.1f;
         bool isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
-        bool isMovingForward = inputZ > 0f;
+
 
         //camera
         float targetFOV;
 
-        if (shiftHeld && isMoving && staminabarController.playerStamina > 0 && isMovingForward)
+        if (shiftHeld && isMoving && staminabarController.playerStamina > 0)
         {
             targetFOV = sprintFOV;
             isWalking = false;
@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         {
             MovePlayer(Time.deltaTime);
         }
-        
+
     }
 
     public void SetRunSpeed(float speed)
@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
     {
         myCC.Move(movementVector * time);
 
-        
+
     }
 
     void StopMovement()
@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
             movementVector = Vector3.zero;
             myCC.Move(movementVector); // ensures no residual movement
         }
-        
+
     }
 
     public void LockMovement()
@@ -175,9 +175,14 @@ public class PlayerMovement : MonoBehaviour
 
             timer += Time.deltaTime;
             yield return null;
-        }   
+        }
         rb.isKinematic = true; // disable physics again
         myCC.enabled = true;
         UnlockMovement();
+    }
+
+    public void Move(float speed, Vector3 direction)
+    {
+        myCC.Move(speed * direction * Time.unscaledDeltaTime);
     }
 }

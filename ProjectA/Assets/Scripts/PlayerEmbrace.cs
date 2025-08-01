@@ -21,12 +21,22 @@ public class PlayerEmbrace : MonoBehaviour
     private float embraceTimer = 0;
     private PlayerMovement playerMovement;
     [SerializeField] private float invDuration = 0.5f;
-    [SerializeField] private GameObject playerCamera;
+    // [SerializeField] private GameObject playerCamera;
     private StaminabarController staminabarController;
 
     private TimeManager timeManager;
     [SerializeField] private float embraceAngle = 45f;
     private EmbraceRetical reticalManager;
+    [Header("Snap To Enemy Parameters")]
+    // snapRange ← how close you must be to start snapping
+    // snapSpeed ← how fast you move toward the enemy
+    // targetEnemy ← null or reference to enemy
+    // isSnapping ← false
+    // characterController ← your movement system
+    [SerializeField] private float snapSpeed = 10f;
+    [SerializeField] private bool isSnapping = false;
+
+
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -44,55 +54,16 @@ public class PlayerEmbrace : MonoBehaviour
     void Update()
     {
         embraceTimer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.E) && embraceTimer > embraceCooldown)
+        if ((Input.GetKeyDown(KeyCode.E)|| Input.GetKeyDown(KeyCode.JoystickButton2)) && embraceTimer > embraceCooldown && isSnapping == false)
         {
-
             staminabarController.StaminaEmbrace();
             embraceTimer = 0;
-            // isCharging = true;
-            // holdTimer = 0f;
-            // Debug.Log("warming up hands for hug");
+
         }
-        // HighlightEnemies();
 
-        // if (Input.GetKey(KeyCode.E) && isCharging)
-        // {
-        //     holdTimer += Time.deltaTime;
-
-        //     if (holdTimer >= chargeTime)
-        //     {
-        //         Debug.Log("bring it in brother");
-        //         Debug.Log($" Embrace charge complete: held for {holdTimer:F2} seconds (needed {chargeTime} seconds).");
-
-        //         TryEmbrace();
-
-        //         // reset
-        //         holdTimer = 0f;
-        //         isCharging = false;
-        //     }
-        // }
-
-        // // Cancel charge if player releases early
-        // if (Input.GetKeyUp(KeyCode.E) && isCharging)
-        // {
-        //     Debug.Log("Im not warmed up enough");
-        //     holdTimer = 0f;
-        //     isCharging = false;
-        // }
 
     }
 
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     //if enemy
-    //     if (((1 << other.gameObject.layer) & enemyLayer) == 0) return;
-    //     Enemy enemy = other.GetComponent<Enemy>();
-    //     //if no enemy component
-    //     if (enemy == null) return;
-    //     //eneable outline
-    //     enemy.GetComponentInChildren<OutlineManager>()?.EnableOutline();
-
-    // }
 
     private void OnTriggerStay(Collider other)
     {
@@ -131,50 +102,9 @@ public class PlayerEmbrace : MonoBehaviour
         reticalManager.SetDefaultRetical();
 
     }
-    
-    // public void HighlightEnemies()
-    // {
-    //     Vector3 origin = transform.position;
-    //     Vector3 forward = transform.forward;
-    //     Collider[] hits = Physics.OverlapSphere(origin, embraceRange, enemyLayer);
-    //     foreach (var hit in hits)
-    //     {
-    //         Vector3 toTarget = (hit.transform.position - origin).normalized;
-    //         float dot = Vector3.Dot(forward, toTarget);
-    //         float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
-    //         if (currentAngle <= embraceAngle)
-    //         {
-    //             if (hit.GetComponent<Enemy>())
-    //             {
-    //                 hit.GetComponentInChildren<OutlineManager>().EnableOutline();
-    //             }
-
-    //         }
-    //         else
-    //         {
-    //             if (hit.GetComponent<Enemy>())
-    //             {
-    //                 hit.GetComponentInChildren<OutlineManager>().DisableOutline();
-    //             }
-    //         }
-    //     }
-    // }
     public void TryEmbrace()
     {
-        // Collider[] hits= Physics.OverlapSphere(transform.position, embraceRange, enemyLayer);
-        // foreach (var hit in hits)
-        // Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-        // if (Physics.Raycast(ray, out RaycastHit hit, embraceRange, enemyLayer))
-        // {
-        //     Enemy enemyComponent = hit.collider.gameObject.GetComponent<Enemy>();
-        //     if (enemyComponent != null && enemyComponent.GetIsStunned())
-        //     {
-        //         EmbraceEnemy(enemyComponent);
-        //         return; // laddies leave me alone type shift, one at a time 
-        //     }
-
-        // }
 
 
         Vector3 origin = transform.position;
@@ -194,9 +124,9 @@ public class PlayerEmbrace : MonoBehaviour
                 // if enemy and stunned
                 if (hit.GetComponent<Enemy>() && hit.GetComponent<Enemy>().GetIsStunned())
                 {
-                    //highlight
-                    // reticalManager.SetEmbraceRetical();
-                    EmbraceEnemy(hit.GetComponent<Enemy>());
+                    Enemy enemy = hit.GetComponent<Enemy>();
+                    //snap to enemy
+                    StartCoroutine(SnapToEnemy(enemy));
                     huggedSomeone = true;
                     break;
                 }
@@ -206,36 +136,46 @@ public class PlayerEmbrace : MonoBehaviour
         if (huggedSomeone == false)
         {
             handAnimator.SetTrigger("isHandHugMiss");
-
         }
-
-
-
-
-
-        void EmbraceEnemy(Enemy target)
-        {   
-            enemyManager.RemoveEnemy(target);
-            playerMovement.GetComponent<MouseLook>().RotateToPoint(target.transform);
-            // for now we js destroy it or maybe zion can add animation 
-            // (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
-            staminabarController.StaminaRegain(45f);
-            //remove from list
-            string animationName = target.GetComponent<Enemy>().enemyType;
-            handAnimator.SetTrigger("isHandHug" + animationName);
-
-            
-            target.GetComponent<Animator>().Play("MunchkinPassing");
-            //25% chance to heal by healvalue
-
-            playerHealth.Heal(healValue);
-            reticalManager.SetDefaultRetical();
-            
-            //target.Die();
-            // Debug.Log("HUG!!!");
-        }
+    
     }
+    IEnumerator SnapToEnemy(Enemy enemy)
+    {
+        isSnapping = true;
+        playerMovement.LockMovement();
+        while ((enemy.transform.position - transform.position).magnitude > enemy.snapThreshold)
+        {
+            Vector3 direction = (enemy.transform.position - transform.position).normalized;
+            playerMovement.Move(snapSpeed, direction);
+            playerMovement.GetComponent<MouseLook>().RotateToPoint(enemy.transform);
+            yield return null;
+        }
 
+        isSnapping = false;
+        EmbraceEnemy(enemy);
+    }
+    void EmbraceEnemy(Enemy target)
+    {   
+        enemyManager.RemoveEnemy(target);
+        
+        // for now we js destroy it or maybe zion can add animation 
+        // (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
+        staminabarController.StaminaRegain(45f);
+        //remove from list
+        string animationName = target.GetComponent<Enemy>().enemyType;
+        handAnimator.SetTrigger("isHandHug" + animationName);
+
+        
+        target.GetComponent<Animator>().Play("MunchkinPassing");
+        //25% chance to heal by healvalue
+
+        playerHealth.Heal(healValue);
+        reticalManager.SetDefaultRetical();
+        
+        //target.Die();
+        // Debug.Log("HUG!!!");
+    }
+    
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

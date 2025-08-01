@@ -7,7 +7,10 @@ public class MouseLook : MonoBehaviour
     public float lookSpeed = 2f;
     public Transform playerCamera;
     private bool lockMouse = false;
-    private float rotationX = 0;
+    private float pitch = 0;
+    private float yaw = 0;
+
+    [SerializeField] private float controllerLookSpeed = 90f;
     [SerializeField] private float lookXLimit = 45f;
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController characterController;
@@ -24,18 +27,33 @@ public class MouseLook : MonoBehaviour
         {
             characterController.Move(moveDirection * Time.deltaTime);
         }
-        
+
         if (!lockMouse)
         {
-            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+            pitch += -Input.GetAxis("Mouse Y") * lookSpeed;
+            yaw = Input.GetAxis("Mouse X") * lookSpeed;
             //limit rotation so u dont break ur neck
-            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+            
+
+            yaw += Input.GetAxis("Controller Yaw") * controllerLookSpeed * Time.deltaTime; // deg/sec * time = deg
+            pitch +=  Input.GetAxis("Controller Pitch") * controllerLookSpeed * Time.deltaTime;
+
+
+
+            pitch = Mathf.Clamp(pitch, -lookXLimit, lookXLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(pitch, 0, 0);
 
             //rotate player left and right based on mouse position
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            transform.rotation *= Quaternion.Euler(0, yaw, 0);
         }
 
+        
+        // controller left right value
+        // scale it 
+        // add to rotation
+
+        //example 90 per second = certain number of second
+        //look accelratio nis kinda cool
 
     }
 

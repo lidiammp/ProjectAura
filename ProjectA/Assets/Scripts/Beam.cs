@@ -40,6 +40,7 @@ public class Beam : MonoBehaviour
     private HeartLaser heartLaser;
 
     private PlayerMovement playerMovement;
+    private bool triggerWasPressedLastFrame;
     void Start()
     {
         playerMovement = GetComponentInParent<PlayerMovement>();
@@ -60,18 +61,28 @@ public class Beam : MonoBehaviour
 
     void Update()
     {
+
         ChargeBeam();
-        if (Input.GetKeyUp(KeyCode.Mouse0) && isCharging)
+        bool triggerHeld = Input.GetAxis("Controller RT") > 0.1f;
+        bool triggerReleased = triggerHeld == false && triggerWasPressedLastFrame;
+        bool mouseReleased = Input.GetKeyUp(KeyCode.Mouse0);
+
+        if ((mouseReleased || triggerReleased) && isCharging)
         {
             ShootBeam();
-            
+
             // gunLaser.LaserVisual();
         }
+        triggerWasPressedLastFrame = triggerHeld;
     }
     void ChargeBeam()
     {
+        bool triggerHeld = Input.GetAxis("Controller RT") > 0.1f;
+        bool mouseHeld = Input.GetKey(KeyCode.Mouse0);
+        bool triggerPressedThisFrame = triggerHeld && !triggerWasPressedLastFrame;
+        bool mousePressedThisFrame = Input.GetKeyDown(KeyCode.Mouse0);
         //charge
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if ((mousePressedThisFrame || triggerPressedThisFrame) && isCharging == false)
         {
             isCharging = true;
             chargeHeldTime = 0f; // reset when charging starts
@@ -80,12 +91,12 @@ public class Beam : MonoBehaviour
         }
 
         //while its chargin
-        if (isCharging && Input.GetKey(KeyCode.Mouse0))
+        if (isCharging && (mouseHeld || triggerHeld))
         {
             chargeHeldTime += Time.deltaTime;
             //accumulate charge time
         }
-
+        
     }
     void ShootBeam()
     {
