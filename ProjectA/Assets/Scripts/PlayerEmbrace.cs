@@ -175,7 +175,7 @@ public class PlayerEmbrace : MonoBehaviour
         }
 
         isSnapping = false;
-        // timeManager.Stop(1);
+        timeManager.Stop(0.75f);
         EmbraceEnemy(enemy);
     }
     void EmbraceEnemy(Enemy target)

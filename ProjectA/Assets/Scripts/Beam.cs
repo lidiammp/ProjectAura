@@ -41,7 +41,7 @@ public class Beam : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private bool triggerWasPressedLastFrame;
-    private bool chargeLoopStarted;
+    // private bool chargeLoopStarted;
     private AnimatorStateInfo stateInfo;
     void Start()
     {
@@ -89,7 +89,7 @@ public class Beam : MonoBehaviour
             isCharging = true;
             chargeHeldTime = 0f; // reset when charging starts
             //play charge start
-            chargeLoopStarted = false;
+            // chargeLoopStarted = false;
             handAnimator.Play("ChargeStart");
 
 
@@ -116,7 +116,7 @@ public class Beam : MonoBehaviour
         if (stateInfo.IsName("ChargeStart") && stateInfo.normalizedTime >= 1.0f)
         {
             handAnimator.Play("ChargeLoop");
-            chargeLoopStarted = true;
+            // chargeLoopStarted = true;
         }
     }
     //at the end of the charge animation play looping charge
@@ -124,7 +124,7 @@ public class Beam : MonoBehaviour
     {
         // once its let go 
         isCharging = false;
-        chargeLoopStarted = false;
+        // chargeLoopStarted = false;
         handAnimator.SetBool("isCharging", false);
 
         //check if its been long enough
@@ -165,6 +165,7 @@ public class Beam : MonoBehaviour
 
         foreach (var enemyCollider in enemyColliders)
         {
+            
             enemyCollider.GetComponent<EnemyAwareness>().isAggro = true;
         }
 
@@ -185,6 +186,12 @@ public class Beam : MonoBehaviour
             // Add enemy to the manager's tracking list
             enemyManager.AddEnemy(enemy);
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, beamShotRadius);
     }
     public void CheckIfHitEnemy()
     {

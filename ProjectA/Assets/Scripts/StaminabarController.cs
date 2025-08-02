@@ -67,10 +67,10 @@ public class StaminabarController : MonoBehaviour
     }
     public void Sprinting()
     {
-
-        if (hasRegenerated)
+        isSprinting = true;
+        if (playerStamina > 0)
         {
-            isSprinting = true;
+            
             playerStamina -= staminaDrain * Time.deltaTime;
             UpdateStamina(1);
             if (playerStamina <= 0)
@@ -78,6 +78,7 @@ public class StaminabarController : MonoBehaviour
                 //slow player
                 playerMovement.SetRunSpeed(slowedSpeed);
                 sliderCanvasGroup.alpha = 0;
+                hasRegenerated = false;
             }
         }
     }
@@ -92,6 +93,8 @@ public class StaminabarController : MonoBehaviour
         {
             playerStamina = 0;
         }
+        isSprinting = false;
+        hasRegenerated = false;
         //allow player to embrace
         playerEmbrace.TryEmbrace();
         UpdateStamina(1);
@@ -105,9 +108,10 @@ public class StaminabarController : MonoBehaviour
             playerMovement.StartDash(inputDirection);
             UpdateStamina(1);
         }
-
+        hasRegenerated = false;
+        isSprinting = false;
         //allow player to embrace
-        
+
     }
 
     public void StaminaRegain(float amount)

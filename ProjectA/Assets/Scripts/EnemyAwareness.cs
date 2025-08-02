@@ -10,30 +10,35 @@ public class EnemyAwareness : MonoBehaviour
     private Enemy enemy;
     private Transform playertransform;
     private Animator enemyAnimator;
+    public float deaggroBuffer = 2f;
     void Start(){
         enemyAnimator = GetComponentInChildren<Animator>();
         enemy = GetComponent<Enemy>();
         playertransform = FindObjectOfType<PlayerMovement>().transform;
     }
-    void Update(){
+    void Update()
+    {
         var dist = Vector3.Distance(playertransform.position, transform.position);
-        if (dist <= awarenessRadius)
+
+        if (!enemy.GetIsStunned())
         {
-            isAggro = true;
+            bool wasAggro = isAggro;
+            //if close aggro
+            if (dist <= awarenessRadius)
+            {
+                isAggro = true;
+            }
+            //if far deaggro
+            else if (dist > awarenessRadius + deaggroBuffer)
+            {
+                isAggro = false;
+            }
+            //if it was aggro already dont update
+            if (isAggro != wasAggro)
+            {
+                enemyAnimator.SetBool("isAggro", isAggro);
+            }
         }
-        else if (dist > awarenessRadius)
-        {
-            isAggro = false;
-            enemyAnimator.SetBool("isAggro", isAggro);
-            
-        }
-        
-        if (isAggro && enemy.GetIsStunned() == false)
-        {
-            enemyAnimator.SetBool("isAggro", isAggro);
-            // GetComponent<MeshRenderer>().material = aggroMat;
-            //set aggro
-        }
-    }    
+    }   
 
 }

@@ -865,6 +865,9 @@ MonoBehaviour:
   fovTransitionSpeed: 5
   rb: {fileID: 0}
   ignoreHitStop: 0
+  dashDuration: 0.14
+  dashCooldown: 1
+  dashDistance: 6.5
 --- !u!114 &1873567530904529400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,6 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookSpeed: 2
   playerCamera: {fileID: 6081908673366856700}
+  controllerLookSpeed: 90
   lookXLimit: 89
 --- !u!114 &6385783847123003505
 MonoBehaviour:
@@ -900,8 +904,9 @@ MonoBehaviour:
     m_Bits: 0
   embraceCooldown: 3
   invDuration: 0.5
-  playerCamera: {fileID: 0}
   embraceAngle: 45
+  snapSpeed: 10
+  isSnapping: 0
 --- !u!114 &7562049852916459673
 MonoBehaviour:
   m_ObjectHideFlags: 0
