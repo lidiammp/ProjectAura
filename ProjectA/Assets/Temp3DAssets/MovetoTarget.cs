@@ -8,7 +8,7 @@ public class MovetoTarget : MonoBehaviour
     public Transform target;
     private Vector3 originalPosition;
     // private bool isMoving = false;
-    private bool hasMoved = false;
+    // private bool hasMoved = false;
 
     [SerializeField] private Enemy enemy;
     [SerializeField] private GameObject gate;

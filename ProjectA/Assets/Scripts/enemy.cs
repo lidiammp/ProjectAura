@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour
     public float snapThreshold = 2f;
 
     private Coroutine stunRoutine;
+    [SerializeField] private bool isPermaStunned = false;
     void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -105,26 +106,30 @@ public class Enemy : MonoBehaviour
 
 
         enemyAnimator.SetTrigger("isTakingDamage");
-
-
         StartCoroutine(FlashRed());
         timeManager.Stop(0.15f);
-        ApplyKnockback(10 * -transform.forward + Vector3.up, 0.3f);
-        // if (isStunned) return; // Can't take damage while stunned
-
-        currentHealth -= amount;
-
-        if (currentHealth <= 0)
+        if (!isPermaStunned)
         {
-            Stun(stunDuration);
-            return;
+            ApplyKnockback(10 * -transform.forward + Vector3.up, 0.3f);
+            // if (isStunned) return; // Can't take damage while stunned
+
+            currentHealth -= amount;
+
+            if (currentHealth <= 0)
+            {
+                Stun(stunDuration);
+                return;
+            }
+            if (isStunned)
+            {
+                Stun(stunDuration);  // Re-trigger the stun effect and coroutine
+                return;
+            }
         }
         
-        if (isStunned)
-        {
-            Stun(stunDuration);  // Re-trigger the stun effect and coroutine
-            return;
-        }
+        
+        
+        
     }
     //doesnt work rn cuz the animator has control :(
     private IEnumerator FlashRed()
