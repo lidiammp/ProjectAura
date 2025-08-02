@@ -52,7 +52,7 @@ public class PlayerEmbrace : MonoBehaviour
 
     void EmbraceAnimationEndEvent()
     {
-        embraceAnimationEnded = false;
+        embraceAnimationEnded = true;
     }
     public void EndEmbraceCutscene()
     {
