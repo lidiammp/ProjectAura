@@ -112,12 +112,12 @@ public class PlayerMovement : MonoBehaviour
                 MovePlayer(Time.deltaTime);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canDash && isMoving)
+        if ((Input.GetKeyDown(KeyCode.Space) ||  Input.GetKeyDown(KeyCode.JoystickButton0)) && canDash && isMoving)
         {
             //start dash in input direction
             staminabarController.StaminaDash(inputVector);
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        else if ((Input.GetKeyDown(KeyCode.Space) ||  Input.GetKeyDown(KeyCode.JoystickButton0)) && canDash)
         {
             //start dash forward
             staminabarController.StaminaDash(transform.forward);

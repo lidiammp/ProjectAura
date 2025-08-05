@@ -2943,6 +2943,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8450049345383610133, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
+      propertyPath: settingsMenu
+      value: 
+      objectReference: {fileID: 7463676687385330446}
+    - target: {fileID: 8450049345383610133, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: chargeTimeRequired
       value: 0.5
       objectReference: {fileID: 0}
