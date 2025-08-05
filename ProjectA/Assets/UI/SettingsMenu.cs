@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class SettingsMenu : MonoBehaviour
 {
 
-    public static bool GameIsPaused = false;
+    public bool GameIsPaused = false;
     public GameObject DarkPanel;
-    public MouseLook mouselookrefrence;
-    public PlayerMovement playermoveref;
+    [SerializeField] private MouseLook mouselookrefrence;
+    [SerializeField] private PlayerMovement playermoveref;
+    [SerializeField] private Animator playerAnimator;
 
     void Update()
     {
@@ -27,10 +28,11 @@ public class SettingsMenu : MonoBehaviour
     }
     public void Resume()
     {
+
         DarkPanel.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-
+        playerAnimator.enabled = true;
         playermoveref.enabled = true;
         mouselookrefrence.UnlockMouse();
         Cursor.lockState = CursorLockMode.Locked;
@@ -40,9 +42,10 @@ public class SettingsMenu : MonoBehaviour
     void Pause()
     {
         DarkPanel.SetActive(true);
+        playerAnimator.enabled = false;
         Time.timeScale = 0f;
         GameIsPaused = true;
-
+        
         playermoveref.enabled = false;
         mouselookrefrence.LockMouse();
         Cursor.lockState = CursorLockMode.None;
