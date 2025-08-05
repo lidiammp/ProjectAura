@@ -41,8 +41,12 @@ public class Beam : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private bool triggerWasPressedLastFrame;
+    // private bool chargeLoopStarted;
+    private AnimatorStateInfo stateInfo;
+    [SerializeField] private SettingsMenu settingsMenu;
     void Start()
     {
+
         playerMovement = GetComponentInParent<PlayerMovement>();
         //beam sound
         audioSource = GetComponent<AudioSource>();
@@ -61,7 +65,7 @@ public class Beam : MonoBehaviour
 
     void Update()
     {
-
+        if (settingsMenu.GameIsPaused == true) return;
         ChargeBeam();
         bool triggerHeld = Input.GetAxis("Controller RT") > 0.1f;
         bool triggerReleased = triggerHeld == false && triggerWasPressedLastFrame;
@@ -86,7 +90,11 @@ public class Beam : MonoBehaviour
         {
             isCharging = true;
             chargeHeldTime = 0f; // reset when charging starts
-            handAnimator.SetBool("isCharging", true);
+            //play charge start
+            // chargeLoopStarted = false;
+            handAnimator.Play("ChargeStart");
+
+
             // lidia wants a sound here
         }
 
@@ -95,13 +103,30 @@ public class Beam : MonoBehaviour
         {
             chargeHeldTime += Time.deltaTime;
             //accumulate charge time
+            CheckIfChargeAnimationEnd();
         }
-        
+
+        // if (isCharging && !chargeLoopStarted)
+        // {
+
+        // }
+
     }
+    void CheckIfChargeAnimationEnd(){
+        stateInfo = handAnimator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName("ChargeStart") && stateInfo.normalizedTime >= 1.0f)
+        {
+            handAnimator.Play("ChargeLoop");
+            // chargeLoopStarted = true;
+        }
+    }
+    //at the end of the charge animation play looping charge
     void ShootBeam()
     {
         // once its let go 
         isCharging = false;
+        // chargeLoopStarted = false;
         handAnimator.SetBool("isCharging", false);
 
         //check if its been long enough
@@ -114,12 +139,13 @@ public class Beam : MonoBehaviour
             Fire();
         }
         //if hasnt show in debug
-        // else
-        // {
+        else
+        {
+            handAnimator.Play("HandIdle");
             // Debug.Log("Charge not long enough!");
             // Optional: Play failed charge sound
-            //shoot weak bullet
-        // }
+            // shoot weak bullet
+        }
 
         chargeHeldTime = 0f; // Reset after release
 
@@ -141,6 +167,7 @@ public class Beam : MonoBehaviour
 
         foreach (var enemyCollider in enemyColliders)
         {
+            
             enemyCollider.GetComponent<EnemyAwareness>().isAggro = true;
         }
 
@@ -161,6 +188,12 @@ public class Beam : MonoBehaviour
             // Add enemy to the manager's tracking list
             enemyManager.AddEnemy(enemy);
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, beamShotRadius);
     }
     public void CheckIfHitEnemy()
     {

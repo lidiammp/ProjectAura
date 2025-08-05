@@ -24,14 +24,15 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private GameObject stunEffect;
-
+    [SerializeField]
+    private GameObject onhitEffect;
     [SerializeField] private Transform centrePoint;
     private Animator enemyAnimator;
     private EnemyAwareness enemyAwareness;
     private Transform playertransform;
     private UnityEngine.AI.NavMeshAgent enemyNavMeshAgent;
     public float waitTime = 2f;
-    private float waitTimer = 0f;
+    // private float waitTimer = 0f;
     private bool isWaiting = false;
     private float maxDistance;
     public LayerMask layersToHit;
@@ -44,6 +45,7 @@ public class Enemy : MonoBehaviour
     public float snapThreshold = 2f;
 
     private Coroutine stunRoutine;
+    [SerializeField] private bool isPermaStunned = false;
     void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -77,7 +79,7 @@ public class Enemy : MonoBehaviour
         {
             enemyNavMeshAgent.SetDestination(playertransform.position);
         }//else, just wander
-        else if (enemyAwareness.isAggro == false && isStunned == false)
+        else if (enemyAwareness.isAggro == false && isStunned == false && isPermaStunned ==false)
         {
             Wander();
         }
@@ -103,28 +105,32 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int amount)
     {
 
-
+        Instantiate(onhitEffect, transform.position, Quaternion.identity);
         enemyAnimator.SetTrigger("isTakingDamage");
-
-
         StartCoroutine(FlashRed());
         timeManager.Stop(0.15f);
-        ApplyKnockback(10 * -transform.forward + Vector3.up, 0.3f);
-        // if (isStunned) return; // Can't take damage while stunned
-
-        currentHealth -= amount;
-
-        if (currentHealth <= 0)
+        if (!isPermaStunned)
         {
-            Stun(stunDuration);
-            return;
+            ApplyKnockback(10 * -transform.forward + Vector3.up, 0.3f);
+            // if (isStunned) return; // Can't take damage while stunned
+
+            currentHealth -= amount;
+
+            if (currentHealth <= 0)
+            {
+                Stun(stunDuration);
+                return;
+            }
+            if (isStunned)
+            {
+                Stun(stunDuration);  // Re-trigger the stun effect and coroutine
+                return;
+            }
         }
         
-        if (isStunned)
-        {
-            Stun(stunDuration);  // Re-trigger the stun effect and coroutine
-            return;
-        }
+        
+        
+        
     }
     //doesnt work rn cuz the animator has control :(
     private IEnumerator FlashRed()
@@ -134,26 +140,52 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = originalColor;
     }
     public void Wander()
-    {
-        if (!isWaiting)
+    {   
+        //if there enemy moving or not on surface or not enabled
+        if (enemyNavMeshAgent.pathPending || !enemyNavMeshAgent.isOnNavMesh || !enemyNavMeshAgent.enabled)
+            return;
+
+        //if has a destination and has met it
+        if (!enemyNavMeshAgent.hasPath || enemyNavMeshAgent.remainingDistance <= enemyNavMeshAgent.stoppingDistance)
         {
-            isWaiting = true;
-            waitTimer = waitTime; // Start waiting
-        }
-        waitTimer -= Time.deltaTime;
-        if (waitTimer <= 0f && enemyNavMeshAgent.enabled && enemyNavMeshAgent.isOnNavMesh)
-        {
-            if (enemyNavMeshAgent.remainingDistance <= enemyNavMeshAgent.stoppingDistance) //done with path
+            // When not waiting, start a wait coroutine
+            if (!isWaiting)
             {
-                Vector3 point;
-                if (RandomPoint(centrePoint.position, wanderRadius, out point)) //pass in our centre point and radius of area
-                {
-                    // Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                    enemyNavMeshAgent.SetDestination(point);
-                }
+                StartCoroutine(WanderPauseRoutine());
             }
+            enemyAnimator.SetBool("isWalking", false);
+        }
+        else{
+
+            enemyAnimator.SetBool("isWalking", true); // walk anim when moving
         }
     }
+
+    private IEnumerator WanderPauseRoutine()
+    {
+        isWaiting = true;
+
+        //wait at the current spot
+        yield return new WaitForSeconds(waitTime);
+
+        //pick a new destination after waiting
+        Vector3 point;
+        if (RandomPoint(centrePoint.position, wanderRadius, out point))
+        {
+            // Debug.Log("Wander point set: " + point);
+            if (enemyNavMeshAgent.enabled && enemyNavMeshAgent.isOnNavMesh)
+            {
+                enemyNavMeshAgent.SetDestination(point);
+            }
+        }
+        // else
+        // {
+        //     // Debug.LogWarning("Failed to find valid wander point");
+        // }
+
+        isWaiting = false;
+    }
+
     public void ApplyKnockback(Vector3 force, float duration)
     {
         StartCoroutine(KnockbackRoutine(force, duration));
@@ -210,7 +242,7 @@ public class Enemy : MonoBehaviour
             StopCoroutine(stunRoutine);
         }
         //show stun effect 
-        Instantiate(stunEffect, transform.position, Quaternion.identity);
+        // Instantiate(stunEffect, transform.position, Quaternion.identity);
         //set variables
         isStunned = true;
         enemyAnimator.SetBool("isStunned", isStunned);
