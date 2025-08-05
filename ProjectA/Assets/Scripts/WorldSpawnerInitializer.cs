@@ -19,11 +19,20 @@ public static class WorldSpawner
 {
     public static Transform worldRoot;
 
-    public static GameObject Spawn(GameObject prefab, Vector3 position)
-    {
-        GameObject obj = GameObject.Instantiate(prefab, position, Quaternion.identity);
-        if (worldRoot != null)
-            obj.transform.SetParent(worldRoot, true);
-        return obj;
-    }
+    // public static GameObject Spawn(GameObject prefab, Vector3 position)
+    // {
+    //     GameObject obj = GameObject.Instantiate(prefab, position, Quaternion.identity);
+    //     if (worldRoot != null)
+    //         obj.transform.SetParent(worldRoot, true);
+    //     return obj;
+    // }
+
+    public static GameObject Spawn(GameObject prefab, Vector3 position, Transform parent)
+{
+    GameObject obj = GameObject.Instantiate(prefab, position, Quaternion.identity);
+    if (parent != null)
+        obj.transform.SetParent(parent, true); // true = keep world position
+    return obj;
 }
+}
+

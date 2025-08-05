@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1854206872981145395
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3258345035954065892, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155154325261496431, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 221c7c1c20b6aeb4abc34e0ceb884faf, type: 2}
+    - target: {fileID: 5023013637487564831, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: snapThreshold
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713789169247565282, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 62.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847929206453564001, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672187749250674322, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}
+      propertyPath: m_Name
+      value: PermaStunnedMunchkin
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9b7609b6049b83e45919a6ccf3513cc0, type: 3}

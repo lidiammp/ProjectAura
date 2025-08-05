@@ -6,18 +6,21 @@ public class MovetoTarget : MonoBehaviour
 {
     
     public Transform target;
-    private Vector3 originalPosition;
-    private bool isMoving = false;
-    private bool hasMoved = false;
+    // private Vector3 originalPosition;
+    // // private bool isMoving = false;
+    // private bool hasMoved = false;
+
+    [SerializeField] private Enemy enemy;
+    [SerializeField] private GameObject gate;
 
     void Start()
     {
-        originalPosition = transform.position;
+        // originalPosition = transform.position;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B) && !isMoving && !hasMoved)
+        if (enemy.GetIsStunned())
         {
             StartCoroutine(MoveToPosition(target.position, 1f)); 
         }
@@ -25,7 +28,7 @@ public class MovetoTarget : MonoBehaviour
 
     IEnumerator MoveToPosition(Vector3 destination, float duration)
     {
-        isMoving = true;
+        // isMoving = true;
         Vector3 start = transform.position;
         float elapsed = 0f;
 
@@ -37,18 +40,18 @@ public class MovetoTarget : MonoBehaviour
         }
 
         transform.position = destination;
-        isMoving = false;
-
-        if (!hasMoved)
-        {
-            hasMoved = true;
-            yield return new WaitForSeconds(8f);
-            StartCoroutine(MoveToPosition(originalPosition, 1f)); 
-        }
-        else
-        {
-            hasMoved = false;
-        }
+        // isMoving = false;
+        gate.SetActive(false);
+        // if (!hasMoved)
+        // {
+        //     hasMoved = true;
+        //     yield return new WaitForSeconds(8f);
+        //     StartCoroutine(MoveToPosition(originalPosition, 1f)); 
+        // }
+        // else
+        // {
+        //     hasMoved = false;
+        // }
     }
 }
 

@@ -10,7 +10,7 @@ public class Beam : MonoBehaviour
     public float chargeTimeRequired = 2f;
     private float chargeHeldTime;
     private bool isCharging;
-
+    [SerializeField] private int beamDamage = 25;
 
     // Reference to the trigger collider representing the beams range
     private BoxCollider beamTrigger;
@@ -35,8 +35,15 @@ public class Beam : MonoBehaviour
     private AudioSource audioSource;
     private Animator handAnimator;
     private GameObject parent;
+    // private Screenshake screenshake;
+    // private RayCastGun gunLaser;
+    private HeartLaser heartLaser;
+
+    private PlayerMovement playerMovement;
+    private bool triggerWasPressedLastFrame;
     void Start()
     {
+        playerMovement = GetComponentInParent<PlayerMovement>();
         //beam sound
         audioSource = GetComponent<AudioSource>();
         enemyManager = FindObjectOfType<EnemyManager>();
@@ -46,54 +53,73 @@ public class Beam : MonoBehaviour
         beamTrigger.center = new Vector3(0, 0, range * 0.5f);
         parent = transform.parent.gameObject;
         handAnimator = parent.GetComponentInChildren<Animator>();
+        // screenshake = FindObjectOfType<Screenshake>();
+        // gunLaser = FindObjectOfType<RayCastGun>();
+        heartLaser = FindObjectOfType<HeartLaser>();
 
     }
 
     void Update()
     {
+
         ChargeBeam();
-        if (Input.GetKeyUp(KeyCode.Mouse0) && isCharging)
+        bool triggerHeld = Input.GetAxis("Controller RT") > 0.1f;
+        bool triggerReleased = triggerHeld == false && triggerWasPressedLastFrame;
+        bool mouseReleased = Input.GetKeyUp(KeyCode.Mouse0);
+
+        if ((mouseReleased || triggerReleased) && isCharging)
         {
             ShootBeam();
+
+            // gunLaser.LaserVisual();
         }
+        triggerWasPressedLastFrame = triggerHeld;
     }
     void ChargeBeam()
     {
+        bool triggerHeld = Input.GetAxis("Controller RT") > 0.1f;
+        bool mouseHeld = Input.GetKey(KeyCode.Mouse0);
+        bool triggerPressedThisFrame = triggerHeld && !triggerWasPressedLastFrame;
+        bool mousePressedThisFrame = Input.GetKeyDown(KeyCode.Mouse0);
         //charge
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if ((mousePressedThisFrame || triggerPressedThisFrame) && isCharging == false)
         {
             isCharging = true;
             chargeHeldTime = 0f; // reset when charging starts
-            // handAnimator.SetBool("isCharging", true);
+            handAnimator.SetBool("isCharging", true);
             // lidia wants a sound here
         }
 
         //while its chargin
-        if (isCharging && Input.GetKey(KeyCode.Mouse0))
+        if (isCharging && (mouseHeld || triggerHeld))
         {
             chargeHeldTime += Time.deltaTime;
             //accumulate charge time
         }
-
+        
     }
     void ShootBeam()
     {
         // once its let go 
         isCharging = false;
-
+        handAnimator.SetBool("isCharging", false);
 
         //check if its been long enough
         if (chargeHeldTime >= chargeTimeRequired)
         {
             handAnimator.Play("HandBlast");
+            // screenshake.StartShaking(0.5f);
+            heartLaser.SpawnBullet();
+
             Fire();
         }
         //if hasnt show in debug
-        else
-        {
-            Debug.Log("Charge not long enough!");
+        // else
+        // {
+            // Debug.Log("Charge not long enough!");
             // Optional: Play failed charge sound
-        }
+            //shoot weak bullet
+        // }
 
         chargeHeldTime = 0f; // Reset after release
 
@@ -101,6 +127,9 @@ public class Beam : MonoBehaviour
 
     void Fire()
     {
+        //apply knockback
+        // playerMovement.ApplyKnockback(-1*transform.forward, 0.3f);
+
         //draw sphere for debuggin
         audioSource.Stop();
         audioSource.Play();
@@ -147,7 +176,7 @@ public class Beam : MonoBehaviour
                 if (hit.transform == enemy.transform)
                 {
                     // If it hit an enemy, stun them
-                    enemy.Stun(); // stun or in this case FREEZE
+                    enemy.TakeDamage(beamDamage); // stun or in this case FREEZE
                 }
 
             }

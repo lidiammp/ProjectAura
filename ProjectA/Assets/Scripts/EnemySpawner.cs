@@ -15,8 +15,10 @@ public class EnemySpawner : MonoBehaviour
     public float timeBetweenWaves = 5f;
     private int currentWaveIndex = 0;
     private int enemiesAlive = 0;
-
-    public int GetWaveIndex(){
+    public Transform roomTransform;
+    public Room room;
+    public int GetWaveIndex()
+    {
         return currentWaveIndex;
     }   
     
@@ -28,18 +30,26 @@ public class EnemySpawner : MonoBehaviour
 
     // Update is called once per frame
     IEnumerator StartWave(){
-        while( currentWaveIndex < waves.Length){
+        while (currentWaveIndex < waves.Length)
+        {
             Wave wave = waves[currentWaveIndex];
-            for(int i = 0; i < wave.enemyCount;i++){
+            for (int i = 0; i < wave.enemyCount; i++)
+            {
                 SpawnEnemy(wave.enemyTypes);
+                room.RefreshEnemies();
                 enemiesAlive++;
                 yield return new WaitForSeconds(0.5f);
             }
-            while(enemiesAlive > 0){
+            //all enemies spawned
+            //refresh
+            
+            while (enemiesAlive > 0)
+            {
                 yield return null;
             }
             yield return new WaitForSeconds(timeBetweenWaves);
             currentWaveIndex++;
+            
             
         }
         Debug.Log("All waves completed");
@@ -51,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemyPrefab = enemyTypes[UnityEngine.Random.Range(0, enemyTypes.Length)];
         Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
 
-        GameObject enemy = WorldSpawner.Spawn(enemyPrefab, spawnPoint.position);
+        GameObject enemy = WorldSpawner.Spawn(enemyPrefab, spawnPoint.position, roomTransform);
         enemy.GetComponent<Enemy>().OnDeath += EnemyDefeated;
     }
 

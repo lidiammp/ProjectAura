@@ -6,7 +6,10 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
 
+    public int maxHealth = 100;
+    private int currentHealth;
 
+    public string enemyType;
     public delegate void DeathEvent();
     public event DeathEvent OnDeath;
 
@@ -32,8 +35,20 @@ public class Enemy : MonoBehaviour
     private bool isWaiting = false;
     private float maxDistance;
     public LayerMask layersToHit;
+    private Color originalColor;
+    private SpriteRenderer spriteRenderer;
+    [ColorUsage(true) ] public Color pinkColor = new Color(1f, 0.75f, 0.8f, 1f);
+    private TimeManager timeManager;
+
+    private Rigidbody enemyRigidBody;
+    public float snapThreshold = 2f;
+
+    private Coroutine stunRoutine;
     void Start()
     {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+        currentHealth = maxHealth;
         //if no centerpoint use enemys own position
         if (centrePoint == null)
         {
@@ -42,16 +57,23 @@ public class Enemy : MonoBehaviour
         //add player to obstacle checkrer
         layersToHit |= 1 << LayerMask.NameToLayer("Player");
         enemyAnimator = GetComponentInChildren<Animator>();
-        enemyAwareness = GetComponent<EnemyAwareness>();
+        if (GetComponent<EnemyAwareness>())
+        {
+            enemyAwareness = GetComponent<EnemyAwareness>();
+            maxDistance = enemyAwareness.awarenessRadius;
+        }
+        
         playertransform = FindObjectOfType<PlayerMovement>().transform;
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        maxDistance = enemyAwareness.awarenessRadius;
+        
+        timeManager = FindObjectOfType<TimeManager>();
+        enemyRigidBody = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         //if aggro and not stunned follow player 
-        if (enemyAwareness.isAggro && isStunned == false && CheckForObstacle())
+        if (enemyAwareness.isAggro && isStunned == false && CheckForObstacle() && enemyNavMeshAgent.enabled && enemyNavMeshAgent.isOnNavMesh)
         {
             enemyNavMeshAgent.SetDestination(playertransform.position);
         }//else, just wander
@@ -77,6 +99,40 @@ public class Enemy : MonoBehaviour
         return false;
 
     }
+
+    public void TakeDamage(int amount)
+    {
+
+
+        enemyAnimator.SetTrigger("isTakingDamage");
+
+
+        StartCoroutine(FlashRed());
+        timeManager.Stop(0.15f);
+        ApplyKnockback(10 * -transform.forward + Vector3.up, 0.3f);
+        // if (isStunned) return; // Can't take damage while stunned
+
+        currentHealth -= amount;
+
+        if (currentHealth <= 0)
+        {
+            Stun(stunDuration);
+            return;
+        }
+        
+        if (isStunned)
+        {
+            Stun(stunDuration);  // Re-trigger the stun effect and coroutine
+            return;
+        }
+    }
+    //doesnt work rn cuz the animator has control :(
+    private IEnumerator FlashRed()
+    {
+        spriteRenderer.color = pinkColor;
+        yield return new WaitForSeconds(1f);
+        spriteRenderer.color = originalColor;
+    }
     public void Wander()
     {
         if (!isWaiting)
@@ -85,20 +141,47 @@ public class Enemy : MonoBehaviour
             waitTimer = waitTime; // Start waiting
         }
         waitTimer -= Time.deltaTime;
-        if (waitTimer <= 0f)
+        if (waitTimer <= 0f && enemyNavMeshAgent.enabled && enemyNavMeshAgent.isOnNavMesh)
         {
             if (enemyNavMeshAgent.remainingDistance <= enemyNavMeshAgent.stoppingDistance) //done with path
             {
                 Vector3 point;
                 if (RandomPoint(centrePoint.position, wanderRadius, out point)) //pass in our centre point and radius of area
                 {
-                    Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
+                    // Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
                     enemyNavMeshAgent.SetDestination(point);
                 }
             }
         }
     }
+    public void ApplyKnockback(Vector3 force, float duration)
+    {
+        StartCoroutine(KnockbackRoutine(force, duration));
+    }
 
+    private IEnumerator KnockbackRoutine(Vector3 force, float duration)
+    {
+        // Disable NavMeshAgent
+        enemyNavMeshAgent.enabled = false;
+
+        // Enable physics
+        enemyRigidBody.isKinematic = false;
+
+        // Apply force
+        enemyRigidBody.AddForce(force, ForceMode.Impulse);
+
+        // Wait for knockback to play out
+        yield return new WaitForSeconds(duration);
+
+        // Stop movement
+        enemyRigidBody.velocity = Vector3.zero;
+
+        // Re-disable physics
+        enemyRigidBody.isKinematic = true;
+
+        // Re-enable NavMeshAgent
+        enemyNavMeshAgent.enabled = true;
+    }
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     //out thing means that before it returns, it needs the result to not be null
     {
@@ -120,16 +203,31 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void Stun()
+    public void Stun(float stunDuration)
     {
-
+        if (stunRoutine != null)
+        {
+            StopCoroutine(stunRoutine);
+        }
         //show stun effect 
         Instantiate(stunEffect, transform.position, Quaternion.identity);
         //set variables
         isStunned = true;
         enemyAnimator.SetBool("isStunned", isStunned);
         //stunlock player
-        StartCoroutine(StunEnemy(stunDuration));
+        stunRoutine = StartCoroutine(StunEnemy(stunDuration));
+    }
+
+    public void PermaStun()
+    {
+
+        // //show stun effect 
+        // Instantiate(stunEffect, transform.position, Quaternion.identity);
+        //set variables
+        isStunned = true;
+        // enemyAnimator.SetBool("isStunned", isStunned);
+        //stunlock player
+        StartCoroutine(StunEnemy(10000));
     }
 
 
@@ -137,8 +235,13 @@ public class Enemy : MonoBehaviour
     //execute stun for duration before unlocking player
     IEnumerator StunEnemy(float duration)
     {
-        enemyNavMeshAgent.SetDestination(transform.position);
+        if (enemyNavMeshAgent.enabled)
+        {
+            enemyNavMeshAgent.SetDestination(transform.position);
+        }
+        
         yield return new WaitForSeconds(duration);
+        currentHealth = maxHealth;
         isStunned = false;
         enemyAnimator.SetBool("isStunned", isStunned);
 
@@ -160,7 +263,11 @@ public class Enemy : MonoBehaviour
     //method to lock movement on attack
     public void LockMovement()
     {
-        enemyNavMeshAgent.ResetPath();
+        if (enemyNavMeshAgent.enabled)
+        {
+            enemyNavMeshAgent.ResetPath();
+        }
+        
     }
 
     public void DisableBodyCollider()
