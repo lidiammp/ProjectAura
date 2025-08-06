@@ -47,8 +47,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float dashDistance = 2f;
 
     private bool sprintToggled = false;
-    private float sprintToggleCooldown = 0.18f;
-    private float lastSprintToggleTime = -1f;
+    
+    // private float sprintToggleCooldown = 0.18f;
+    // private float lastSprintToggleTime = -1f;
     // Start is called before the first frame update
     void Start()
     {
