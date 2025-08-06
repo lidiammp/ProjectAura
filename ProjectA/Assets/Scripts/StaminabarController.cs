@@ -38,13 +38,15 @@ public class StaminabarController : MonoBehaviour
         //regen stamina when not running
         if (isSprinting == false)
         {
-            if (playerStamina <= maxStamina - 0.01f)
+            if (playerStamina < maxStamina - 0.001f)
             {
                 playerStamina += staminaRegen * Time.deltaTime;
+                playerStamina = Mathf.Min(playerStamina, maxStamina);
                 //update stamina
                 UpdateStamina(1);
                 if (playerStamina >= maxStamina)
                 {
+                    playerStamina = maxStamina;
                     //set to normal speed
                     playerMovement.SetRunSpeed(normalSpeed);
                     sliderCanvasGroup.alpha = 0;
@@ -67,10 +69,10 @@ public class StaminabarController : MonoBehaviour
     }
     public void Sprinting()
     {
-
-        if (hasRegenerated)
+        isSprinting = true;
+        if (playerStamina > 0)
         {
-            isSprinting = true;
+            
             playerStamina -= staminaDrain * Time.deltaTime;
             UpdateStamina(1);
             if (playerStamina <= 0)
@@ -78,12 +80,13 @@ public class StaminabarController : MonoBehaviour
                 //slow player
                 playerMovement.SetRunSpeed(slowedSpeed);
                 sliderCanvasGroup.alpha = 0;
+                hasRegenerated = false;
             }
         }
     }
     public void StaminaEmbrace()
     {
-        if (playerStamina >= embraceCost)
+        if (Mathf.Abs(playerStamina - maxStamina) <= 0.1f)
         {
             playerStamina -= embraceCost;
 
@@ -92,6 +95,7 @@ public class StaminabarController : MonoBehaviour
         {
             playerStamina = 0;
         }
+        isSprinting = false;
         //allow player to embrace
         playerEmbrace.TryEmbrace();
         UpdateStamina(1);
@@ -105,23 +109,24 @@ public class StaminabarController : MonoBehaviour
             playerMovement.StartDash(inputDirection);
             UpdateStamina(1);
         }
-
+        isSprinting = false;
         //allow player to embrace
-        
+
     }
 
     public void StaminaRegain(float amount)
     {
-        if (playerStamina <= maxStamina - 0.01f)
+        playerStamina += amount;
+
+        // if u go way over set it to maxStamina
+        playerStamina = Mathf.Min(playerStamina, maxStamina);
+
+        // if the difference between is less than 0.01 then set it to max
+        if (Mathf.Abs(playerStamina - maxStamina) <= 0.01f)
         {
-            if (playerStamina + amount >= maxStamina)
-            {
-                playerStamina = maxStamina;
-            }
-            else
-            {
-                playerStamina += amount;
-            }
+            playerStamina = maxStamina;
         }
+
+        UpdateStamina(1);
     }
 }   

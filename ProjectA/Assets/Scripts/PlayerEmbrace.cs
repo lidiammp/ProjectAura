@@ -18,6 +18,7 @@ public class PlayerEmbrace : MonoBehaviour
     private Healthbar playerHealth;
     private Animator handAnimator;
     [SerializeField] private float embraceCooldown = 3;
+    [SerializeField] private float staminaRegain = 60f;
     private float embraceTimer = 0;
     private PlayerMovement playerMovement;
     [SerializeField] private float invDuration = 0.5f;
@@ -175,7 +176,7 @@ public class PlayerEmbrace : MonoBehaviour
         }
 
         isSnapping = false;
-        timeManager.Stop(1);
+        timeManager.Stop(0.75f);
         EmbraceEnemy(enemy);
     }
     void EmbraceEnemy(Enemy target)
@@ -185,7 +186,7 @@ public class PlayerEmbrace : MonoBehaviour
         
         // for now we js destroy it or maybe zion can add animation 
         // (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
-        staminabarController.StaminaRegain(45f);
+        staminabarController.StaminaRegain(staminaRegain);
         //remove from list
         string animationName = target.GetComponent<Enemy>().enemyType;
         handAnimator.SetTrigger("isHandHug" + animationName);

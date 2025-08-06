@@ -9,7 +9,7 @@ public class Healthbar : MonoBehaviour
     [SerializeField] private TakeDamage takeDamage;
     [SerializeField] private bool isInvincible = false;
     public static event Action OnPlayerDamaged;
-    
+    public static event Action OnPlayerHealed;
     void Awake()
     {
         currentHealth = maxHealth;
@@ -44,7 +44,7 @@ public class Healthbar : MonoBehaviour
         {
             currentHealth += healing;
         }
-
+        OnPlayerHealed?.Invoke();
     }
     //set maxhealth function
     public void SetMaxHealth(float value)
