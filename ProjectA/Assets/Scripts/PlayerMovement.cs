@@ -69,15 +69,16 @@ public class PlayerMovement : MonoBehaviour
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");
         //shift holding still get sprint
-        bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        //if button is pressed and last frame, the button was pressed, its
+        bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.JoystickButton8);
         bool isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
 
-        // toggle sprint
-        if (Input.GetKeyDown(KeyCode.JoystickButton8) && Time.time - lastSprintToggleTime > sprintToggleCooldown)
-        {
-            sprintToggled = !sprintToggled;
-            lastSprintToggleTime = Time.time;
-        }
+        //  uncomment for sprint toglle toggle sprint
+        // if (Input.GetKeyDown(KeyCode.JoystickButton8) && Time.time - lastSprintToggleTime > sprintToggleCooldown)
+        // {
+        //     sprintToggled = !sprintToggled;
+        //     lastSprintToggleTime = Time.time;
+        // }
 
 
         // If you previously used RT axis for sprint hold, we've removed that here.
@@ -133,12 +134,12 @@ public class PlayerMovement : MonoBehaviour
                 MovePlayer(Time.deltaTime);
             }
         }
-        if ((Input.GetKeyDown(KeyCode.Space) ||  Input.GetKeyDown(KeyCode.JoystickButton0)) && canDash && isMoving)
+        if ((Input.GetKeyDown(KeyCode.Space) ||  Input.GetAxis("Controller LT") > 0.1f) && canDash && isMoving)
         {
             //start dash in input direction
             staminabarController.StaminaDash(inputVector);
         }
-        else if ((Input.GetKeyDown(KeyCode.Space) ||  Input.GetKeyDown(KeyCode.JoystickButton0)) && canDash)
+        else if ((Input.GetKeyDown(KeyCode.Space) ||  Input.GetAxis("Controller LT") > 0.1f) && canDash)
         {
             //start dash forward
             staminabarController.StaminaDash(transform.forward);
