@@ -116,7 +116,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: b98a9fdf4ac619a4786370b5ccaf9f2b, type: 2}
     - target: {fileID: 1258945505165793262, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: awarenessRadius
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2073446876897686436, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: damage

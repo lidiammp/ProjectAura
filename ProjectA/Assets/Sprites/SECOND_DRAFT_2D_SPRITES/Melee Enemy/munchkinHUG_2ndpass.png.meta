@@ -1,0 +1,1048 @@
+fileFormatVersion: 2
+guid: f0e94d692e6553e429e666a014765fdc
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1000
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36f60b3cd9b85e847b6b7c8c1b046c08
+      internalID: -435313520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_1
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cd55b5ab0b24954da0a30a8172a0dde
+      internalID: -1823925450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_2
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: accd7bc238badf045a8041824406650a
+      internalID: 1917394060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_3
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3679adaf873906342bf35871c58b7594
+      internalID: -2122786799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_4
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 860c6e31f229b5546aff234dba50d568
+      internalID: -496786350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_5
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46cf125c72b0f054eafd4c9f66271add
+      internalID: 448483459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_6
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d38e65f7c82c14498ae643c0119ee3b
+      internalID: 1076293098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 865de7a0c63a6154d9af87d842abb4b4
+      internalID: 242580753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_8
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82355980f449a7640b6891a791b67b80
+      internalID: 1800022326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_9
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d560b372fa48c8647aff5c90c7136859
+      internalID: -838227943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_10
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8de1a7692eb862a409ba96d9677e188a
+      internalID: 996105132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_11
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7c7d738df0702d4d9c8e047d4086357
+      internalID: -1826304105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_12
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a37e44dd6d505e4ab736466f75918b6
+      internalID: -1495060155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_13
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51317242650cef74abc4b8062d60dfed
+      internalID: 1793387775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4da716e8dc8695146b47b90d1803abbb
+      internalID: -1953776026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_15
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c3b72de3e6604f4c833a9e9717bef8a
+      internalID: 213058181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_16
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15d4f97f7c7774e45af69e383ea6c36b
+      internalID: -772908376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_17
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 759cd74fc9ea3de4f9110b5cf7065071
+      internalID: 1552512891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_18
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abdc1ec70ccbb424f9aa89bce1da3560
+      internalID: 1004185359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_19
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13f2c0347abc5f447903750a4ff6d9a1
+      internalID: -1986487243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_20
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dacb5f0961b00e43a7cfee532911182
+      internalID: -378988437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55e091390afb2bc4ca26b596a14f6955
+      internalID: 1249904583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_22
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 690cef7885adfea49b45b21347daed6a
+      internalID: 462724543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_23
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c11ceca6e9fbf8e4f97e7769d5d56224
+      internalID: 1922721292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_24
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4acd732af3eac4f4fb6cbb677762160c
+      internalID: 1642146151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_25
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7128125e94f63e44e84e87644b4b5863
+      internalID: -234175792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_26
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7d56d7721f5f7148b33334dcb7c51ff
+      internalID: 1297221431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_27
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e72719c0ba806c46816eebf6aac4ff3
+      internalID: -1705543019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f1884f52ac50cc48930d23debc8ea5f
+      internalID: -769127526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_29
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b3f0ec222ca1f44eac73d5cef02dfd5
+      internalID: 1055277712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_30
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95a69f0b3eaee4747a84b5a6a2314190
+      internalID: -1598182177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_31
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91bbdd23d354eed41a2c3d1b320caf11
+      internalID: 1124422214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_32
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcaef9d39d2625c47b7106e0718ecaed
+      internalID: 566005750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_33
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6b4bc9045c9a334b9493858ad24c6f0
+      internalID: -960812265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_34
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7a93fc05df2e9a4aa071d46e4944736
+      internalID: -1354293008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3815d3606dc56da4fb853cabae2e17e6
+      internalID: -715050256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_36
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eda99221cd080b4db460000015df667
+      internalID: -1764981475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_37
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9af2ba80a1fa63f48b79911b354111e6
+      internalID: 2065636204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_38
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f108789b5f331fc4ab58e8e5ccc8f22f
+      internalID: -2087691832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_39
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63be9e9f9ed8c2f49a99c391c430be5a
+      internalID: 1230812438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_40
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5032c839363215468816667fb2d329d
+      internalID: 1415419947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: munchkinHUG_2ndpass_41
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 349b4443e6735544694bf2c49f2a16be
+      internalID: -1462339074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: d5c0e9cb9df35514e8873b4a14a95482
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      munchkinHUG_2ndpass_0: -435313520
+      munchkinHUG_2ndpass_1: -1823925450
+      munchkinHUG_2ndpass_10: 996105132
+      munchkinHUG_2ndpass_11: -1826304105
+      munchkinHUG_2ndpass_12: -1495060155
+      munchkinHUG_2ndpass_13: 1793387775
+      munchkinHUG_2ndpass_14: -1953776026
+      munchkinHUG_2ndpass_15: 213058181
+      munchkinHUG_2ndpass_16: -772908376
+      munchkinHUG_2ndpass_17: 1552512891
+      munchkinHUG_2ndpass_18: 1004185359
+      munchkinHUG_2ndpass_19: -1986487243
+      munchkinHUG_2ndpass_2: 1917394060
+      munchkinHUG_2ndpass_20: -378988437
+      munchkinHUG_2ndpass_21: 1249904583
+      munchkinHUG_2ndpass_22: 462724543
+      munchkinHUG_2ndpass_23: 1922721292
+      munchkinHUG_2ndpass_24: 1642146151
+      munchkinHUG_2ndpass_25: -234175792
+      munchkinHUG_2ndpass_26: 1297221431
+      munchkinHUG_2ndpass_27: -1705543019
+      munchkinHUG_2ndpass_28: -769127526
+      munchkinHUG_2ndpass_29: 1055277712
+      munchkinHUG_2ndpass_3: -2122786799
+      munchkinHUG_2ndpass_30: -1598182177
+      munchkinHUG_2ndpass_31: 1124422214
+      munchkinHUG_2ndpass_32: 566005750
+      munchkinHUG_2ndpass_33: -960812265
+      munchkinHUG_2ndpass_34: -1354293008
+      munchkinHUG_2ndpass_35: -715050256
+      munchkinHUG_2ndpass_36: -1764981475
+      munchkinHUG_2ndpass_37: 2065636204
+      munchkinHUG_2ndpass_38: -2087691832
+      munchkinHUG_2ndpass_39: 1230812438
+      munchkinHUG_2ndpass_4: -496786350
+      munchkinHUG_2ndpass_40: 1415419947
+      munchkinHUG_2ndpass_41: -1462339074
+      munchkinHUG_2ndpass_5: 448483459
+      munchkinHUG_2ndpass_6: 1076293098
+      munchkinHUG_2ndpass_7: 242580753
+      munchkinHUG_2ndpass_8: 1800022326
+      munchkinHUG_2ndpass_9: -838227943
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
