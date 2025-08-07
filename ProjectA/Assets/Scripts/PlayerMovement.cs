@@ -169,6 +169,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
+
+
     public void SetRunSpeed(float speed)
     {
         sprintSpeed = speed;
