@@ -86,7 +86,7 @@ public class StaminabarController : MonoBehaviour
     }
     public void StaminaEmbrace()
     {
-        if (Mathf.Abs(playerStamina - maxStamina) <= 0.1f)
+        if (playerStamina >= embraceCost)
         {
             playerStamina -= embraceCost;
 

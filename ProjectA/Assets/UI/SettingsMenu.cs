@@ -54,7 +54,7 @@ public class SettingsMenu : MonoBehaviour
     public void LoadHome()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Splash Screen");
+        SceneManager.LoadScene("SplashScreen");
     }
     
 }
