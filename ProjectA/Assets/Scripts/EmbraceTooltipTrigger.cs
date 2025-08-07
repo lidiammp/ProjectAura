@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShootTooltipTrigger : MonoBehaviour
+public class EmbraceTooltipTrigger : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     private TooltipManager tooltipManager;
     void Start()
@@ -14,7 +16,7 @@ public class ShootTooltipTrigger : MonoBehaviour
     {
         if (other.GetComponent<PlayerMovement>())
         {
-            tooltipManager.EnableShootTooltip();
+            tooltipManager.EnableEmbraceTooltip();
         }
     }
     
@@ -22,7 +24,7 @@ public class ShootTooltipTrigger : MonoBehaviour
     {
         if (other.GetComponent<PlayerMovement>())
         {
-            tooltipManager.DisableShootTooltip();
+            tooltipManager.DisableEmbraceTooltip();
         }
     }
 }

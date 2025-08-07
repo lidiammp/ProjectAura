@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class LightChanger : MonoBehaviour
 {
+    
     [SerializeField] private float test;
     [SerializeField] private Color startLight;
     [SerializeField] private Color clearedLight;
     private Light[] roomLights;
     private Room room;
+    [SerializeField] private SparkleManager sparkleManager;
     //ratio of enemies
     void Start()
     {
@@ -22,8 +24,9 @@ public class LightChanger : MonoBehaviour
         int total = room.GetTotalEnemies();
 
         //if cleared set lights to cleared
-        if (total <= 0)
+        if (alive <= 0)
         {
+            sparkleManager.PlaySparkles();
             //room is cleared
             SmoothSetAllLights(clearedLight);
             return; //stop dividing by zero
