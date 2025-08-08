@@ -37,7 +37,7 @@ public class PlayerEmbrace : MonoBehaviour
     [SerializeField] private float snapSpeed = 10f;
     [SerializeField] private bool isSnapping = false;
     private bool embraceAnimationEnded = true;
-
+    [SerializeField] private Beam beam;
 
     void Start()
     {
@@ -130,7 +130,6 @@ public class PlayerEmbrace : MonoBehaviour
     public void TryEmbrace()
     {
 
-
         Vector3 origin = transform.position;
         Vector3 forward = transform.forward;
         Collider[] hits = Physics.OverlapSphere(origin, embraceRange, enemyLayer);
@@ -166,11 +165,12 @@ public class PlayerEmbrace : MonoBehaviour
     IEnumerator SnapToEnemy(Enemy enemy)
     {
         isSnapping = true;
+        
         // playerMovement.LockMovement();
         while ((enemy.transform.position - transform.position).magnitude > enemy.snapThreshold)
         {
             Vector3 direction = (enemy.transform.position - transform.position).normalized;
-            playerMovement.Move(snapSpeed, new Vector3 (direction.x, 0, direction.z));
+            playerMovement.Move(snapSpeed, new Vector3(direction.x, 0, direction.z));
             playerMovement.GetComponent<MouseLook>().RotateToPoint(enemy.transform);
             yield return null;
         }

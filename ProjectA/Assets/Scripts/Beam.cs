@@ -9,7 +9,7 @@ public class Beam : MonoBehaviour
 
     public float chargeTimeRequired = 2f;
     private float chargeHeldTime;
-    private bool isCharging;
+    public bool isCharging;
     [SerializeField] private int beamDamage = 25;
 
     // Reference to the trigger collider representing the beams range
@@ -92,7 +92,7 @@ public class Beam : MonoBehaviour
             chargeHeldTime = 0f; // reset when charging starts
             //play charge start
             // chargeLoopStarted = false;
-            handAnimator.Play("ChargeStart");
+            handAnimator.SetBool("isCharging", true);
 
 
             // lidia wants a sound here

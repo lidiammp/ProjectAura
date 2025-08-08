@@ -2682,7 +2682,7 @@ MonoBehaviour:
   dashCost: 20
   slowedSpeed: 6.5
   normalSpeed: 8.5
-  staminaRegen: 5
+  staminaRegen: 10
   staminaDrain: 10
   hasRegenerated: 1
   isSprinting: 1
