@@ -48,9 +48,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool sprintToggled = false;
 
-    // private float sprintToggleCooldown = 0.18f;
-    // private float lastSprintToggleTime = -1f;
-    // Start is called before the first frame update
+    private float sprintToggleCooldown = 0.18f;
+    private float lastSprintToggleTime = -1f;
+// Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -66,20 +66,21 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");
         //shift holding still get sprint
         //if button is pressed and last frame, the button was pressed, its
-        bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.JoystickButton8);
+        bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        // || Input.GetKey(KeyCode.JoystickButton8);
         bool isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
 
-        //  uncomment for sprint toglle toggle sprint
-        // if (Input.GetKeyDown(KeyCode.JoystickButton8) && Time.time - lastSprintToggleTime > sprintToggleCooldown)
-        // {
-        //     sprintToggled = !sprintToggled;
-        //     lastSprintToggleTime = Time.time;
-        // }
+        //uncomment for sprint toglle toggle sprint
+        if (Input.GetKeyDown(KeyCode.JoystickButton8) && Time.time - lastSprintToggleTime > sprintToggleCooldown)
+        {
+            sprintToggled = !sprintToggled;
+            lastSprintToggleTime = Time.time;
+        }
 
 
         // If you previously used RT axis for sprint hold, we've removed that here.

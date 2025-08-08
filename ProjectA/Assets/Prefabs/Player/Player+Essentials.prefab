@@ -2682,7 +2682,7 @@ MonoBehaviour:
   dashCost: 20
   slowedSpeed: 6.5
   normalSpeed: 8.5
-  staminaRegen: 5
+  staminaRegen: 10
   staminaDrain: 10
   hasRegenerated: 1
   isSprinting: 1
@@ -3147,14 +3147,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b44d3b526e14d859667bf6a10dba8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healValue: 1
+  healValue: 2
   embraceRange: 5
   chargeTime: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   embraceCooldown: 1
-  staminaRegain: 60
+  staminaRegain: 80
   invDuration: 1
   embraceAngle: 45
   snapSpeed: 30

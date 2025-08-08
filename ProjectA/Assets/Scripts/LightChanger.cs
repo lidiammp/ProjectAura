@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class LightChanger : MonoBehaviour
 {
+
     [SerializeField] private float test;
     [SerializeField] private Color startLight;
     [SerializeField] private Color clearedLight;
     private Light[] roomLights;
     private Room room;
+
     //ratio of enemies
     void Start()
     {
@@ -21,14 +23,7 @@ public class LightChanger : MonoBehaviour
         int alive = room.GetAliveEnemies();
         int total = room.GetTotalEnemies();
 
-        //if cleared set lights to cleared
-        if (total <= 0)
-        {
-            //room is cleared
-            SmoothSetAllLights(clearedLight);
-            return; //stop dividing by zero
-        }
-
+        if (total <= 0) return;
         //get ratio on enemies
         float ratio = (float)alive / total;
         float t = Mathf.Clamp01(1f - ratio);
@@ -47,5 +42,9 @@ public class LightChanger : MonoBehaviour
                 // Multiply by 2f to adjust speed
             }
         }
+    }
+    public void SetClearedLight()
+    {
+        SmoothSetAllLights(clearedLight);
     }
 }
