@@ -7,9 +7,14 @@ public class DoorController : MonoBehaviour
 {
     // [SerializeField] private doorTrigger button;
     private Animator doorAnimator;
+    [SerializeField] private bool openDefault;
     void Start()
     {
         doorAnimator = GetComponent<Animator>();
+        if (openDefault)
+        {
+            SetOpen(openDefault);
+        }
     }
     
     //set open or closed based on parameter

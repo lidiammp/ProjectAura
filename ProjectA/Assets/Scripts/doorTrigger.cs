@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class doorTrigger : MonoBehaviour
 {
-    public DoorController door;
+    public DoorController[] doors;
     private MeshRenderer buttonRenderer;
     MeshRenderer doorRenderer;
     private BoxCollider doorCollider;
@@ -21,8 +21,10 @@ public class doorTrigger : MonoBehaviour
         }
         UIpopup?.SetActive(false);
         //uianimator = UIpopup.GetComponent<Animator>(); when adding  animation to door 
-        door.SetOpen(isOn);
-
+        foreach (DoorController door in doors)
+        {
+            door.SetOpen(isOn);
+        }
     }
     // void OnMouseDown()
     void Update()
@@ -33,15 +35,20 @@ public class doorTrigger : MonoBehaviour
         //                                                                          ^
         if (playerLook && Input.GetKeyDown(KeyCode.E))
         {
-            isOn = !isOn;
-            if (door != null)
+            foreach (DoorController door in doors)
             {
-                door.SetOpen(isOn);
+                //toggle door thing
+                isOn = !isOn;
+                if (door != null){
+                    door.SetOpen(isOn);
+                }
+                //change color
+                if (isOn)
+                    buttonRenderer.material.color = Color.green;
+                else
+                    buttonRenderer.material.color = Color.red;
             }
-            if (isOn)
-                buttonRenderer.material.color = Color.green;
-            else
-                buttonRenderer.material.color = Color.red;
+            
 
         }
 
