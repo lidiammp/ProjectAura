@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/First Section.unity
-    guid: 3571780d91d453044896c8f12d6165ab
+    path: Assets/Scenes/SplashScreen.unity
+    guid: c95acb8045d654df88c6fcb73596b256
+  - enabled: 1
+    path: Assets/Scenes/RoomTester.unity
+    guid: e85d3855fa66554498f5f22164a5f7b1
   m_configObjects: {}

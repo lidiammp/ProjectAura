@@ -485,6 +485,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  settingsMenu: {fileID: 0}
 --- !u!82 &5324507709969840345
 AudioSource:
   m_ObjectHideFlags: 0
@@ -882,7 +883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookSpeed: 2
   playerCamera: {fileID: 6081908673366856700}
-  controllerLookSpeed: 90
+  controllerLookSpeed: 180
   lookXLimit: 89
 --- !u!114 &6385783847123003505
 MonoBehaviour:
@@ -903,6 +904,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   embraceCooldown: 3
+  staminaRegain: 60
   invDuration: 0.5
   embraceAngle: 45
   snapSpeed: 10

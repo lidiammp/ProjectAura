@@ -161,6 +161,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     private IEnumerator WanderPauseRoutine()
     {
         isWaiting = true;

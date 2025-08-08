@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour
@@ -14,6 +15,7 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private float lookXLimit = 45f;
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController characterController;
+    // [SerializeField] private float lookAcceleration;
     private void Start()
     {
         characterController = GetComponentInParent<CharacterController>();
@@ -35,8 +37,8 @@ public class MouseLook : MonoBehaviour
             //limit rotation so u dont break ur neck
             
 
-            yaw += Input.GetAxis("Controller Yaw") * controllerLookSpeed * Time.deltaTime; // deg/sec * time = deg
-            pitch +=  Input.GetAxis("Controller Pitch") * controllerLookSpeed * Time.deltaTime;
+            yaw += NonLinearInput(Input.GetAxis("Controller Yaw")) * controllerLookSpeed * Time.deltaTime; // deg/sec * time = deg
+            pitch +=  NonLinearInput(Input.GetAxis("Controller Pitch")) * controllerLookSpeed * Time.deltaTime;
 
 
 
@@ -55,6 +57,29 @@ public class MouseLook : MonoBehaviour
         //example 90 per second = certain number of second
         //look accelratio nis kinda cool
 
+    }
+    float NonLinearInput(float x)
+    {
+        float SquareInput(float x)
+        {
+            return Mathf.Abs(x) * x;
+            //keep the sign
+        }
+
+        float SmoothStepInput(float x)
+        {
+            //make sure its in 0 - 1
+            //make positive and then clamp
+            float t = Mathf.Clamp01(Mathf.Abs(x));
+            //smoothStep func
+            //keep sign
+            return Mathf.Sign(x) * Mathf.SmoothStep(0, 1, t);
+        }
+        // square input and then
+        // smoothstep squared val
+
+        return SmoothStepInput(SquareInput(x));
+        
     }
 
     public void LockMouse()

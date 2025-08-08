@@ -8,6 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 861689921916182689, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+      propertyPath: m_Height
+      value: 2.0328426
+      objectReference: {fileID: 0}
+    - target: {fileID: 861689921916182689, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+      propertyPath: m_Radius
+      value: 0.6366691
+      objectReference: {fileID: 0}
+    - target: {fileID: 861689921916182689, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+      propertyPath: m_Center.x
+      value: -0.007894198
+      objectReference: {fileID: 0}
+    - target: {fileID: 861689921916182689, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+      propertyPath: m_Center.y
+      value: -0.080574915
+      objectReference: {fileID: 0}
+    - target: {fileID: 861689921916182689, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+      propertyPath: m_Center.z
+      value: -0.38531852
+      objectReference: {fileID: 0}
     - target: {fileID: 2423551971033837396, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: awarenessRadius
       value: 20
@@ -18,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5269365963332773551, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: snapThreshold
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5889005766329092946, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: attackRange

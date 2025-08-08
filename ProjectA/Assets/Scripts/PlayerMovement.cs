@@ -45,8 +45,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float dashDuration = 0.2f;
     [SerializeField]private float dashCooldown = 1;
     [SerializeField]private float dashDistance = 2f;
-    
 
+    private bool sprintToggled = false;
+
+    // private float sprintToggleCooldown = 0.18f;
+    // private float lastSprintToggleTime = -1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -66,16 +69,36 @@ public class PlayerMovement : MonoBehaviour
 
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");
-        bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Input.GetAxis("Controller LT") > 0.1f;
+        //shift holding still get sprint
+        //if button is pressed and last frame, the button was pressed, its
+        bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.JoystickButton8);
         bool isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
 
+        //  uncomment for sprint toglle toggle sprint
+        // if (Input.GetKeyDown(KeyCode.JoystickButton8) && Time.time - lastSprintToggleTime > sprintToggleCooldown)
+        // {
+        //     sprintToggled = !sprintToggled;
+        //     lastSprintToggleTime = Time.time;
+        // }
+
+
+        // If you previously used RT axis for sprint hold, we've removed that here.
+        // sprintActive is true if player is using shift hold OR toggled on
+        bool sprintActive = (shiftHeld || sprintToggled) && isMoving && staminabarController.playerStamina > 0f;
+
+        // If stamina emptied, force toggle off
+        if (staminabarController.playerStamina <= 0f)
+        {
+            sprintToggled = false;
+            sprintActive = false;
+        }
         if (isDashing == false)
         {
 
             //camera
             float targetFOV;
 
-            if (shiftHeld && isMoving && staminabarController.playerStamina > 0)
+            if (sprintActive)
             {
                 targetFOV = sprintFOV;
                 isWalking = false;
@@ -112,12 +135,12 @@ public class PlayerMovement : MonoBehaviour
                 MovePlayer(Time.deltaTime);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canDash && isMoving)
+        if ((Input.GetKeyDown(KeyCode.Space) ||  Input.GetAxis("Controller LT") > 0.1f) && canDash && isMoving)
         {
             //start dash in input direction
             staminabarController.StaminaDash(inputVector);
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        else if ((Input.GetKeyDown(KeyCode.Space) ||  Input.GetAxis("Controller LT") > 0.1f) && canDash)
         {
             //start dash forward
             staminabarController.StaminaDash(transform.forward);
@@ -146,6 +169,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
+
+
     public void SetRunSpeed(float speed)
     {
         sprintSpeed = speed;
