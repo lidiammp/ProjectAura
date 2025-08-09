@@ -81,6 +81,7 @@ public class Enemy : MonoBehaviour
 
         enemyAnimator.SetBool("isWalking", moving);
         enemyAnimator.SetBool("isStunned", isStunned);
+        enemyAnimator.SetBool("isAggro", enemyAwareness.isAggro);
         //if aggro and not stunned follow player 
         if (enemyAwareness.isAggro && !isStunned && CheckForObstacle() && enemyNavMeshAgent.enabled && enemyNavMeshAgent.isOnNavMesh)
         {
@@ -95,18 +96,24 @@ public class Enemy : MonoBehaviour
 
     private bool CheckForObstacle()
     {
-        Vector3 dir = (playertransform.position - transform.position).normalized;
-        Ray ray = new Ray(transform.position, dir);
-        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, layersToHit) && hit.collider.gameObject.tag == "Player")
+        Vector3 enemyEyePos = transform.position + Vector3.up * 1.5f;        // Enemy eye height
+        Vector3 playerEyePos = playertransform.position + Vector3.up * 1.0f; // Player eye height
+        Vector3 direction = (playerEyePos - enemyEyePos).normalized;
+        float distance = Vector3.Distance(enemyEyePos, playerEyePos);
+
+        if (Physics.Raycast(enemyEyePos, direction, out RaycastHit hit, distance, layersToHit))
         {
-            //return hit only if the hit hits a playr
-            return true;
-            //Time.timeScale = 0;
-
+            if (hit.collider.CompareTag("Player"))
+            {
+                return true; // Player visible (line of sight)
+            }
+            else
+            {
+                return false; // Something blocking the view
+            }
         }
-        //if it hits anything else just chill
-        return false;
 
+        return false; // Nothing hit means no LOS
     }
 
     public void TakeDamage(int amount)
@@ -253,9 +260,11 @@ public class Enemy : MonoBehaviour
         // Instantiate(stunEffect, transform.position, Quaternion.identity);
         //set variables
         isStunned = true;
+
         enemyAnimator.SetBool("isStunned", isStunned);
         //stunlock player
         stunRoutine = StartCoroutine(StunEnemy(stunDuration));
+        
     }
 
     public void PermaStun()
@@ -283,6 +292,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(duration);
         currentHealth = maxHealth;
         isStunned = false;
+        enemyAwareness.isAggro = false;
         enemyAnimator.SetBool("isStunned", isStunned);
 
     }

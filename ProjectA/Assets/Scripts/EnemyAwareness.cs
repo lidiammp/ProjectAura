@@ -23,7 +23,7 @@ public class EnemyAwareness : MonoBehaviour
 
         if (!enemy.GetIsStunned())
         {
-            bool wasAggro = isAggro;
+            // bool wasAggro = isAggro;
             //if close aggro
             if (dist <= awarenessRadius)
             {
@@ -35,10 +35,10 @@ public class EnemyAwareness : MonoBehaviour
                 isAggro = false;
             }
             //if it was aggro already dont update
-            if (isAggro != wasAggro)
-            {
-                enemyAnimator.SetBool("isAggro", isAggro);
-            }
+            // if (isAggro != wasAggro)
+            // {
+            
+            // }
         }
     }   
 
