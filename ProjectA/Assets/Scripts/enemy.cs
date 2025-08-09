@@ -74,12 +74,19 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        bool moving = enemyNavMeshAgent.enabled &&
+                  enemyNavMeshAgent.isOnNavMesh &&
+                  enemyNavMeshAgent.velocity.sqrMagnitude > 0.01f &&
+                  !isStunned;
+
+        enemyAnimator.SetBool("isWalking", moving);
+        enemyAnimator.SetBool("isStunned", isStunned);
         //if aggro and not stunned follow player 
-        if (enemyAwareness.isAggro && isStunned == false && CheckForObstacle() && enemyNavMeshAgent.enabled && enemyNavMeshAgent.isOnNavMesh)
+        if (enemyAwareness.isAggro && !isStunned && CheckForObstacle() && enemyNavMeshAgent.enabled && enemyNavMeshAgent.isOnNavMesh)
         {
             enemyNavMeshAgent.SetDestination(playertransform.position);
-        }//else, just wander
-        else if (enemyAwareness.isAggro == false && isStunned == false && isPermaStunned ==false)
+        }
+        else if (!enemyAwareness.isAggro && !isStunned && !isPermaStunned)
         {
             Wander();
         }

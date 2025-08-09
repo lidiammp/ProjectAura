@@ -86,13 +86,16 @@ public class PlayerMovement : MonoBehaviour
         // If you previously used RT axis for sprint hold, we've removed that here.
         // sprintActive is true if player is using shift hold OR toggled on
         bool sprintActive = (shiftHeld || sprintToggled) && isMoving && staminabarController.playerStamina > 0f;
-
+        
         // If stamina emptied, force toggle off
         if (staminabarController.playerStamina <= 0f)
         {
             sprintToggled = false;
             sprintActive = false;
         }
+
+        handAnimator.SetBool("isRunning", sprintActive);
+
         if (isDashing == false)
         {
 
@@ -138,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if ((Input.GetKeyDown(KeyCode.Space) ||  Input.GetAxis("Controller LT") > 0.1f) && canDash && isMoving)
         {
+            
             //start dash in input direction
             staminabarController.StaminaDash(inputVector);
         }

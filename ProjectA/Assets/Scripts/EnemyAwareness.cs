@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAwareness : MonoBehaviour
 {
+    public float deaggroTime = 1.5f;
     public float awarenessRadius = 15f;
     public bool isAggro;
     // public Material aggroMat;
