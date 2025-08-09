@@ -121,7 +121,7 @@ public class Enemy : MonoBehaviour
 
         Instantiate(onhitEffect, transform.position, Quaternion.identity);
         enemyAnimator.SetTrigger("isTakingDamage");
-        StartCoroutine(FlashRed());
+        // StartCoroutine(FlashRed());
         timeManager.Stop(0.15f);
         if (!isPermaStunned)
         {

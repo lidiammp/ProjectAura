@@ -1,0 +1,1202 @@
+fileFormatVersion: 2
+guid: 72317ef7d2aba97449afdb9f4a6265f4
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1000
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3456
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 242a4a9f05aa92d4280d4a6a80ae21bf
+      internalID: -977590520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_1
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 3456
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7257d7e90a2fd1641bc30adf9aff8f6d
+      internalID: -1469651201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_2
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 3456
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae7798c824843684a9fc14392ca4eadd
+      internalID: 1801530544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_3
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 3456
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcf980416ca7099479158be15eec3f95
+      internalID: 97799931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_4
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 3456
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 396899d1068062840b793a801c085a9a
+      internalID: 1329588382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_5
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 3456
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a46a83f25721556428db2a457e90e259
+      internalID: -1977392942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_6
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 3456
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4ac3abc8cb23a4488eb424af676b00f
+      internalID: 997924077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9997dbc4bb9877c4a9a0d146f79e9beb
+      internalID: 67719987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_8
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b030711a312f5f64ca6f8fc08c2b7c66
+      internalID: 305183240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_9
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee9d24cb9476fea42917a059d9823b76
+      internalID: -1025077040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_10
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 891976f8cb582194c93837dd20630c63
+      internalID: -1770703222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_11
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba11891d0ed8e849b9e0f3dc1643bdf
+      internalID: -27824595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_12
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51d431b6de88468459fea77be2d2bd49
+      internalID: -1984321621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_13
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 2880
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 743f19c86961340419c8af07a0061158
+      internalID: -1209782318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d10fe597cdce574b957e0f68bed3dd9
+      internalID: 1041550581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_15
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82116dc114b2234448a35077ae7daea9
+      internalID: 688318103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_16
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8664de729e43534eb887119e013a6bd
+      internalID: 1053767448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_17
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fe1e0305934f844a97345ba8a3f1964
+      internalID: -1144961634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_18
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e289bd1b714a85445836a3090786cc2d
+      internalID: 1648928728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_19
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e301b5e78a8922049b3f6392f011eab2
+      internalID: -940172852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_20
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 2304
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7ac78468f2fdc949bc5d052ff1b5471
+      internalID: 131031942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1060b86490d86ff47b3d51a4f4323c3d
+      internalID: 1951422184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_22
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 088ec0a9ba2e34b48924cd021e76480b
+      internalID: -343325014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_23
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdddcda9f91d6494aa0a0de968372af2
+      internalID: 212235551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_24
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d9293628a2dad34187416107fecb8d1
+      internalID: 477568942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_25
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e78ca2f847d24246ae337a9aa0a1bc2
+      internalID: -1924874628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_26
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b626a318f2ba4e4da183cafa365aa8a
+      internalID: 749850771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_27
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 1728
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c4609ec2658dc47b5fe3023b0cb6dd
+      internalID: -2089683043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4db933ff51ab02347802ea08ef5a3ff6
+      internalID: 2115387948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_29
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b8cb2bef3e876c428470ec3fbbd76d3
+      internalID: 465463613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_30
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55f3896883dcf0b45a9c342e22e79662
+      internalID: 1035116306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_31
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f808251aeae19140a242196e72bedce
+      internalID: -1422644310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_32
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: addf172a205176a4e93da43771143afe
+      internalID: 760070369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_33
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77723b3e3daf41c46a4fc94b65a8fe2b
+      internalID: 1621264144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_34
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 1152
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 394385cee5a6f1c4fb2c99f3a45003dd
+      internalID: -757893656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88667855c9fd67542b2a95519653ddde
+      internalID: -1530500041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_36
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39f87df2614f4e848b6ea5c7a25671d1
+      internalID: -795146501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_37
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfffc18edbae77c4fb726faf4dcdcf4f
+      internalID: -766408114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_38
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91afddb5ef9215a4fa76107633fe92e2
+      internalID: -1241130333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_39
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 688ba9e333de1d04da42a2303739687e
+      internalID: 559743767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_40
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fb1ea4b3756df34d95ebd47bfbfd6a6
+      internalID: 495095217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_41
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 576
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 373c6b5e1577564498de1265f84a646e
+      internalID: 1083070996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca5a26e33e727bb409da1e74f7e72cf9
+      internalID: 538572312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_43
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d0f811a20cae07488ae1d4034981c11
+      internalID: 827844730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_44
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 119c939baded6e948a1bd29bc45633bf
+      internalID: -1444188517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_45
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d675c9bb6c3d45941bd77a0006bd7f51
+      internalID: -295003542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_46
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 544d8f9fee2e271478cca22557cf9b37
+      internalID: -2047893855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_47
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd63bb3c75a930b4ca38800da0098f14
+      internalID: -66374862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mirrorhug_2ndpass_48
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 0
+        width: 1152
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8475261c45f584d4a84eabc2bdb866ac
+      internalID: 878164053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      mirrorhug_2ndpass_0: -977590520
+      mirrorhug_2ndpass_1: -1469651201
+      mirrorhug_2ndpass_10: -1770703222
+      mirrorhug_2ndpass_11: -27824595
+      mirrorhug_2ndpass_12: -1984321621
+      mirrorhug_2ndpass_13: -1209782318
+      mirrorhug_2ndpass_14: 1041550581
+      mirrorhug_2ndpass_15: 688318103
+      mirrorhug_2ndpass_16: 1053767448
+      mirrorhug_2ndpass_17: -1144961634
+      mirrorhug_2ndpass_18: 1648928728
+      mirrorhug_2ndpass_19: -940172852
+      mirrorhug_2ndpass_2: 1801530544
+      mirrorhug_2ndpass_20: 131031942
+      mirrorhug_2ndpass_21: 1951422184
+      mirrorhug_2ndpass_22: -343325014
+      mirrorhug_2ndpass_23: 212235551
+      mirrorhug_2ndpass_24: 477568942
+      mirrorhug_2ndpass_25: -1924874628
+      mirrorhug_2ndpass_26: 749850771
+      mirrorhug_2ndpass_27: -2089683043
+      mirrorhug_2ndpass_28: 2115387948
+      mirrorhug_2ndpass_29: 465463613
+      mirrorhug_2ndpass_3: 97799931
+      mirrorhug_2ndpass_30: 1035116306
+      mirrorhug_2ndpass_31: -1422644310
+      mirrorhug_2ndpass_32: 760070369
+      mirrorhug_2ndpass_33: 1621264144
+      mirrorhug_2ndpass_34: -757893656
+      mirrorhug_2ndpass_35: -1530500041
+      mirrorhug_2ndpass_36: -795146501
+      mirrorhug_2ndpass_37: -766408114
+      mirrorhug_2ndpass_38: -1241130333
+      mirrorhug_2ndpass_39: 559743767
+      mirrorhug_2ndpass_4: 1329588382
+      mirrorhug_2ndpass_40: 495095217
+      mirrorhug_2ndpass_41: 1083070996
+      mirrorhug_2ndpass_42: 538572312
+      mirrorhug_2ndpass_43: 827844730
+      mirrorhug_2ndpass_44: -1444188517
+      mirrorhug_2ndpass_45: -295003542
+      mirrorhug_2ndpass_46: -2047893855
+      mirrorhug_2ndpass_47: -66374862
+      mirrorhug_2ndpass_48: 878164053
+      mirrorhug_2ndpass_5: -1977392942
+      mirrorhug_2ndpass_6: 997924077
+      mirrorhug_2ndpass_7: 67719987
+      mirrorhug_2ndpass_8: 305183240
+      mirrorhug_2ndpass_9: -1025077040
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
