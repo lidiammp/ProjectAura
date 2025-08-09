@@ -4,26 +4,35 @@ using UnityEngine;
 
 public class doorTrigger : MonoBehaviour
 {
-    public GameObject Door;
+    public DoorController[] doors;
+    public GameObject[] trapDoors;
     private MeshRenderer buttonRenderer;
-    MeshRenderer doorRenderer;
-    private BoxCollider doorCollider;
-    private bool playerInRange = false;
-    public GameObject UIpopup;
-    private Animator uianimator;
 
+    public bool playerLook = false;
+    public GameObject UIpopup;
+
+    private bool isOn = false;
     void Start()
     {
-        doorRenderer = Door.GetComponent<MeshRenderer>();
-        doorCollider = Door.GetComponent<BoxCollider>();
         buttonRenderer = GetComponent<MeshRenderer>();
         if (buttonRenderer != null)
         {
             buttonRenderer.material.color = Color.red;
         }
-        UIpopup.SetActive(false);
+        UIpopup?.SetActive(false);
         //uianimator = UIpopup.GetComponent<Animator>(); when adding  animation to door 
+        foreach (DoorController door in doors)
+        {
+            if (door != null)
+            {
 
+                door.SetOpen(isOn);
+            }
+            else
+            {
+                Debug.LogError("A door reference is missing in " + gameObject.name);
+            }
+        }
     }
     // void OnMouseDown()
     void Update()
@@ -32,20 +41,36 @@ public class doorTrigger : MonoBehaviour
         //only open door when Beam Collider is on Button and pressing E P-----------O
         //                                                              |          \|/
         //                                                                          ^
-        if (playerInRange && Input.GetKeyDown(KeyCode.E) && Door != null)
+        if (playerLook && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2))&& !isOn) // only open if not already open
         {
-            Door.GetComponent<Animator>().Play("Open");
-            buttonRenderer.material.color = Color.green;
+            isOn = true;
+            foreach (DoorController door in doors){
+                if (door != null){
+                    door.SetOpen(true);
+                }
+            }
+
+            // buttonRenderer.material.color = Color.green;
+
+            if (trapDoors.Length > 0){
+                foreach (GameObject trapDoor in trapDoors){
+                    trapDoor.SetActive(false);
+                }
+            }
         }
+
 
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            playerInRange = true;
+            playerLook = true;
             // Debug.Log("here");
-            UIpopup.SetActive(true);
+
+            UIpopup?.SetActive(true);
+            
+            
             //uianimator.enabled = true; when adding  animation to door 
         }
     }
@@ -54,9 +79,9 @@ public class doorTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            playerInRange = false;
+            playerLook = false;
             // Debug.Log("not here");
-            UIpopup.SetActive(false);
+            UIpopup?.SetActive(false);
             //uianimator.enabled = false;  when adding  animation to door 
 
         }

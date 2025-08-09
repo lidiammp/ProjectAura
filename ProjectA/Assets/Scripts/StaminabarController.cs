@@ -10,7 +10,7 @@ public class StaminabarController : MonoBehaviour
     [SerializeField] private float maxStamina = 100f;
     [SerializeField] private float embraceCost = 20f;
     [SerializeField] private float dashCost = 20f;
-    [SerializeField] private float slowedSpeed = 4f;
+    // [SerializeField] private float slowedSpeed = 4f;
     [SerializeField] private float normalSpeed = 20f;
 
 
@@ -75,13 +75,13 @@ public class StaminabarController : MonoBehaviour
             
             playerStamina -= staminaDrain * Time.deltaTime;
             UpdateStamina(1);
-            if (playerStamina <= 0)
-            {
-                //slow player
-                playerMovement.SetRunSpeed(slowedSpeed);
-                sliderCanvasGroup.alpha = 0;
-                hasRegenerated = false;
-            }
+            // if (playerStamina <= 0)
+            // {
+            //     //slow player
+            //     playerMovement.SetRunSpeed(slowedSpeed);
+            //     sliderCanvasGroup.alpha = 0;
+            //     hasRegenerated = false;
+            // }
         }
     }
     public void StaminaEmbrace()

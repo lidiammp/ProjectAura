@@ -9,6 +9,8 @@ using UnityEngine.Rendering.Universal;
 public class TakeDamage : MonoBehaviour
 {
     public float intensity = 0f;
+    public float intensityMax = 0.4f;
+    public float instensityDrain = 0.01f;
     UnityEngine.Rendering.Universal.Vignette vignette;
     // Start is called before the first frame update
     void Start()
@@ -32,8 +34,8 @@ public class TakeDamage : MonoBehaviour
     }
     private IEnumerator TakeDamageEffect()
     {
-        intensity = 0.4f;
-        vignette.intensity.Override(0.4f);
+        intensity = intensityMax;
+        vignette.intensity.Override(intensityMax);
         yield return new WaitForSeconds(0.4f);
         while (intensity > 0)
         {

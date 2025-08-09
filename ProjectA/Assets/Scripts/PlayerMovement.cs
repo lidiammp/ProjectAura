@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float dashDuration = 0.2f;
     [SerializeField]private float dashCooldown = 1;
     [SerializeField]private float dashDistance = 2f;
-
+    float targetFOV;
     private bool sprintToggled = false;
 
     private float sprintToggleCooldown = 0.18f;
@@ -86,19 +86,22 @@ public class PlayerMovement : MonoBehaviour
         // If you previously used RT axis for sprint hold, we've removed that here.
         // sprintActive is true if player is using shift hold OR toggled on
         bool sprintActive = (shiftHeld || sprintToggled) && isMoving && staminabarController.playerStamina > 0f;
-
+        
         // If stamina emptied, force toggle off
         if (staminabarController.playerStamina <= 0f)
         {
             sprintToggled = false;
             sprintActive = false;
         }
-        if (isDashing == false)
+
+        handAnimator.SetBool("isRunning", sprintActive);
+
+
+
+        //camera
+
+        if (!isDashing)
         {
-
-            //camera
-            float targetFOV;
-
             if (sprintActive)
             {
                 targetFOV = sprintFOV;
@@ -114,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //lerp to target fov
-            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, fovTransitionSpeed * Time.unscaledDeltaTime);
+
 
             playerSpeed = isWalking ? walkSpeed : sprintSpeed;
             // handle player input left right up down
@@ -135,17 +138,21 @@ public class PlayerMovement : MonoBehaviour
             {
                 MovePlayer(Time.deltaTime);
             }
+
+
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, fovTransitionSpeed * Time.unscaledDeltaTime);
         }
-        if ((Input.GetKeyDown(KeyCode.Space) ||  Input.GetAxis("Controller LT") > 0.1f) && canDash && isMoving)
-        {
-            //start dash in input direction
-            staminabarController.StaminaDash(inputVector);
-        }
-        else if ((Input.GetKeyDown(KeyCode.Space) ||  Input.GetAxis("Controller LT") > 0.1f) && canDash)
-        {
-            //start dash forward
-            staminabarController.StaminaDash(transform.forward);
-        }
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Controller LT") > 0.1f) && canDash && isMoving)
+            {
+
+                //start dash in input direction
+                staminabarController.StaminaDash(inputVector);
+            }
+            else if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Controller LT") > 0.1f) && canDash)
+            {
+                //start dash forward
+                staminabarController.StaminaDash(transform.forward);
+            }
 
     }
     public void StartDash(Vector3 inputDirection)

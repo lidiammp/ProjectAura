@@ -10,10 +10,15 @@ public class Healthbar : MonoBehaviour
     [SerializeField] private bool isInvincible = false;
     public static event Action OnPlayerDamaged;
     public static event Action OnPlayerHealed;
+    [SerializeField] private CameraShake cameraShake;
+    [SerializeField] private float shakeDuration = 1;
+    [SerializeField] private float shakeMagnitude = 1;
     void Awake()
     {
+        // cameraShake = GetComponentInChildren<CameraShake>();
         currentHealth = maxHealth;
         takeDamage = FindObjectOfType<TakeDamage>();
+        
     }
     //take damage function
     public void TakeDamage(float damage)
@@ -23,6 +28,7 @@ public class Healthbar : MonoBehaviour
             takeDamage.VignetteEffect();
             currentHealth -= damage;
             OnPlayerDamaged?.Invoke();
+            cameraShake.ShakeRotation(shakeDuration, shakeMagnitude);
         }
         //way to show that invinicible
 
@@ -34,6 +40,7 @@ public class Healthbar : MonoBehaviour
         //if max health dont do anythin
         if (maxHealth == currentHealth)
         {
+            OnPlayerHealed?.Invoke();
             return;
         }//if health plus healing greater than max health set to max health
         else if (currentHealth + healing > maxHealth)

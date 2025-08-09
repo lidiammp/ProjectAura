@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyAttack : MonoBehaviour
 {
+    [SerializeField] private float attackCooldown = 2f;  // cooldown duration in seconds
+    private float attackTimer = 0f;
+    
     private Transform playerTransform;
     [SerializeField] private float attackRange;
     private float distance;
@@ -26,6 +29,16 @@ public class EnemyAttack : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(transform.position, playerTransform.position);
+
+        if (!canAttack)
+        {
+            // Count down cooldown timer
+            attackTimer -= Time.deltaTime;
+            if (attackTimer <= 0f)
+            {
+                canAttack = true;
+            }
+        }
         //if in attack range stop and attack
         //works for both ranged and melee
         if (distance <= attackRange && canAttack == true)
@@ -39,7 +52,8 @@ public class EnemyAttack : MonoBehaviour
     public void Attack()
     {
         enemyAnimator.SetTrigger("isAttacking");
-
+        canAttack = false;
+        attackTimer = attackCooldown;  // reset cooldown timer
     }
 
     //                                     melee enemy                                               //

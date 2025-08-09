@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -35,10 +36,10 @@ public class MouseLook : MonoBehaviour
             pitch += -Input.GetAxis("Mouse Y") * lookSpeed;
             yaw = Input.GetAxis("Mouse X") * lookSpeed;
             //limit rotation so u dont break ur neck
-            
+
 
             yaw += NonLinearInput(Input.GetAxis("Controller Yaw")) * controllerLookSpeed * Time.deltaTime; // deg/sec * time = deg
-            pitch +=  NonLinearInput(Input.GetAxis("Controller Pitch")) * controllerLookSpeed * Time.deltaTime;
+            pitch += NonLinearInput(Input.GetAxis("Controller Pitch")) * controllerLookSpeed * Time.deltaTime;
 
 
 
@@ -48,6 +49,9 @@ public class MouseLook : MonoBehaviour
             //rotate player left and right based on mouse position
             transform.rotation *= Quaternion.Euler(0, yaw, 0);
         }
+
+
+        //button check
 
         
         // controller left right value

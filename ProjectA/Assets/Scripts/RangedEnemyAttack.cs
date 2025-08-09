@@ -43,7 +43,6 @@ public class RangedEnemyAttack : MonoBehaviour
     public void Attack()
     {
         enemyAnimator.SetTrigger("isAttacking");
-        ShootBullet();
     }
 
     //                                     melee enemy                                               //
