@@ -113,6 +113,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8789354690718195221, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
+      propertyPath: onhitEffect
+      value: 
+      objectReference: {fileID: 2589343545698988936, guid: 7d589048ac31fe24db2252990367a15e, type: 3}
+    - target: {fileID: 8789354690718195221, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: pinkColor.b
       value: 0.8517837
       objectReference: {fileID: 0}
