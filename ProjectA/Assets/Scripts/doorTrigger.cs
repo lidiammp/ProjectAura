@@ -5,6 +5,7 @@ using UnityEngine;
 public class doorTrigger : MonoBehaviour
 {
     public DoorController[] doors;
+    public GameObject[] trapDoors;
     private MeshRenderer buttonRenderer;
     MeshRenderer doorRenderer;
     private BoxCollider doorCollider;
@@ -39,7 +40,8 @@ public class doorTrigger : MonoBehaviour
             {
                 //toggle door thing
                 isOn = !isOn;
-                if (door != null){
+                if (door != null)
+                {
                     door.SetOpen(isOn);
                 }
                 //change color
@@ -48,7 +50,15 @@ public class doorTrigger : MonoBehaviour
                 else
                     buttonRenderer.material.color = Color.red;
             }
-            
+
+            //disable all trap doors
+            if (trapDoors.Length > 0)
+            {
+                foreach (GameObject trapDoor in trapDoors)
+                {
+                    trapDoor.SetActive(false);
+                }
+            }
 
         }
 
