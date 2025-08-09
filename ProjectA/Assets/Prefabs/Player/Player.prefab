@@ -865,7 +865,7 @@ Transform:
   - {fileID: 1690601818315411826}
   - {fileID: 5832505835711577597}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &7948643544697218425
 CharacterController:
@@ -949,7 +949,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  embraceCooldown: 3
+  embraceCooldown: 2
   staminaRegain: 60
   invDuration: 0.5
   embraceAngle: 45
@@ -972,6 +972,7 @@ MonoBehaviour:
   currentHealth: 0
   takeDamage: {fileID: 0}
   isInvincible: 0
+  cameraShake: {fileID: 0}
   shakeDuration: 1
   shakeMagnitude: 1
 --- !u!136 &3160903934970853454
