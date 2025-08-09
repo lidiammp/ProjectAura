@@ -79,9 +79,14 @@ public class Enemy : MonoBehaviour
                   enemyNavMeshAgent.velocity.sqrMagnitude > 0.01f &&
                   !isStunned;
 
-        enemyAnimator.SetBool("isWalking", moving);
-        enemyAnimator.SetBool("isStunned", isStunned);
-        enemyAnimator.SetBool("isAggro", enemyAwareness.isAggro);
+        if (!isPermaStunned)
+        {
+            enemyAnimator.SetBool("isWalking", moving);
+            enemyAnimator.SetBool("isAggro", enemyAwareness.isAggro);
+            enemyAnimator.SetBool("isStunned", isStunned);
+        }
+        
+
         //if aggro and not stunned follow player 
         if (enemyAwareness.isAggro && !isStunned && CheckForObstacle() && enemyNavMeshAgent.enabled && enemyNavMeshAgent.isOnNavMesh)
         {
@@ -120,26 +125,25 @@ public class Enemy : MonoBehaviour
     {
 
         Instantiate(onhitEffect, transform.position, Quaternion.identity);
+        timeManager.Stop(0.15f);
+        if (isPermaStunned) return;
         enemyAnimator.SetTrigger("isTakingDamage");
         // StartCoroutine(FlashRed());
-        timeManager.Stop(0.15f);
-        if (!isPermaStunned)
+        ApplyKnockback(10 * -transform.forward + Vector3.up, 0.3f);
+        // if (isStunned) return; // Can't take damage while stunned
+
+        currentHealth -= amount;
+
+        if (currentHealth <= 0)
         {
-            ApplyKnockback(10 * -transform.forward + Vector3.up, 0.3f);
-            // if (isStunned) return; // Can't take damage while stunned
-
-            currentHealth -= amount;
-
-            if (currentHealth <= 0)
-            {
-                Stun(stunDuration);
-                return;
-            }
-            if (isStunned)
-            {
-                Stun(stunDuration);  // Re-trigger the stun effect and coroutine
-                return;
-            }
+            Stun(stunDuration);
+            return;
+        }
+        if (isStunned)
+        {
+            Stun(stunDuration);  // Re-trigger the stun effect and coroutine
+            return;
+            
         }
         
         

@@ -7,11 +7,10 @@ public class doorTrigger : MonoBehaviour
     public DoorController[] doors;
     public GameObject[] trapDoors;
     private MeshRenderer buttonRenderer;
-    MeshRenderer doorRenderer;
-    private BoxCollider doorCollider;
+
     public bool playerLook = false;
     public GameObject UIpopup;
-    private Animator uianimator;
+
     private bool isOn = false;
     void Start()
     {
@@ -24,7 +23,15 @@ public class doorTrigger : MonoBehaviour
         //uianimator = UIpopup.GetComponent<Animator>(); when adding  animation to door 
         foreach (DoorController door in doors)
         {
-            door.SetOpen(isOn);
+            if (door != null)
+            {
+
+                door.SetOpen(isOn);
+            }
+            else
+            {
+                Debug.LogError("A door reference is missing in " + gameObject.name);
+            }
         }
     }
     // void OnMouseDown()
@@ -34,33 +41,24 @@ public class doorTrigger : MonoBehaviour
         //only open door when Beam Collider is on Button and pressing E P-----------O
         //                                                              |          \|/
         //                                                                          ^
-        if (playerLook && Input.GetKeyDown(KeyCode.E))
+        if (playerLook && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2))&& !isOn) // only open if not already open
         {
-            foreach (DoorController door in doors)
-            {
-                //toggle door thing
-                isOn = !isOn;
-                if (door != null)
-                {
-                    door.SetOpen(isOn);
+            isOn = true;
+            foreach (DoorController door in doors){
+                if (door != null){
+                    door.SetOpen(true);
                 }
-                //change color
-                if (isOn)
-                    buttonRenderer.material.color = Color.green;
-                else
-                    buttonRenderer.material.color = Color.red;
             }
 
-            //disable all trap doors
-            if (trapDoors.Length > 0)
-            {
-                foreach (GameObject trapDoor in trapDoors)
-                {
+            // buttonRenderer.material.color = Color.green;
+
+            if (trapDoors.Length > 0){
+                foreach (GameObject trapDoor in trapDoors){
                     trapDoor.SetActive(false);
                 }
             }
-
         }
+
 
     }
     void OnTriggerEnter(Collider other)

@@ -98,59 +98,61 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-            //camera
-            
+        //camera
 
-        if (sprintActive || isDashing)
+        if (!isDashing)
         {
-            targetFOV = sprintFOV;
-            isWalking = false;
-            staminabarController.isSprinting = true;
-            staminabarController.Sprinting();
-        }
-        else
-        {
-            targetFOV = normalFOV;
-            isWalking = true;
-            staminabarController.isSprinting = false;
-        }
+            if (sprintActive)
+            {
+                targetFOV = sprintFOV;
+                isWalking = false;
+                staminabarController.isSprinting = true;
+                staminabarController.Sprinting();
+            }
+            else
+            {
+                targetFOV = normalFOV;
+                isWalking = true;
+                staminabarController.isSprinting = false;
+            }
 
-        //lerp to target fov
-        
+            //lerp to target fov
 
-        playerSpeed = isWalking ? walkSpeed : sprintSpeed;
-        // handle player input left right up down
-        // get direction for player input
-        GetInput(inputX, inputZ);
-        if (lockMovement)
-        {
-            StopMovement();
-            return;
-        }
 
-        // Move the player based on calculated movement vector
-        if (ignoreHitStop)
-        {
-            MovePlayer(Time.unscaledDeltaTime);
+            playerSpeed = isWalking ? walkSpeed : sprintSpeed;
+            // handle player input left right up down
+            // get direction for player input
+            GetInput(inputX, inputZ);
+            if (lockMovement)
+            {
+                StopMovement();
+                return;
+            }
+
+            // Move the player based on calculated movement vector
+            if (ignoreHitStop)
+            {
+                MovePlayer(Time.unscaledDeltaTime);
+            }
+            else
+            {
+                MovePlayer(Time.deltaTime);
+            }
+
+
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, fovTransitionSpeed * Time.unscaledDeltaTime);
         }
-        else
-        {
-            MovePlayer(Time.deltaTime);
-        }
-        
-        
-        playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, fovTransitionSpeed * Time.unscaledDeltaTime);
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Controller LT") > 0.1f) && canDash && isMoving)
-        {
+            {
 
-            //start dash in input direction
-            staminabarController.StaminaDash(inputVector);
-        }
-        else if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Controller LT") > 0.1f) && canDash)
-        {
-            //start dash forward
-            staminabarController.StaminaDash(transform.forward);
-        }
+                //start dash in input direction
+                staminabarController.StaminaDash(inputVector);
+            }
+            else if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Controller LT") > 0.1f) && canDash)
+            {
+                //start dash forward
+                staminabarController.StaminaDash(transform.forward);
+            }
 
     }
     public void StartDash(Vector3 inputDirection)

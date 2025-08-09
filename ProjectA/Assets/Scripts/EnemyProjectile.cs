@@ -14,10 +14,13 @@ public class EnemyProjectile : MonoBehaviour
     {
         bulletAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+
         Transform target = GameObject.FindGameObjectWithTag("Player").transform;
-        Vector3 direction = target.position - gameObject.transform.position;
-        rb.AddForce(direction * speed);
+        Vector3 direction = (target.position - transform.position).normalized;
+
+        rb.velocity = direction * speed;
     }
+
 
     void OnCollisionEnter(Collision collision)
     {

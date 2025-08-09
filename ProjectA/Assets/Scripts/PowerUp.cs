@@ -9,8 +9,9 @@ public class PowerUp : MonoBehaviour
         //check if player tag
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
             powerupEffect.Apply(collision.gameObject);
+            Destroy(gameObject);
+            
         }
         
     }

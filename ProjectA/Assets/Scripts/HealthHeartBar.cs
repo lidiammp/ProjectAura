@@ -16,7 +16,7 @@ public class HealthHeartBar : MonoBehaviour
     private void OnDisable()
     {
         Healthbar.OnPlayerDamaged -= DrawHearts;
-         Healthbar.OnPlayerHealed -= DrawHearts;
+        Healthbar.OnPlayerHealed -= DrawHearts;
     }
     void Start()
     {

@@ -20,6 +20,6 @@ public class DoorController : MonoBehaviour
     //set open or closed based on parameter
     public void SetOpen(bool isOpen)
     {
-        doorAnimator.SetBool("isOpen", isOpen);
+        doorAnimator?.SetBool("isOpen", isOpen);
     }
 }

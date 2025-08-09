@@ -10,7 +10,7 @@ public class StaminabarController : MonoBehaviour
     [SerializeField] private float maxStamina = 100f;
     [SerializeField] private float embraceCost = 20f;
     [SerializeField] private float dashCost = 20f;
-    [SerializeField] private float slowedSpeed = 4f;
+    // [SerializeField] private float slowedSpeed = 4f;
     [SerializeField] private float normalSpeed = 20f;
 
 

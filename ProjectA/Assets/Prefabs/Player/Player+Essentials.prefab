@@ -2896,11 +2896,19 @@ PrefabInstance:
       objectReference: {fileID: 176912946980577488}
     - target: {fileID: 7492385997619216091, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7562049852916459673, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: maxHealth
-      value: 12
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562049852916459673, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 463468366168067417}
+    - target: {fileID: 7562049852916459673, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
+      propertyPath: shakeDuration
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7966053861200699305, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: m_RootOrder
@@ -3015,6 +3023,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1973727216441934250}
   m_SourcePrefab: {fileID: 100100000, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
+--- !u!114 &463468366168067417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4284233236925981263, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
+  m_PrefabInstance: {fileID: 4402890307036851990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e0d8b57e34121a48b0fe4b90d744a0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &594335675250125483 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3829665304432149949, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}

@@ -40,6 +40,7 @@ public class Healthbar : MonoBehaviour
         //if max health dont do anythin
         if (maxHealth == currentHealth)
         {
+            OnPlayerHealed?.Invoke();
             return;
         }//if health plus healing greater than max health set to max health
         else if (currentHealth + healing > maxHealth)
