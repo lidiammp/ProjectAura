@@ -11,10 +11,13 @@ public class WalkTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     
     {
-        if (hasActivated) return;
+        if (hasActivated) {
+            return;
+        }
         if (other.gameObject.CompareTag("Player"))
         {
             room.StartRoom();
+            hasActivated = true;
         }
     }
 }
