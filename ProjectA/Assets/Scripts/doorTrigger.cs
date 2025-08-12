@@ -41,22 +41,29 @@ public class doorTrigger : MonoBehaviour
         //only open door when Beam Collider is on Button and pressing E P-----------O
         //                                                              |          \|/
         //                                                                          ^
-        if (playerLook && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2))&& !isOn) // only open if not already open
+        if (playerLook && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2)) && !isOn) // only open if not already open
         {
             isOn = true;
-            foreach (DoorController door in doors){
-                if (door != null){
+            foreach (DoorController door in doors)
+            {
+                if (door != null)
+                {
                     door.SetOpen(true);
                 }
             }
 
             // buttonRenderer.material.color = Color.green;
 
-            if (trapDoors.Length > 0){
-                foreach (GameObject trapDoor in trapDoors){
+            if (trapDoors.Length > 0)
+            {
+                foreach (GameObject trapDoor in trapDoors)
+                {
                     trapDoor.SetActive(false);
                 }
             }
+
+            gameObject.SetActive(false);
+            UIpopup?.SetActive(false);
         }
 
 
