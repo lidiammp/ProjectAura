@@ -106,6 +106,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1258945505165793262, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
+      propertyPath: awarenessRadius
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2803795036361225260, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -259,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f16c5048289aa479177c030e9b6397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 10
+  attackRange: 20
   shootingPoint: {fileID: 4731507558515732166}
   fireRate: 1
   Bullet: {fileID: 6814631361443958340, guid: 0a550c01395fdc447b497039fc5bdcab, type: 3}
