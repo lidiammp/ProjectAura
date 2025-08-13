@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad24695ffa057934bb16a5f4506dd32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackCooldown: 2
   attackRange: 2
   Bullet: {fileID: 0}
 --- !u!114 &8789354690718195221
@@ -211,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d414958411da38448f9f39222df8482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deaggroTime: 1.5
   awarenessRadius: 15
   isAggro: 0
   deaggroBuffer: 2
