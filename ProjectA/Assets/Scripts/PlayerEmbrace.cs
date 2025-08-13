@@ -27,6 +27,7 @@ public class PlayerEmbrace : MonoBehaviour
 
     private TimeManager timeManager;
     [SerializeField] private float embraceAngle = 45f;
+    public Color embraceRangeColor = new Color(0, 128, 128);
     private EmbraceRetical reticalManager;
     [Header("Snap To Enemy Parameters")]
     // snapRange ← how close you must be to start snapping
@@ -90,26 +91,34 @@ public class PlayerEmbrace : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        //if enemy
         if (((1 << other.gameObject.layer) & enemyLayer) == 0) return;
         Enemy enemy = other.GetComponent<Enemy>();
         //if no enemy component
         if (enemy == null) return;
-        //eneable outline
-        Vector3 toTarget = (enemy.transform.position - playerMovement.transform.position).normalized;
-        float dot = Vector3.Dot(transform.forward, toTarget);
-        float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-
-        if (currentAngle <= embraceAngle && enemy.GetIsStunned())
+        if (enemy.GetIsStunned())
         {
-            enemy.GetComponentInChildren<OutlineManager>()?.EnableOutline();
-            reticalManager.SetEmbraceRetical();
+            //eneable outline
+            Vector3 toTarget = (enemy.transform.position - playerMovement.transform.position).normalized;
+            float dot = Vector3.Dot(transform.forward, toTarget);
+            float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+            if (currentAngle <= embraceAngle && enemy.GetIsStunned())
+            {
+                enemy.GetComponentInChildren<OutlineManager>()?.SetOutlineColor(embraceRangeColor);
+                reticalManager.SetEmbraceRetical();
+            }
+            else
+            {
+                enemy.GetComponentInChildren<OutlineManager>()?.SetOutlineColor(new Color(255, 255, 255));
+                reticalManager.SetDefaultRetical();
+            }
         }
         else
         {
             enemy.GetComponentInChildren<OutlineManager>()?.DisableOutline();
-            reticalManager.SetDefaultRetical();
         }
+        //if enemy
+
 
     }
     private void OnTriggerExit(Collider other)
@@ -121,8 +130,15 @@ public class PlayerEmbrace : MonoBehaviour
         }
         Enemy enemy = other.GetComponent<Enemy>();
         if (enemy == null) return;
-        enemy.GetComponentInChildren<OutlineManager>()?.DisableOutline();
-        reticalManager.SetDefaultRetical();
+        if (enemy.GetIsStunned())
+        {
+            enemy.GetComponentInChildren<OutlineManager>()?.SetOutlineColor(new Color(255, 255, 255));
+        }
+        else
+        {
+            enemy.GetComponentInChildren<OutlineManager>()?.DisableOutline();
+        }
+        
 
     }
 

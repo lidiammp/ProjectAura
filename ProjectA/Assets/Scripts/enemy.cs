@@ -45,9 +45,11 @@ public class Enemy : MonoBehaviour
     public float snapThreshold = 2f;
 
     private Coroutine stunRoutine;
+    OutlineManager outlineManager;
     [SerializeField] private bool isPermaStunned = false;
     void Start()
     {
+        outlineManager = GetComponentInChildren<OutlineManager>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         currentHealth = maxHealth;
@@ -266,6 +268,8 @@ public class Enemy : MonoBehaviour
         isStunned = true;
 
         enemyAnimator.SetBool("isStunned", isStunned);
+        
+        outlineManager.SetOutlineColor(new Color(255,255,255));
         //stunlock player
         stunRoutine = StartCoroutine(StunEnemy(stunDuration));
         
@@ -292,12 +296,13 @@ public class Enemy : MonoBehaviour
         {
             enemyNavMeshAgent.SetDestination(transform.position);
         }
-        
+
         yield return new WaitForSeconds(duration);
         currentHealth = maxHealth;
         isStunned = false;
         enemyAwareness.isAggro = false;
         enemyAnimator.SetBool("isStunned", isStunned);
+        outlineManager.DisableOutline();
 
     }
 
