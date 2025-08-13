@@ -72,8 +72,7 @@ public class PlayerEmbrace : MonoBehaviour
         embraceTimer += Time.deltaTime;
         if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2)) && embraceTimer > embraceCooldown && isSnapping == false)
         {
-            mouseLook.LockMouse();
-            playerMovement.LockMovement();
+
             staminabarController.StaminaEmbrace();
             embraceTimer = 0;
 
@@ -147,6 +146,8 @@ public class PlayerEmbrace : MonoBehaviour
                 // if enemy and stunned
                 if (hit.GetComponent<Enemy>() && hit.GetComponent<Enemy>().GetIsStunned())
                 {
+                    mouseLook.LockMouse();
+                    playerMovement.LockMovement();
                     Enemy enemy = hit.GetComponent<Enemy>();
                     //snap to enemy
                     StartCoroutine(SnapToEnemy(enemy));
