@@ -200,11 +200,13 @@ public class Beam : MonoBehaviour
         foreach (var enemy in enemyManager.enemiesInTrigger)
         {
             // Calculate direction from beam to enemy
-            var dir = enemy.transform.position - transform.position;
+            Vector3 start = transform.position;
+            var dir = (enemy.transform.position - transform.position).normalized;
+            float distance = Vector3.Distance(start, enemy.transform.position);
             RaycastHit hit;
-
+            Ray ray = new Ray(start, dir);
             // Shoot a ray toward enemy, check if it's actually visible (no obstacles)
-            if (Physics.Raycast(transform.position, dir, out hit, range * 1.5f, raycastLayerMask))
+            if (Physics.Raycast(ray, out hit, distance, raycastLayerMask, QueryTriggerInteraction.Ignore))
             {
                 if (hit.transform == enemy.transform)
                 {
@@ -213,7 +215,7 @@ public class Beam : MonoBehaviour
                 }
 
             }
-
+            Debug.DrawRay(start, dir * distance, Color.red, 0.05f);
         }
     }
     private void OnTriggerExit(Collider other)
