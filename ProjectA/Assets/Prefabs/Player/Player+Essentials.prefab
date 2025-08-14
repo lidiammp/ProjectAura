@@ -2798,6 +2798,7 @@ MonoBehaviour:
   staminaRegain: 80
   invDuration: 1
   embraceAngle: 90
+  embraceRangeColor: {r: 0, g: 128, b: 128, a: 1}
   snapSpeed: 30
   isSnapping: 0
   beam: {fileID: 5214797231276529667}
@@ -3027,6 +3028,10 @@ PrefabInstance:
       propertyPath: defaultRetical
       value: 
       objectReference: {fileID: 2800000, guid: 26372596153eb4169ae019d5706be514, type: 3}
+    - target: {fileID: 8154664277475055258, guid: d093d330483b66044834e252352dabc2, type: 3}
+      propertyPath: embraceRetical
+      value: 
+      objectReference: {fileID: 2800000, guid: d48c70ccdf40d446d8f4581b83c92903, type: 3}
     - target: {fileID: 8297786082002698852, guid: d093d330483b66044834e252352dabc2, type: 3}
       propertyPath: m_Color.a
       value: 0.09411765
