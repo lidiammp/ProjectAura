@@ -13,6 +13,11 @@ public class Room : MonoBehaviour
     [SerializeField] private LightChanger lightManager;
     [SerializeField] private DoorController[] doorControllers;
     // Start is called before the first frame update
+
+    void Start()
+    {
+        // sparkleManager = GetComponentinChildren<SparkleManager>();
+    }
     
     public void StartRoom()
     {

@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5540197994660226398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5094107598408183989}
+  - component: {fileID: 1580237135573632593}
+  m_Layer: 0
+  m_Name: Spawn Manager
+  m_TagString: Spawn Manager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5094107598408183989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5540197994660226398}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1580237135573632593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5540197994660226398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca988d541b648334a8e842481d127a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - enemyTypes:
+    - {fileID: 8416124795213369378, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+    enemyCount: 1
+  - enemyTypes:
+    - {fileID: 8416124795213369378, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+    - {fileID: 2546278390263673458, guid: d880a04793d157b4aacc954d02cdfdfa, type: 3}
+    enemyCount: 3
+  - enemyTypes:
+    - {fileID: 8416124795213369378, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+    - {fileID: 2546278390263673458, guid: d880a04793d157b4aacc954d02cdfdfa, type: 3}
+    enemyCount: 6
+  - enemyTypes:
+    - {fileID: 8416124795213369378, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+    - {fileID: 2546278390263673458, guid: d880a04793d157b4aacc954d02cdfdfa, type: 3}
+    enemyCount: 9
+  - enemyTypes:
+    - {fileID: 4906274871242975384, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
+    enemyCount: 12
+  - enemyTypes:
+    - {fileID: 8416124795213369378, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+    enemyCount: 13
+  - enemyTypes:
+    - {fileID: 8416124795213369378, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+    enemyCount: 14
+  - enemyTypes:
+    - {fileID: 8416124795213369378, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+    enemyCount: 15
+  - enemyTypes:
+    - {fileID: 4906274871242975384, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
+    enemyCount: 20
+  - enemyTypes:
+    - {fileID: 4906274871242975384, guid: f8d49db368b6f554a97c78b8be36dc66, type: 3}
+    enemyCount: 25
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  timeBetweenWaves: 1.5
+  roomTransform: {fileID: 0}
+  room: {fileID: 0}
