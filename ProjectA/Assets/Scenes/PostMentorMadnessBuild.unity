@@ -239065,7 +239065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6952619042830781649, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 164.5
+      value: 171.25
       objectReference: {fileID: 0}
     - target: {fileID: 6952619042830781649, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -279756,24 +279756,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543210014274299029, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: staminaDrain
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5543210014274299029, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: staminaRegen
-      value: 9.91
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5543210014274299029, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: staminaProgressUI
       value: 
       objectReference: {fileID: 2076008101}
-    - target: {fileID: 5543210014274299029, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
-      propertyPath: staminaRegenStill
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5543210014274299029, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
-      propertyPath: staminaRegenMoving
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6004833602428209775, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_StepOffset
       value: 0.5
@@ -279788,7 +279780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6023334360039436479, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 62.5
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 6023334360039436479, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_LocalRotation.w

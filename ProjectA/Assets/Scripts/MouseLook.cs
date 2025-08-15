@@ -130,7 +130,7 @@ public class MouseLook : MonoBehaviour
                 return x;
             }
         }
-        return SquareInput(x);
+        return x;
     }
 
     public void LockMouse()

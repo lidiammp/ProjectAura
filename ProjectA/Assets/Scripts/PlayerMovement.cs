@@ -27,9 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator handAnimator;
     private bool isWalking = true;
 
-    public float normalFOV = 60f;
-    public float sprintFOV = 70f;
-    public float fovTransitionSpeed = 5f;
+
+
     public Rigidbody rb;
     private Camera playerCamera;
     public bool ignoreHitStop = false;
@@ -45,7 +44,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float dashDuration = 0.2f;
     [SerializeField]private float dashCooldown = 1;
     [SerializeField]private float dashDistance = 2f;
+    [SerializeField]private float minDashDistance = 1f;
     float targetFOV;
+    [Header("Camera Parameters")]
+    
+    public float normalFOV = 60f;
+    public float dashFOV = 65f;
+    public float sprintFOV = 70f;
+    public float fovTransitionSpeed = 5f;
+    public float dashFovTransitionSpeed = 5f;
     private bool sprintToggled = false;
 
     private float sprintToggleCooldown = 0.18f;
@@ -146,27 +153,28 @@ public class PlayerMovement : MonoBehaviour
         }
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Controller LT") > 0.1f) && canDash && isMoving)
             {
-
+                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, dashFOV, dashFovTransitionSpeed * Time.unscaledDeltaTime);
                 //start dash in input direction
                 staminabarController.StaminaDash(inputVector);
             }
             else if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Controller LT") > 0.1f) && canDash)
             {
+                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, dashFOV, dashFovTransitionSpeed * Time.unscaledDeltaTime);
                 //start dash forward
                 staminabarController.StaminaDash(transform.forward);
             }
 
     }
-    public void StartDash(Vector3 inputDirection)
+    public void StartDash(Vector3 inputDirection, float distance)
     {
-        StartCoroutine(Dash(inputDirection));
+        StartCoroutine(Dash(inputDirection, distance));
     }
 
-    IEnumerator Dash(Vector3 inputDirection) {
+    IEnumerator Dash(Vector3 inputDirection, float distance) {
         // playerCamera.fieldOfView = sprintFOV;
         isDashing = true;
         canDash = false;
-        float dashSpeed = dashDistance / dashDuration;
+        float dashSpeed = distance / dashDuration;
         float elapsed = 0;
         while (elapsed < dashDuration)
         {
@@ -267,5 +275,13 @@ public class PlayerMovement : MonoBehaviour
     public void Move(float speed, Vector3 direction)
     {
         myCC.Move(speed * direction * Time.unscaledDeltaTime);
+    }
+
+    public float GetDashDistance(){
+        return dashDistance;
+    }
+
+    public float GetMinDashDistance(){
+        return minDashDistance;
     }
 }

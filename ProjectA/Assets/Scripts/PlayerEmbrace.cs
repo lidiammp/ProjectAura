@@ -204,6 +204,7 @@ public class PlayerEmbrace : MonoBehaviour
         // for now we js destroy it or maybe zion can add animation 
         // (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
         staminabarController.StaminaRegain(staminaRegain);
+        staminabarController.ResetRunCooldown();
         //remove from list
         string animationName = target.GetComponent<Enemy>().enemyType;
         handAnimator.SetTrigger("isHandHug" + animationName);
