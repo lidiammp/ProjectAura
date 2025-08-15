@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float sprintToggleCooldown = 0.18f;
     private float lastSprintToggleTime = -1f;
+    public bool isMoving = false;
 // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         //if button is pressed and last frame, the button was pressed, its
         bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         // || Input.GetKey(KeyCode.JoystickButton8);
-        bool isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
+        isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
 
         //uncomment for sprint toglle toggle sprint
         if (Input.GetKeyDown(KeyCode.JoystickButton8) && Time.time - lastSprintToggleTime > sprintToggleCooldown)
@@ -82,10 +83,11 @@ public class PlayerMovement : MonoBehaviour
             lastSprintToggleTime = Time.time;
         }
 
-
+        bool sprintAllowed = !staminabarController.GetCoolDown()
+                     && staminabarController.playerStamina > 0f;
         // If you previously used RT axis for sprint hold, we've removed that here.
         // sprintActive is true if player is using shift hold OR toggled on
-        bool sprintActive = (shiftHeld || sprintToggled) && isMoving && staminabarController.playerStamina > 0f;
+        bool sprintActive = (shiftHeld || sprintToggled) && isMoving && sprintAllowed;
         
         // If stamina emptied, force toggle off
         if (staminabarController.playerStamina <= 0f)

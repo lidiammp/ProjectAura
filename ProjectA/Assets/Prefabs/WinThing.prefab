@@ -132,7 +132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2814666737432487442}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.732254}
+  m_LocalPosition: {x: 0, y: 0, z: -1.482254}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -151,8 +151,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 4
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -258,7 +258,7 @@ Transform:
   - {fileID: 6915789650795672822}
   - {fileID: 2000976484192504712}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4629866505795820942
 MonoBehaviour:
@@ -307,7 +307,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleportTarget: {fileID: 0}
   teleportDelay: 2
+  doorEffectDelay: 1
   effectPrefab: {fileID: 5505130930034610544, guid: 5f7a7862e65c11c4eaf870cacd48a7c0, type: 3}
   departureClip: {fileID: 0}
   arrivalClip: {fileID: 0}
   destroyAfter: 0
+  door: {fileID: 0}
+  doorEffect: {fileID: 0}

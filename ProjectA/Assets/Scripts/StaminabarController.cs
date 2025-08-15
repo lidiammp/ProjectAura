@@ -15,7 +15,11 @@ public class StaminabarController : MonoBehaviour
 
 
     [Header("regen parameters")]
-    [SerializeField] private float staminaRegen = 0.5f;
+
+    [SerializeField] private float staminaRegenStill = 1.5f; // Faster regen when still
+    [SerializeField] private float staminaRegenMoving = 0.5f; // Normal regen when moving
+
+    // [SerializeField] private float staminaRegen = 0.5f;
     [SerializeField] private float staminaDrain = 0.5f;
 
     [HideInInspector] public bool hasRegenerated = true;
@@ -25,6 +29,11 @@ public class StaminabarController : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image staminaProgressUI = null;
     [SerializeField] private CanvasGroup sliderCanvasGroup = null;
 
+    [Header("Cooldown parameters")]
+    [SerializeField] private float runCooldownTime = 2f;
+    private float cooldownTimer = 0f;
+    private bool isCooldown = false;
+
     private PlayerMovement playerMovement;
     private PlayerEmbrace playerEmbrace;
     private void Start()
@@ -33,100 +42,118 @@ public class StaminabarController : MonoBehaviour
         playerEmbrace = FindObjectOfType<PlayerEmbrace>();
         normalSpeed = playerMovement.sprintSpeed;
     }
+
     private void Update()
     {
-        //regen stamina when not running
-        if (isSprinting == false)
+        // Handle cooldown timer
+        if (isCooldown)
+        {
+            cooldownTimer -= Time.deltaTime;
+            if (cooldownTimer <= 0f)
+            {
+                isCooldown = false;
+                playerMovement.SetRunSpeed(normalSpeed);
+            }
+        }
+
+        // Regen stamina when not sprinting
+        if (!isSprinting)
         {
             if (playerStamina < maxStamina - 0.001f)
             {
-                playerStamina += staminaRegen * Time.deltaTime;
+                bool isMoving = playerMovement.isMoving;
+
+
+                float regenRate = isMoving ? staminaRegenMoving : staminaRegenStill;
+
+                playerStamina += regenRate * Time.deltaTime;
                 playerStamina = Mathf.Min(playerStamina, maxStamina);
-                //update stamina
+
                 UpdateStamina(1);
+
                 if (playerStamina >= maxStamina)
                 {
                     playerStamina = maxStamina;
-                    //set to normal speed
-                    playerMovement.SetRunSpeed(normalSpeed);
-                    sliderCanvasGroup.alpha = 0;
                     hasRegenerated = true;
                 }
             }
         }
     }
+
     void UpdateStamina(int value)
     {
         staminaProgressUI.fillAmount = playerStamina / maxStamina;
-        if (value == 0)
-        {
-            sliderCanvasGroup.alpha = 0;
-        }
-        else if (value == 1)
-        {
-            sliderCanvasGroup.alpha = 1;
-        }
+        sliderCanvasGroup.alpha = 1;
     }
+
     public void Sprinting()
     {
+        if (isCooldown) return; // no sprint if on cooldon
+
         isSprinting = true;
         if (playerStamina > 0)
         {
-            
             playerStamina -= staminaDrain * Time.deltaTime;
             UpdateStamina(1);
-            // if (playerStamina <= 0)
-            // {
-            //     //slow player
-            //     playerMovement.SetRunSpeed(slowedSpeed);
-            //     sliderCanvasGroup.alpha = 0;
-            //     hasRegenerated = false;
-            // }
+
+            if (playerStamina <= 0)
+            {
+                playerStamina = 0;
+                StartRunCooldown();
+            }
         }
     }
+
     public void StaminaEmbrace()
     {
         if (playerStamina >= embraceCost)
         {
             playerStamina -= embraceCost;
-
         }
         else
         {
             playerStamina = 0;
+            StartRunCooldown();
         }
         isSprinting = false;
-        //allow player to embrace
         playerEmbrace.TryEmbrace();
         UpdateStamina(1);
     }
 
     public void StaminaDash(Vector3 inputDirection)
     {
+        if (isCooldown) return; // no dash on cooldown
+
         if (playerStamina >= dashCost)
         {
             playerStamina -= dashCost;
             playerMovement.StartDash(inputDirection);
             UpdateStamina(1);
         }
+        
         isSprinting = false;
-        //allow player to embrace
-
     }
 
     public void StaminaRegain(float amount)
     {
         playerStamina += amount;
-
-        // if u go way over set it to maxStamina
         playerStamina = Mathf.Min(playerStamina, maxStamina);
 
-        // if the difference between is less than 0.01 then set it to max
         if (Mathf.Abs(playerStamina - maxStamina) <= 0.01f)
         {
             playerStamina = maxStamina;
         }
-
         UpdateStamina(1);
+    }
+
+    void StartRunCooldown()
+    {
+        isCooldown = true;
+        cooldownTimer = runCooldownTime;
+        playerMovement.SetRunSpeed(0f); // Or slow down instead of stopping completely
+        hasRegenerated = false;
+    }
+    public bool GetCoolDown(){
+        return isCooldown;
     }
 }   

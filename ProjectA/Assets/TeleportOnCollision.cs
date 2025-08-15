@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System.Collections;
-using UnityEngine;
-
 public class TeleportOnCollision : MonoBehaviour
 {
     [Header("Teleport Settings")]
     public Transform teleportTarget;
     public float teleportDelay = 1f;
+    public float doorEffectDelay = 1f;
 
     [Header("Effects")]
     public ParticleSystem effectPrefab;
@@ -20,6 +18,9 @@ public class TeleportOnCollision : MonoBehaviour
     PlayerMovement playerMovement;
     CharacterController charController;
     Rigidbody rb;
+    [Header("Door")]
+    public DoorController door;
+    public DoorEffect doorEffect;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,6 +32,7 @@ public class TeleportOnCollision : MonoBehaviour
 
             playerMovement?.LockMovement();
             StartCoroutine(TeleportSequence(other.gameObject));
+
         }
     }
 
@@ -68,14 +70,22 @@ public class TeleportOnCollision : MonoBehaviour
         if (effectPrefab != null)
         {
             var effect = Instantiate(effectPrefab, teleportTarget.position, Quaternion.identity);
-            Destroy(effect.gameObject, effect.main.duration + effect.main.startLifetime.constantMax -1f);
+            Destroy(effect.gameObject, effect.main.duration + effect.main.startLifetime.constantMax - 1f);
         }
 
         if (arrivalClip != null)
             AudioSource.PlayClipAtPoint(arrivalClip, teleportTarget.position);
-
+        if (door != null)
+        {
+            door.SetOpen(true);
+        }
         if (destroyAfter)
             Destroy(gameObject);
+        yield return new WaitForSeconds(doorEffectDelay);
+        if (doorEffect != null)
+        {
+            doorEffect.TriggerEffect();
+        }
     }
 }
 
