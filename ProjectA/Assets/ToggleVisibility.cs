@@ -5,14 +5,30 @@ using UnityEngine;
 public class ToggleVisibility : MonoBehaviour
 {
     [Header("References")]
-    public GameObject insideCastlePart; // Drag your object here
+    public string hiddenLayerName = "HiddenFromCamera"; // Layer to hide the room
+    public string defaultLayerName = "Default";         // Original layer
     public GameObject island;
 
-    private void OnTriggerEnter(Collider other)
+    private void SetLayerRecursively(Transform parent, int layer)
+    {
+        parent.gameObject.layer = layer;
+        foreach (Transform child in parent)
+        {
+            SetLayerRecursively(child, layer);
+        }
+    }
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            insideCastlePart.SetActive(true);  // Show when player enters
+            int targetLayer = LayerMask.NameToLayer(defaultLayerName);
+            if (targetLayer == -1)
+            {
+                Debug.LogError("Layer not found: " + hiddenLayerName);
+                return;
+            }
+            // insideCastlePart.SetActive(true);  // Show when player enters
+            SetLayerRecursively(transform, LayerMask.NameToLayer(defaultLayerName));
             island.SetActive(false);
         }
     }
@@ -21,7 +37,14 @@ public class ToggleVisibility : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            insideCastlePart.SetActive(false); // Hide when player leaves
+            int targetLayer = LayerMask.NameToLayer(hiddenLayerName);
+            if (targetLayer == -1)
+            {
+                Debug.LogError("Layer not found: " + hiddenLayerName);
+                return;
+            }
+            // insideCastlePart.SetActive(false); // Hide when player leaves
+            SetLayerRecursively(transform, LayerMask.NameToLayer(hiddenLayerName));
             island.SetActive(true);
         }
     }
