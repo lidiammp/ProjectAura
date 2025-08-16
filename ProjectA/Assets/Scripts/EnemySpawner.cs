@@ -19,6 +19,13 @@ public class EnemySpawner : MonoBehaviour
     public Room room;
     public GameObject tpStar;
 
+    [Header("Wave Effects")]
+    public GameObject waveEffectStartPrefab;  // Assign a particle prefab in inspector
+    public GameObject waveEffectEndPrefab;
+    public AudioClip waveSound;          // Optional sound
+    public Transform waveEffectStartLocation; // Where to spawn effect (can be center of room)
+    public Transform waveEffectEndLocation;
+    private AudioSource audioSource;
     public int GetWaveIndex()
     {
         return currentWaveIndex;
@@ -35,6 +42,9 @@ public class EnemySpawner : MonoBehaviour
     {
         while (currentWaveIndex < waves.Length)
         {
+            if (waveEffectStartPrefab != null) {
+                Instantiate(waveEffectStartPrefab,waveEffectStartLocation != null ? waveEffectStartLocation.position : transform.position,Quaternion.identity);
+            }
             Wave wave = waves[currentWaveIndex];
             for (int i = 0; i < wave.enemyCount; i++)
             {
@@ -51,6 +61,9 @@ public class EnemySpawner : MonoBehaviour
                 yield return null;
             }
             yield return new WaitForSeconds(timeBetweenWaves);
+            if (waveEffectEndPrefab != null) {
+                Instantiate(waveEffectStartPrefab,waveEffectEndLocation != null ? waveEffectEndLocation.position : transform.position,Quaternion.identity);
+            }
             currentWaveIndex++;
 
 
