@@ -9,14 +9,23 @@ public class ToggleVisibility : MonoBehaviour
     public string defaultLayerName = "Default";         // Original layer
     public GameObject island;
 
-    private void SetLayerRecursively(Transform parent, int layer)
+private void SetLayerRecursively(Transform parent, int layer)
+{
+    // skip enemy
+    if (parent.gameObject.layer == LayerMask.NameToLayer("Enemy") ||
+        parent.gameObject.layer == LayerMask.NameToLayer("Attack"))
     {
-        parent.gameObject.layer = layer;
-        foreach (Transform child in parent)
-        {
-            SetLayerRecursively(child, layer);
-        }
+        return;
     }
+
+    parent.gameObject.layer = layer;
+
+    foreach (Transform child in parent)
+    {
+        SetLayerRecursively(child, layer);
+    }
+}
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
