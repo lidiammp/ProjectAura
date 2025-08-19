@@ -235,7 +235,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    public void ResetSpeedState()
+    {
+        // Reset speed after embrace
+        bool sprintAllowed = !staminabarController.GetCoolDown()
+                        && staminabarController.playerStamina > 0f;
+        bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
+        bool sprintActive = (shiftHeld || sprintToggled) && isMoving && sprintAllowed;
+
+        if (sprintActive)
+        {
+            isWalking = false;
+            playerSpeed = sprintSpeed;
+        }
+        else
+        {
+            isWalking = true;
+            playerSpeed = walkSpeed;
+        }
+    }
     public void LockMovement()
     {
         lockMovement = true;
@@ -244,6 +263,7 @@ public class PlayerMovement : MonoBehaviour
     public void UnlockMovement()
     {
         lockMovement = false;
+        ResetSpeedState();
     }
     public void ApplyKnockback(Vector3 force, float duration)
     {

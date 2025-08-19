@@ -50,7 +50,7 @@ public class StaminabarController : MonoBehaviour
         // Handle cooldown
         if (isCooldown)
         {
-            cooldownTimer -= Time.deltaTime;
+            cooldownTimer -= Time.unscaledDeltaTime;
             if (cooldownTimer <= 0f)
             {
                 isCooldown = false;
@@ -150,12 +150,12 @@ public class StaminabarController : MonoBehaviour
         playerStamina = Mathf.Min(playerStamina, maxStamina);
         UpdateStamina(1);
     }
-
+    //has to be in here
     void StartRunCooldown()
     {
         isCooldown = true;
         cooldownTimer = runCooldownTime;
-        playerMovement.SetRunSpeed(1f);
+        // playerMovement.SetRunSpeed(1f);
         hasRegenerated = false;
     }
 
