@@ -37,8 +37,11 @@ public class PlayerEmbrace : MonoBehaviour
     // characterController ← your movement system
     [SerializeField] private float snapSpeed = 10f;
     [SerializeField] private bool isSnapping = false;
-    private bool embraceAnimationEnded = true;
+    private bool embraceAnimationEnded = false;
     [SerializeField] private Beam beam;
+
+    Collider playerCol;
+    Collider enemyCol;
 
     void Start()
     {
@@ -46,10 +49,11 @@ public class PlayerEmbrace : MonoBehaviour
         mouseLook = FindObjectOfType<MouseLook>();
         handAnimator = GetComponent<Animator>();
         enemyManager = FindObjectOfType<EnemyManager>();
-        playerHealth = FindObjectOfType<PlayerMovement>().GetComponent<Healthbar>();
+        playerHealth = playerMovement.GetComponent<Healthbar>();
         staminabarController = FindObjectOfType<StaminabarController>();
         timeManager = FindObjectOfType<TimeManager>();
         reticalManager = FindObjectOfType<EmbraceRetical>();
+        playerCol = playerHealth.GetComponent<Collider>();
     }
 
     void EmbraceAnimationEndEvent()
@@ -58,6 +62,11 @@ public class PlayerEmbrace : MonoBehaviour
     }
     public void EndEmbraceCutscene()
     {
+        if (playerCol != null && enemyCol != null)
+        {
+            Physics.IgnoreCollision(playerCol, enemyCol, false);
+            enemyCol = null; // reset so we don't call on a destroyed enemy later
+        }
         mouseLook.UnlockMouse();
         playerMovement.UnlockMovement();
         reticalManager.SetDefaultRetical();
@@ -183,6 +192,9 @@ public class PlayerEmbrace : MonoBehaviour
     {
         isSnapping = true;
         
+        enemyCol = enemy.GetComponent<Collider>();
+        Physics.IgnoreCollision(playerCol, enemyCol, true);
+
         // playerMovement.LockMovement();
         while ((enemy.transform.position - transform.position).magnitude > enemy.snapThreshold)
         {
@@ -215,7 +227,7 @@ public class PlayerEmbrace : MonoBehaviour
 
         playerHealth.Heal(healValue);
         reticalManager.SetDefaultRetical();
-        
+        enemyCol = null;
         //target.Die();
         // Debug.Log("HUG!!!");
     }
