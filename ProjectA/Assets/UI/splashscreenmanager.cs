@@ -9,17 +9,26 @@ using UnityEditor;
 
 public class splashscreenmanager : MonoBehaviour
 {
-    public void PlayGame()
+    public Animator transition;
+    public float transitionTime = 1f;
+    public void OnButtonPressed()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+
+        LoadNextLevel();
     }
 
-    public void QuitGame()
+    public void LoadNextLevel()
     {
-#if UNITY_EDITOR
-        EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        StartCoroutine(LoadLevel());
+    }
+
+    IEnumerator LoadLevel()
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene("PostMentorMadnessBuild");
     }
 }

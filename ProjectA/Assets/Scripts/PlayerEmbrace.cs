@@ -27,6 +27,7 @@ public class PlayerEmbrace : MonoBehaviour
 
     private TimeManager timeManager;
     [SerializeField] private float embraceAngle = 45f;
+    public Color embraceRangeColor = new Color(0, 128, 128);
     private EmbraceRetical reticalManager;
     [Header("Snap To Enemy Parameters")]
     // snapRange ← how close you must be to start snapping
@@ -36,8 +37,11 @@ public class PlayerEmbrace : MonoBehaviour
     // characterController ← your movement system
     [SerializeField] private float snapSpeed = 10f;
     [SerializeField] private bool isSnapping = false;
-    private bool embraceAnimationEnded = true;
+    private bool embraceAnimationEnded = false;
     [SerializeField] private Beam beam;
+
+    Collider playerCol;
+    Collider enemyCol;
 
     void Start()
     {
@@ -45,10 +49,11 @@ public class PlayerEmbrace : MonoBehaviour
         mouseLook = FindObjectOfType<MouseLook>();
         handAnimator = GetComponent<Animator>();
         enemyManager = FindObjectOfType<EnemyManager>();
-        playerHealth = FindObjectOfType<PlayerMovement>().GetComponent<Healthbar>();
+        playerHealth = playerMovement.GetComponent<Healthbar>();
         staminabarController = FindObjectOfType<StaminabarController>();
         timeManager = FindObjectOfType<TimeManager>();
         reticalManager = FindObjectOfType<EmbraceRetical>();
+        playerCol = playerHealth.GetComponent<Collider>();
     }
 
     void EmbraceAnimationEndEvent()
@@ -57,6 +62,11 @@ public class PlayerEmbrace : MonoBehaviour
     }
     public void EndEmbraceCutscene()
     {
+        if (playerCol != null && enemyCol != null)
+        {
+            Physics.IgnoreCollision(playerCol, enemyCol, false);
+            enemyCol = null; // reset so we don't call on a destroyed enemy later
+        }
         mouseLook.UnlockMouse();
         playerMovement.UnlockMovement();
         reticalManager.SetDefaultRetical();
@@ -90,26 +100,34 @@ public class PlayerEmbrace : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        //if enemy
         if (((1 << other.gameObject.layer) & enemyLayer) == 0) return;
         Enemy enemy = other.GetComponent<Enemy>();
         //if no enemy component
         if (enemy == null) return;
-        //eneable outline
-        Vector3 toTarget = (enemy.transform.position - playerMovement.transform.position).normalized;
-        float dot = Vector3.Dot(transform.forward, toTarget);
-        float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-
-        if (currentAngle <= embraceAngle && enemy.GetIsStunned())
+        if (enemy.GetIsStunned())
         {
-            enemy.GetComponentInChildren<OutlineManager>()?.EnableOutline();
-            reticalManager.SetEmbraceRetical();
+            //eneable outline
+            Vector3 toTarget = (enemy.transform.position - playerMovement.transform.position).normalized;
+            float dot = Vector3.Dot(transform.forward, toTarget);
+            float currentAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+            if (currentAngle <= embraceAngle && enemy.GetIsStunned())
+            {
+                enemy.GetComponentInChildren<OutlineManager>()?.SetOutlineColor(embraceRangeColor);
+                reticalManager.SetEmbraceRetical();
+            }
+            else
+            {
+                enemy.GetComponentInChildren<OutlineManager>()?.SetOutlineColor(new Color(255, 255, 255));
+                reticalManager.SetDefaultRetical();
+            }
         }
         else
         {
             enemy.GetComponentInChildren<OutlineManager>()?.DisableOutline();
-            reticalManager.SetDefaultRetical();
         }
+        //if enemy
+
 
     }
     private void OnTriggerExit(Collider other)
@@ -121,8 +139,15 @@ public class PlayerEmbrace : MonoBehaviour
         }
         Enemy enemy = other.GetComponent<Enemy>();
         if (enemy == null) return;
-        enemy.GetComponentInChildren<OutlineManager>()?.DisableOutline();
-        reticalManager.SetDefaultRetical();
+        if (enemy.GetIsStunned())
+        {
+            enemy.GetComponentInChildren<OutlineManager>()?.SetOutlineColor(new Color(255, 255, 255));
+        }
+        else
+        {
+            enemy.GetComponentInChildren<OutlineManager>()?.DisableOutline();
+        }
+        
 
     }
 
@@ -167,6 +192,9 @@ public class PlayerEmbrace : MonoBehaviour
     {
         isSnapping = true;
         
+        enemyCol = enemy.GetComponent<Collider>();
+        Physics.IgnoreCollision(playerCol, enemyCol, true);
+
         // playerMovement.LockMovement();
         while ((enemy.transform.position - transform.position).magnitude > enemy.snapThreshold)
         {
@@ -188,6 +216,7 @@ public class PlayerEmbrace : MonoBehaviour
         // for now we js destroy it or maybe zion can add animation 
         // (pls someone teach me I have ptsd from when i touched animation and deleted everythingggg)
         staminabarController.StaminaRegain(staminaRegain);
+        staminabarController.ResetRunCooldown();
         //remove from list
         string animationName = target.GetComponent<Enemy>().enemyType;
         handAnimator.SetTrigger("isHandHug" + animationName);
@@ -198,7 +227,7 @@ public class PlayerEmbrace : MonoBehaviour
 
         playerHealth.Heal(healValue);
         reticalManager.SetDefaultRetical();
-        
+        enemyCol = null;
         //target.Die();
         // Debug.Log("HUG!!!");
     }

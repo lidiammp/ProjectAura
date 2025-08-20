@@ -29,7 +29,7 @@ public class Screenshake : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             transform.position = startPosition + Random.insideUnitSphere;
             yield return null;
         }

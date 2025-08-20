@@ -5,7 +5,6 @@ using UnityEngine;
 public class LightChanger : MonoBehaviour
 {
 
-    [SerializeField] private float test;
     [SerializeField] private Color startLight;
     [SerializeField] private Color clearedLight;
     private Light[] roomLights;

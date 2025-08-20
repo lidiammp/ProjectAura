@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class StaminabarController : MonoBehaviour
 {
     [Header("stamina parameters")]
@@ -10,123 +11,171 @@ public class StaminabarController : MonoBehaviour
     [SerializeField] private float maxStamina = 100f;
     [SerializeField] private float embraceCost = 20f;
     [SerializeField] private float dashCost = 20f;
-    // [SerializeField] private float slowedSpeed = 4f;
     [SerializeField] private float normalSpeed = 20f;
 
-
     [Header("regen parameters")]
-    [SerializeField] private float staminaRegen = 0.5f;
+    [SerializeField] private float staminaRegenStill = 1.5f; 
+    [SerializeField] private float staminaRegenMoving = 0.5f;
     [SerializeField] private float staminaDrain = 0.5f;
+    [SerializeField] private float regenDelay = 1.0f; 
+    [SerializeField] private float fastRegenMultiplier = 2f; // slightly faster than normal
+    // [SerializeField] private float emptyStaminaRegen = 0.3f; // slower when at 0
+
+    private float regenTimer = 0f;
 
     [HideInInspector] public bool hasRegenerated = true;
     [HideInInspector] public bool isSprinting = true;
 
     [Header("UI elements")]
-    [SerializeField] private UnityEngine.UI.Image staminaProgressUI = null;
+    [SerializeField] private Image staminaProgressUI = null;
     [SerializeField] private CanvasGroup sliderCanvasGroup = null;
+
+    [Header("Cooldown parameters")]
+    [SerializeField] private float runCooldownTime = 2f;
+    private float cooldownTimer = 0f;
+    private bool isCooldown = false;
 
     private PlayerMovement playerMovement;
     private PlayerEmbrace playerEmbrace;
+
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
         playerEmbrace = FindObjectOfType<PlayerEmbrace>();
         normalSpeed = playerMovement.sprintSpeed;
     }
+
     private void Update()
     {
-        //regen stamina when not running
-        if (isSprinting == false)
+        // Handle cooldown
+        if (isCooldown)
         {
-            if (playerStamina < maxStamina - 0.001f)
+            cooldownTimer -= Time.unscaledDeltaTime;
+            if (cooldownTimer <= 0f)
             {
-                playerStamina += staminaRegen * Time.deltaTime;
+                isCooldown = false;
+                playerMovement.SetRunSpeed(normalSpeed);
+            }
+        }
+
+        // Stamina regen
+        if (!isSprinting && playerStamina < maxStamina)
+        {
+            if (regenTimer > 0f)
+            {
+                regenTimer -= Time.deltaTime;
+            }
+            else
+            {
+                float regenRate;
+
+                // if (playerStamina <= 0f)
+                // {
+                //     // Regen slowly if stamina is empty
+                //     regenRate = emptyStaminaRegen;
+                // }
+                // else
+                // {
+                    // Normal or slightly faster regen
+                    regenRate = playerMovement.isMoving ? staminaRegenMoving : staminaRegenStill;
+                    regenRate *= fastRegenMultiplier;
+                // }
+
+                playerStamina += regenRate * Time.deltaTime;
                 playerStamina = Mathf.Min(playerStamina, maxStamina);
-                //update stamina
                 UpdateStamina(1);
+
                 if (playerStamina >= maxStamina)
-                {
-                    playerStamina = maxStamina;
-                    //set to normal speed
-                    playerMovement.SetRunSpeed(normalSpeed);
-                    sliderCanvasGroup.alpha = 0;
                     hasRegenerated = true;
-                }
             }
         }
     }
+
     void UpdateStamina(int value)
     {
         staminaProgressUI.fillAmount = playerStamina / maxStamina;
-        if (value == 0)
-        {
-            sliderCanvasGroup.alpha = 0;
-        }
-        else if (value == 1)
-        {
-            sliderCanvasGroup.alpha = 1;
-        }
+        sliderCanvasGroup.alpha = 1;
     }
+
     public void Sprinting()
     {
+        if (isCooldown) return;
+
         isSprinting = true;
         if (playerStamina > 0)
         {
-            
-            playerStamina -= staminaDrain * Time.deltaTime;
-            UpdateStamina(1);
-            // if (playerStamina <= 0)
-            // {
-            //     //slow player
-            //     playerMovement.SetRunSpeed(slowedSpeed);
-            //     sliderCanvasGroup.alpha = 0;
-            //     hasRegenerated = false;
-            // }
+            DrainStamina(staminaDrain * Time.deltaTime);
         }
     }
+
     public void StaminaEmbrace()
     {
         if (playerStamina >= embraceCost)
         {
-            playerStamina -= embraceCost;
-
+            DrainStamina(embraceCost);
         }
         else
         {
             playerStamina = 0;
+            StartRunCooldown();
         }
         isSprinting = false;
-        //allow player to embrace
         playerEmbrace.TryEmbrace();
         UpdateStamina(1);
     }
 
     public void StaminaDash(Vector3 inputDirection)
     {
+        float actualDashDistance = playerMovement.GetDashDistance(); 
+
         if (playerStamina >= dashCost)
         {
-            playerStamina -= dashCost;
-            playerMovement.StartDash(inputDirection);
-            UpdateStamina(1);
+            DrainStamina(dashCost);
         }
-        isSprinting = false;
-        //allow player to embrace
+        else
+        {
+            playerStamina = 0;
+            actualDashDistance = playerMovement.GetMinDashDistance();
+            StartRunCooldown();
+        }
 
+        playerMovement.StartDash(inputDirection, actualDashDistance);
+        UpdateStamina(1);
+        isSprinting = false;
     }
 
     public void StaminaRegain(float amount)
     {
         playerStamina += amount;
-
-        // if u go way over set it to maxStamina
         playerStamina = Mathf.Min(playerStamina, maxStamina);
-
-        // if the difference between is less than 0.01 then set it to max
-        if (Mathf.Abs(playerStamina - maxStamina) <= 0.01f)
-        {
-            playerStamina = maxStamina;
-        }
-
         UpdateStamina(1);
     }
-}   
+    //has to be in here
+    void StartRunCooldown()
+    {
+        isCooldown = true;
+        cooldownTimer = runCooldownTime;
+        // playerMovement.SetRunSpeed(1f);
+        hasRegenerated = false;
+    }
+
+    public void ResetRunCooldown()
+    {
+        isCooldown = false;
+        cooldownTimer = 0;
+        hasRegenerated = true;
+    }
+
+    public bool GetCoolDown()
+    {
+        return isCooldown;
+    }
+
+    private void DrainStamina(float amount)
+    {
+        playerStamina -= amount;
+        playerStamina = Mathf.Max(playerStamina, 0f);
+        regenTimer = regenDelay;
+        UpdateStamina(1);
+    }
+}

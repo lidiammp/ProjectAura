@@ -27,9 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator handAnimator;
     private bool isWalking = true;
 
-    public float normalFOV = 60f;
-    public float sprintFOV = 70f;
-    public float fovTransitionSpeed = 5f;
+
+
     public Rigidbody rb;
     private Camera playerCamera;
     public bool ignoreHitStop = false;
@@ -45,11 +44,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float dashDuration = 0.2f;
     [SerializeField]private float dashCooldown = 1;
     [SerializeField]private float dashDistance = 2f;
+    [SerializeField]private float minDashDistance = 1f;
     float targetFOV;
+    [Header("Camera Parameters")]
+    
+    public float normalFOV = 60f;
+    public float dashFOV = 65f;
+    public float sprintFOV = 70f;
+    public float fovTransitionSpeed = 5f;
+    public float dashFovTransitionSpeed = 5f;
     private bool sprintToggled = false;
 
     private float sprintToggleCooldown = 0.18f;
     private float lastSprintToggleTime = -1f;
+    public bool isMoving = false;
 // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         //if button is pressed and last frame, the button was pressed, its
         bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         // || Input.GetKey(KeyCode.JoystickButton8);
-        bool isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
+        isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
 
         //uncomment for sprint toglle toggle sprint
         if (Input.GetKeyDown(KeyCode.JoystickButton8) && Time.time - lastSprintToggleTime > sprintToggleCooldown)
@@ -82,10 +90,11 @@ public class PlayerMovement : MonoBehaviour
             lastSprintToggleTime = Time.time;
         }
 
-
+        bool sprintAllowed = !staminabarController.GetCoolDown()
+                     && staminabarController.playerStamina > 0f;
         // If you previously used RT axis for sprint hold, we've removed that here.
         // sprintActive is true if player is using shift hold OR toggled on
-        bool sprintActive = (shiftHeld || sprintToggled) && isMoving && staminabarController.playerStamina > 0f;
+        bool sprintActive = (shiftHeld || sprintToggled) && isMoving && sprintAllowed;
         
         // If stamina emptied, force toggle off
         if (staminabarController.playerStamina <= 0f)
@@ -144,27 +153,28 @@ public class PlayerMovement : MonoBehaviour
         }
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Controller LT") > 0.1f) && canDash && isMoving)
             {
-
+                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, dashFOV, dashFovTransitionSpeed * Time.unscaledDeltaTime);
                 //start dash in input direction
                 staminabarController.StaminaDash(inputVector);
             }
             else if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Controller LT") > 0.1f) && canDash)
             {
+                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, dashFOV, dashFovTransitionSpeed * Time.unscaledDeltaTime);
                 //start dash forward
                 staminabarController.StaminaDash(transform.forward);
             }
 
     }
-    public void StartDash(Vector3 inputDirection)
+    public void StartDash(Vector3 inputDirection, float distance)
     {
-        StartCoroutine(Dash(inputDirection));
+        StartCoroutine(Dash(inputDirection, distance));
     }
 
-    IEnumerator Dash(Vector3 inputDirection) {
+    IEnumerator Dash(Vector3 inputDirection, float distance) {
         // playerCamera.fieldOfView = sprintFOV;
         isDashing = true;
         canDash = false;
-        float dashSpeed = dashDistance / dashDuration;
+        float dashSpeed = distance / dashDuration;
         float elapsed = 0;
         while (elapsed < dashDuration)
         {
@@ -225,7 +235,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    public void ResetSpeedState()
+    {
+        // Reset speed after embrace
+        bool sprintAllowed = !staminabarController.GetCoolDown()
+                        && staminabarController.playerStamina > 0f;
+        bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
+        bool sprintActive = (shiftHeld || sprintToggled) && isMoving && sprintAllowed;
+
+        if (sprintActive)
+        {
+            isWalking = false;
+            playerSpeed = sprintSpeed;
+        }
+        else
+        {
+            isWalking = true;
+            playerSpeed = walkSpeed;
+        }
+    }
     public void LockMovement()
     {
         lockMovement = true;
@@ -234,6 +263,7 @@ public class PlayerMovement : MonoBehaviour
     public void UnlockMovement()
     {
         lockMovement = false;
+        ResetSpeedState();
     }
     public void ApplyKnockback(Vector3 force, float duration)
     {
@@ -265,5 +295,13 @@ public class PlayerMovement : MonoBehaviour
     public void Move(float speed, Vector3 direction)
     {
         myCC.Move(speed * direction * Time.unscaledDeltaTime);
+    }
+
+    public float GetDashDistance(){
+        return dashDistance;
+    }
+
+    public float GetMinDashDistance(){
+        return minDashDistance;
     }
 }

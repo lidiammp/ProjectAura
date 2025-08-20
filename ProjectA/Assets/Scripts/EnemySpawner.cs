@@ -17,6 +17,8 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesAlive = 0;
     public Transform roomTransform;
     public Room room;
+    public GameObject tpStar;
+
     public int GetWaveIndex()
     {
         return currentWaveIndex;
@@ -29,7 +31,8 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    IEnumerator StartWave(){
+    IEnumerator StartWave()
+    {
         while (currentWaveIndex < waves.Length)
         {
             Wave wave = waves[currentWaveIndex];
@@ -42,17 +45,21 @@ public class EnemySpawner : MonoBehaviour
             }
             //all enemies spawned
             //refresh
-            
+
             while (enemiesAlive > 0)
             {
                 yield return null;
             }
             yield return new WaitForSeconds(timeBetweenWaves);
             currentWaveIndex++;
-            
-            
+
+
         }
         Debug.Log("All waves completed");
+        if (tpStar != null)
+        {
+            tpStar.SetActive(true);
+        }
     }
 
     void SpawnEnemy(GameObject[] enemyTypes){
