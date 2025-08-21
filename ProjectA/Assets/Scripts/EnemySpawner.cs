@@ -62,15 +62,28 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void SpawnEnemy(GameObject[] enemyTypes){
-        if(enemyTypes.Length == 0) return;
+    void SpawnEnemy(GameObject[] enemyTypes)
+    {
+        if (enemyTypes.Length == 0) return;
 
         GameObject enemyPrefab = enemyTypes[UnityEngine.Random.Range(0, enemyTypes.Length)];
-        Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
+        Transform spawnPoint;
+
+        //if this is the first wave and the first enemy, use a fixed spawn point
+        if (currentWaveIndex == 0 && enemiesAlive == 0)
+        {
+            //will use first spawn point
+            spawnPoint = spawnPoints[0];
+        }
+        else
+        {
+            spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
+        }
 
         GameObject enemy = WorldSpawner.Spawn(enemyPrefab, spawnPoint.position, roomTransform);
         enemy.GetComponent<Enemy>().OnDeath += EnemyDefeated;
     }
+
 
     void EnemyDefeated(){
         enemiesAlive--;
