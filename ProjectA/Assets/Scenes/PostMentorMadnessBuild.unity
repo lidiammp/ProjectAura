@@ -75717,6 +75717,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button Mappings
       objectReference: {fileID: 0}
+    - target: {fileID: 2473504805134049427, guid: 4a6aa01c92d4f3a4eb7cc50d7b562ccf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3115266088004901947, guid: 4a6aa01c92d4f3a4eb7cc50d7b562ccf, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -83205,6 +83209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tooltip Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1560775413578922591, guid: 6b6aabe3be61fcf48901f2e8dd9ba507, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4059764546561051763, guid: 6b6aabe3be61fcf48901f2e8dd9ba507, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -83287,6 +83295,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4059764546561051763, guid: 6b6aabe3be61fcf48901f2e8dd9ba507, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870534466985529130, guid: 6b6aabe3be61fcf48901f2e8dd9ba507, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -95202,6 +95214,10 @@ PrefabInstance:
     - target: {fileID: 2592928001535399442, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6191316090980681615, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: maxHealth
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8339778338135484084, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_Name

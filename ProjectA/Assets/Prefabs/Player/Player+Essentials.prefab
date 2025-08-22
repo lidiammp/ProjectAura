@@ -533,10 +533,10 @@ RectTransform:
   m_Father: {fileID: 2166736404860598250}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -346.07, y: 171.06543}
-  m_SizeDelta: {x: 107.8691, y: 107.8691}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 53.92993, y: -53.93457}
+  m_SizeDelta: {x: 107.86911, y: 107.86911}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5774997743845880261
 CanvasRenderer:
@@ -612,10 +612,10 @@ RectTransform:
   m_Father: {fileID: 2166736404860598250}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93.8, y: 181.3}
-  m_SizeDelta: {x: 828.9729, y: 92.3171}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 306.2, y: -43.699997}
+  m_SizeDelta: {x: 828.9729, y: 92.31711}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8740705709310396776
 CanvasRenderer:
@@ -1941,7 +1941,7 @@ Transform:
   - {fileID: 2190557724909502520}
   - {fileID: 8196066831366632742}
   m_Father: {fileID: 0}
-  m_RootOrder: 133
+  m_RootOrder: 90
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8440536352637157652
 GameObject:
@@ -2114,10 +2114,10 @@ RectTransform:
   m_Father: {fileID: 2166736404860598250}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -253, y: -57}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 147, y: -282}
+  m_SizeDelta: {x: 800, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3202250374611403258
 CanvasRenderer:
@@ -2512,7 +2512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7562049852916459673, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: maxHealth
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7562049852916459673, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: cameraShake
@@ -2540,11 +2540,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7966053861200699305, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7966053861200699305, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7966053861200699305, guid: e6d45d1274db06844afa2387d3cf788c, type: 3}
       propertyPath: m_LocalRotation.w
