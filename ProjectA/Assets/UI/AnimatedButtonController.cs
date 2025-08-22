@@ -1,20 +1,19 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
-public class splashscreenmanager : MonoBehaviour
+public class AnimatedButtonController : MonoBehaviour
 {
     public Animator transition;
     public float transitionTime = 1f;
+
     public void OnButtonPressed()
     {
+        // Deselect the button so it doesn't stay highlighted
+        EventSystem.current.SetSelectedGameObject(null);
 
-
+        // Start loading the next scene
         LoadNextLevel();
     }
 
