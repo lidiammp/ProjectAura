@@ -8,6 +8,9 @@ public class doorTrigger : MonoBehaviour
     public GameObject[] trapDoors;
     private MeshRenderer buttonRenderer;
 
+    public float interactRange = 5f; // max distance allowed for interaction
+    public Transform player;        // assign Player transform in inspector
+
     public bool playerLook = false;
     public GameObject UIpopup;
 
@@ -39,52 +42,40 @@ public class doorTrigger : MonoBehaviour
     {
         //ADD LOGIC
         //only open door when Beam Collider is on Button and pressing E P-----------O
-        //                                                              |          \|/
-        //                                                                          ^
-        if (playerLook && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2)) && !isOn) // only open if not already open
+        //         
+        // check if player is looking and the button is on                                                     |          \|/
+        if (playerLook && !isOn)
         {
-            isOn = true;
-            foreach (DoorController door in doors)
+            //get distance from player 
+            float dist = Vector3.Distance(player.position, transform.position);
+            //check if player is in range and that the player has clicked e
+            if (dist <= interactRange && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2)))
             {
-                if (door != null)
-                {
-                    door.SetOpen(true);
-                }
+                //if thats the case activate the button and set the doors off
+                ActivateButton();
             }
-
-            // buttonRenderer.material.color = Color.green;
-
-            if (trapDoors.Length > 0)
-            {
-                foreach (GameObject trapDoor in trapDoors)
-                {
-                    trapDoor.SetActive(false);
-                }
-            }
-
-            gameObject.SetActive(false);
-            UIpopup?.SetActive(false);
-        }
+            
+        } 
 
 
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Beam"))
+        if (other.gameObject.CompareTag("BEAM"))
         {
             playerLook = true;
             // Debug.Log("here");
 
             UIpopup?.SetActive(true);
-            
-            
+
+
             //uianimator.enabled = true; when adding  animation to door 
         }
     }
 
-    void OnTriggerExit (Collider other)
+    void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("BEAM"))
         {
             playerLook = false;
             // Debug.Log("not here");
@@ -92,6 +83,29 @@ public class doorTrigger : MonoBehaviour
             //uianimator.enabled = false;  when adding  animation to door 
 
         }
+    }
+
+    void ActivateButton()
+    {
+        isOn = true;
+        //set the doors open
+        foreach (DoorController door in doors)
+        {
+            door?.SetOpen(true);
+
+        }
+
+        // buttonRenderer.material.color = Color.green;
+
+        //set the trap doors off
+        foreach (GameObject trapDoor in trapDoors)
+        {
+            trapDoor?.SetActive(false);
+        }
+        
+        //set the button off and turn off the ui prompt
+        gameObject.SetActive(false);
+        UIpopup?.SetActive(false);
     }
 }
 

@@ -8,6 +8,7 @@ TagManager:
   - Player Healthbar
   - Player Embracebar
   - Floor
+  - BEAM
   layers:
   - Default
   - TransparentFX
