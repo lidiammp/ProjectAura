@@ -8,9 +8,18 @@ public class EmbraceTooltipTrigger : MonoBehaviour
     
     // Start is called before the first frame update
     private TooltipManager tooltipManager;
+    [SerializeField] private Enemy enemy;
     void Start()
     {
         tooltipManager = FindObjectOfType<TooltipManager>();
+    }
+    void Update()
+    {
+        if (enemy.IsDestroyed())
+        {
+            tooltipManager.DisableEmbraceTooltip();
+            Destroy(gameObject);
+        }
     }
     void OnTriggerEnter(Collider other)
     {

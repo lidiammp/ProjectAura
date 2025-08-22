@@ -151,13 +151,13 @@ public class PlayerMovement : MonoBehaviour
 
             playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, fovTransitionSpeed * Time.unscaledDeltaTime);
         }
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Controller LT") > 0.1f) && canDash && isMoving)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton5) && canDash && isMoving)
             {
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, dashFOV, dashFovTransitionSpeed * Time.unscaledDeltaTime);
                 //start dash in input direction
                 staminabarController.StaminaDash(inputVector);
             }
-            else if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Controller LT") > 0.1f) && canDash)
+            else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton5) && canDash)
             {
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, dashFOV, dashFovTransitionSpeed * Time.unscaledDeltaTime);
                 //start dash forward

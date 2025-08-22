@@ -70,7 +70,7 @@ public class doorTrigger : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Beam"))
         {
             playerLook = true;
             // Debug.Log("here");
