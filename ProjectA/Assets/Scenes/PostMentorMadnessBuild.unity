@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.030756911, g: 0.0006861645, b: 0.01285167, a: 1}
+  m_IndirectSpecularColor: {r: 0.03075691, g: 0.0006861645, b: 0.01285167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -34059,7 +34059,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29810
+  m_Name: pb_Mesh33230
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -57867,7 +57867,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30732
+  m_Name: pb_Mesh34164
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -70413,7 +70413,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32360
+  m_Name: pb_Mesh35878
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -80009,7 +80009,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30628
+  m_Name: pb_Mesh34056
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -83783,7 +83783,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29988
+  m_Name: pb_Mesh33414
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -88321,10 +88321,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tooltip Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1560775413578922591, guid: 6b6aabe3be61fcf48901f2e8dd9ba507, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4059764546561051763, guid: 6b6aabe3be61fcf48901f2e8dd9ba507, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -88407,10 +88403,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4059764546561051763, guid: 6b6aabe3be61fcf48901f2e8dd9ba507, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8870534466985529130, guid: 6b6aabe3be61fcf48901f2e8dd9ba507, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -119862,7 +119854,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31880
+  m_Name: pb_Mesh35370
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
