@@ -18,6 +18,7 @@ public class LightChanger : MonoBehaviour
     }
     void Update()
     {
+            
         //get room stuff
         int alive = room.GetAliveEnemies();
         int total = room.GetTotalEnemies();
@@ -46,4 +47,27 @@ public class LightChanger : MonoBehaviour
     {
         SmoothSetAllLights(clearedLight);
     }
+
+    public void OnFinalWaveClearedSmooth()
+    {
+        StartCoroutine(SmoothSetAllLightsCoroutine(clearedLight, 2f));
+    }
+
+    private IEnumerator SmoothSetAllLightsCoroutine(Color targetColor, float speed)
+    {
+        float t = 0f;
+        Color[] initialColors = new Color[roomLights.Length];
+        for (int i = 0; i < roomLights.Length; i++)
+            initialColors[i] = roomLights[i].color;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * speed;
+            for (int i = 0; i < roomLights.Length; i++)
+                if (roomLights[i] != null)
+                    roomLights[i].color = Color.Lerp(initialColors[i], targetColor, t);
+            yield return null;
+        }
+    }
+
 }

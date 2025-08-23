@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -214,5 +215,12 @@ public class SettingsMenu : MonoBehaviour
             }
         }
     }
+    public void LoadHome()
+    {
+        // Make sure time scale is normal if you paused the game
+        Time.timeScale = 1f;
 
+        // Replace "HomeScene" with the name of your scene
+        SceneManager.LoadScene("SplashScreen");
+    }
 }

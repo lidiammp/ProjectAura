@@ -49,6 +49,10 @@ public class doorTrigger : MonoBehaviour
             //get distance from player 
             float dist = Vector3.Distance(player.position, transform.position);
             //check if player is in range and that the player has clicked e
+            if (dist <= interactRange)
+            {
+                UIpopup?.SetActive(true);
+            }
             if (dist <= interactRange && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2)))
             {
                 //if thats the case activate the button and set the doors off
@@ -66,7 +70,7 @@ public class doorTrigger : MonoBehaviour
             playerLook = true;
             // Debug.Log("here");
 
-            UIpopup?.SetActive(true);
+            
 
 
             //uianimator.enabled = true; when adding  animation to door 

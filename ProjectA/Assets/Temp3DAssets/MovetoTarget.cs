@@ -24,9 +24,18 @@ public class MovetoTarget : MonoBehaviour
             StartCoroutine(MoveToPosition(target.position, 1f)); 
         }
     }
-
+    void SetChildrenActive(Transform parent, bool active)
+{
+    foreach (Transform child in parent)
+    {
+        child.gameObject.SetActive(active);
+        // If you want to do this recursively for all grandchildren:
+        SetChildrenActive(child, active);
+    }
+}
     IEnumerator MoveToPosition(Vector3 destination, float duration)
     {
+        SetChildrenActive(gameObject.transform, true);
         // isMoving = true;
         Vector3 start = transform.position;
         float elapsed = 0f;

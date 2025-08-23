@@ -35,9 +35,17 @@ public class TeleportOnCollision : MonoBehaviour
 
         }
     }
-
+    
     private IEnumerator TeleportSequence(GameObject player)
     {
+        // Inside your teleport sequence or OnTriggerEnter
+        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.enabled = false; // key is invisible, but script still runs
+        }
+
+
         // departure effect
         if (effectPrefab != null)
         {
@@ -82,6 +90,7 @@ public class TeleportOnCollision : MonoBehaviour
         if (destroyAfter)
             Destroy(gameObject);
         yield return new WaitForSeconds(doorEffectDelay);
+        gameObject.SetActive(false);
         if (doorEffect != null)
         {
             doorEffect.TriggerEffect();
