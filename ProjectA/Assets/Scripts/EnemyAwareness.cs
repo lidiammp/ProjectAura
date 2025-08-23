@@ -12,10 +12,13 @@ public class EnemyAwareness : MonoBehaviour
     private Transform playertransform;
     private Animator enemyAnimator;
     public float deaggroBuffer = 2f;
-    void Start(){
+    
+    void Start()
+    {
         enemyAnimator = GetComponentInChildren<Animator>();
         enemy = GetComponent<Enemy>();
         playertransform = FindObjectOfType<PlayerMovement>().transform;
+        
     }
     void Update()
     {
@@ -24,22 +27,40 @@ public class EnemyAwareness : MonoBehaviour
         if (!enemy.GetIsStunned())
         {
             // bool wasAggro = isAggro;
-            //if close aggro
-            if (dist <= awarenessRadius)
+            //if close aggro       
+            if (enemy.GetCurrentHealth() < enemy.GetMaxHealth())
             {
-                isAggro = true;
+                isAggro = true; // damaged → permanently aggro
             }
-            //if far deaggro
-            else if (dist > awarenessRadius + deaggroBuffer)
+            else
             {
-                isAggro = false;
+                if (dist <= awarenessRadius)
+                {
+                    isAggro = true;
+                }
+                //if far deaggro
+                else if (dist > awarenessRadius + deaggroBuffer)
+                {
+                    isAggro = false;
+                }
             }
             //if it was aggro already dont update
             // if (isAggro != wasAggro)
             // {
-            
+
             // }
         }
     }   
+    
+    public void AlertNearby(float radius)
+    {
+        Collider[] allies = Physics.OverlapSphere(transform.position, radius, LayerMask.GetMask("Enemy"));
+        foreach (var ally in allies)
+        {
+            EnemyAwareness awareness = ally.GetComponent<EnemyAwareness>();
+            if (awareness != null)
+                awareness.isAggro = true;
+        }
+    }
 
 }

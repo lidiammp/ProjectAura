@@ -160,17 +160,6 @@ public class Beam : MonoBehaviour
         audioSource.Stop();
         audioSource.Play();
 
-        //beamshot radius
-        Collider[] enemyColliders;
-        //each enemy in the area of overlap sphere becomes aggro.
-        enemyColliders = Physics.OverlapSphere(transform.position, beamShotRadius, enemyLayerMask);
-
-        foreach (var enemyCollider in enemyColliders)
-        {
-            
-            enemyCollider.GetComponent<EnemyAwareness>().isAggro = true;
-        }
-
 
         // Loop through all enemies currently in beam range
         CheckIfHitEnemy();
@@ -212,6 +201,9 @@ public class Beam : MonoBehaviour
                 {
                     // If it hit an enemy, stun them
                     enemy.TakeDamage(beamDamage); // stun or in this case FREEZE
+                    EnemyAwareness awareness = enemy.GetComponent<EnemyAwareness>();
+                    if (awareness != null)
+                        awareness.isAggro = true;
                 }
 
             }

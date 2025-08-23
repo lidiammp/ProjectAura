@@ -18,7 +18,7 @@ public class Room : MonoBehaviour
     {
         // sparkleManager = GetComponentinChildren<SparkleManager>();
     }
-    
+
     public void StartRoom()
     {
         // Close all doors
@@ -52,12 +52,7 @@ public class Room : MonoBehaviour
     {
         if (aliveEnemies <= 0 && !isCleared)
         {
-            isCleared = true;
-            sparkleManager.PlaySparkles();
-            lightManager.SetClearedLight();
-            foreach (DoorController door in doorControllers) {
-                door.SetOpen(isCleared);
-            }
+            TriggerClearEffects();
         }
     }
     public int GetAliveEnemies()
@@ -87,4 +82,17 @@ public class Room : MonoBehaviour
         // Debug.Log($"[{roomName}] Refreshed enemy list. Alive: {aliveEnemies}, Total: {totalEnemies.Length}");
     }
 
+    public void TriggerClearEffects()
+    {
+        if (isCleared) return;
+        isCleared = true;
+
+        sparkleManager?.PlaySparkles();
+        lightManager?.SetClearedLight();
+
+        foreach (DoorController door in doorControllers)
+        {
+            door.SetOpen(true);
+        }
+    }
 }

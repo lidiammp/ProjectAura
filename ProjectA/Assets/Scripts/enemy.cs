@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
 
     public int maxHealth = 100;
     private int currentHealth;
-
+    [SerializeField] float groupAlertRadius = 5f;
     public string enemyType;
     public delegate void DeathEvent();
     public event DeathEvent OnDeath;
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
     public LayerMask layersToHit;
     private Color originalColor;
     private SpriteRenderer spriteRenderer;
-    [ColorUsage(true) ] public Color pinkColor = new Color(1f, 0.75f, 0.8f, 1f);
+    [ColorUsage(true)] public Color pinkColor = new Color(1f, 0.75f, 0.8f, 1f);
     private TimeManager timeManager;
 
     private Rigidbody enemyRigidBody;
@@ -66,10 +66,10 @@ public class Enemy : MonoBehaviour
             enemyAwareness = GetComponent<EnemyAwareness>();
             maxDistance = enemyAwareness.awarenessRadius;
         }
-        
+
         playertransform = FindObjectOfType<PlayerMovement>().transform;
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        
+
         timeManager = FindObjectOfType<TimeManager>();
         enemyRigidBody = GetComponent<Rigidbody>();
     }
@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
             enemyAnimator.SetBool("isAggro", enemyAwareness.isAggro);
             enemyAnimator.SetBool("isStunned", isStunned);
         }
-        
+
 
         //if aggro and not stunned follow player 
         if (enemyAwareness.isAggro && !isStunned && CheckForObstacle() && enemyNavMeshAgent.enabled && enemyNavMeshAgent.isOnNavMesh)
@@ -135,7 +135,7 @@ public class Enemy : MonoBehaviour
         // if (isStunned) return; // Can't take damage while stunned
 
         currentHealth -= amount;
-
+        enemyAwareness.AlertNearby(groupAlertRadius);
         if (currentHealth <= 0)
         {
             Stun(stunDuration);
@@ -145,12 +145,12 @@ public class Enemy : MonoBehaviour
         {
             Stun(stunDuration);  // Re-trigger the stun effect and coroutine
             return;
-            
+
         }
-        
-        
-        
-        
+
+
+
+
     }
     //doesnt work rn cuz the animator has control :(
     private IEnumerator FlashRed()
@@ -160,7 +160,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = originalColor;
     }
     public void Wander()
-    {   
+    {
         //if there enemy moving or not on surface or not enabled
         if (enemyNavMeshAgent.pathPending || !enemyNavMeshAgent.isOnNavMesh || !enemyNavMeshAgent.enabled)
             return;
@@ -175,7 +175,8 @@ public class Enemy : MonoBehaviour
             }
             enemyAnimator.SetBool("isWalking", false);
         }
-        else{
+        else
+        {
 
             enemyAnimator.SetBool("isWalking", true); // walk anim when moving
         }
@@ -268,11 +269,11 @@ public class Enemy : MonoBehaviour
         isStunned = true;
 
         enemyAnimator.SetBool("isStunned", isStunned);
-        
-        outlineManager.SetOutlineColor(new Color(255,255,255));
+
+        outlineManager.SetOutlineColor(new Color(255, 255, 255));
         //stunlock player
         stunRoutine = StartCoroutine(StunEnemy(stunDuration));
-        
+
     }
 
     public void PermaStun()
@@ -326,11 +327,20 @@ public class Enemy : MonoBehaviour
         {
             enemyNavMeshAgent.ResetPath();
         }
-        
+
     }
 
     public void DisableBodyCollider()
     {
         gameObject.GetComponent<Collider>().enabled = false;
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+    public int GetMaxHealth()
+    {
+        return maxHealth;
     }
 }

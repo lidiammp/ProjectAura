@@ -19,6 +19,8 @@ public class EnemySpawner : MonoBehaviour
     public Room room;
     public GameObject tpStar;
 
+    
+
     public int GetWaveIndex()
     {
         return currentWaveIndex;
@@ -56,6 +58,7 @@ public class EnemySpawner : MonoBehaviour
 
         }
         Debug.Log("All waves completed");
+        
         if (tpStar != null)
         {
             tpStar.SetActive(true);
