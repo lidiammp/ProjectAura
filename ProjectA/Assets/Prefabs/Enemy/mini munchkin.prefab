@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: awarenessRadius
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2584028798618960420, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 307bab49c87952e47969855e6be81718, type: 3}
     - target: {fileID: 3178660748317494046, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: damage
       value: 0
@@ -48,9 +52,17 @@ PrefabInstance:
       propertyPath: attackRange
       value: 1.65
       objectReference: {fileID: 0}
+    - target: {fileID: 6526413757347381892, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6526413757347381892, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.755
+      objectReference: {fileID: 0}
     - target: {fileID: 6952619042830781649, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6952619042830781649, guid: 0872addcc7c0e3b4c95c45bf6c4a68c5, type: 3}
       propertyPath: m_LocalScale.x
