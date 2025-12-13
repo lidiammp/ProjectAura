@@ -8,6 +8,7 @@ public class FinalCutsceneTransition : MonoBehaviour
     BloomTransition bloomTransition;
     void Start(){
         bloomTransition = GetComponent<BloomTransition>();
+       
     }
     private void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player") && bloomTransition != null){

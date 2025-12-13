@@ -16,6 +16,7 @@ public class WalkTrigger : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
+            AudioManager.instance.PlayMusic("MainTheme");
             room.StartRoom();
             hasActivated = true;
         }

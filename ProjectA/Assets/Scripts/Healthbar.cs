@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Healthbar : MonoBehaviour
@@ -15,6 +16,7 @@ public class Healthbar : MonoBehaviour
     [SerializeField] private float shakeMagnitude = 1;
     void Awake()
     {
+        AudioManager.instance.PlayMusic("OutsideCastle");
         // cameraShake = GetComponentInChildren<CameraShake>();
         currentHealth = maxHealth;
         takeDamage = FindObjectOfType<TakeDamage>();

@@ -1,16 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    AudioManager instance;
-    public Sound[] sounds;
+    // audio source
+    [Header("------------- Audio Source ------------")]
+    [SerializeField] AudioSource musicSource;
+    [SerializeField] AudioSource SFXSource;
+    [Header("------------- Sounds------------")]
+
+    public Sound[] musicSounds, sfxSounds;
+    public static AudioManager instance;
+
     // Start is called before the first frame update
     void Awake()
     {
+        // persistance
         if (instance == null)
         {
             //if theres no instance of this orig, create a new one
@@ -22,21 +31,41 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        foreach(Sound s in sounds)
-        {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-        }
+
+
     }
     void Start()
     {
-        Play("Passerby");
+        PlayMusic("MainMenu");
     }
-    public void Play(string name)
+    
+    public void PlayMusic(string name)
     {
-        Sound s = Array.Find(sounds, sound=>sound.name == name);
-        s.source.Play();
+        Sound s = Array.Find(musicSounds, x => x.name==name);
+        if(s == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {   
+            if(musicSource.clip == s.clip) return;
+            musicSource.clip = s.clip;
+            musicSource.loop = true;
+            musicSource.Play();
+        }
     }
+
+    public void PlaySFX(string name)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.name==name);
+        if(s == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {   
+            SFXSource.PlayOneShot(s.clip);
+        }
+    }
+    
 }
