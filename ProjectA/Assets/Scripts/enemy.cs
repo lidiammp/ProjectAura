@@ -125,7 +125,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-
+        // show the particles
         Instantiate(onhitEffect, transform.position, Quaternion.identity);
         timeManager.Stop(0.15f);
         if (isPermaStunned) return;

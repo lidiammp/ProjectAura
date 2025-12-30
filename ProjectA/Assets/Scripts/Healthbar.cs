@@ -16,7 +16,7 @@ public class Healthbar : MonoBehaviour
     [SerializeField] private float shakeMagnitude = 1;
     void Awake()
     {
-        AudioManager.instance.PlayMusic("OutsideCastle");
+        
         // cameraShake = GetComponentInChildren<CameraShake>();
         currentHealth = maxHealth;
         takeDamage = FindObjectOfType<TakeDamage>();
@@ -25,6 +25,7 @@ public class Healthbar : MonoBehaviour
     //take damage function
     public void TakeDamage(float damage)
     {
+        AudioManager.instance.PlaySFX("TakeDamage");
         if (isInvincible == false)
         {
             takeDamage.VignetteEffect();
@@ -58,11 +59,13 @@ public class Healthbar : MonoBehaviour
     //set maxhealth function
     public void SetMaxHealth(float value)
     {
+        //heal sound? maybe
         maxHealth = value;
         currentHealth = maxHealth;
     }
     public bool Dead()
     {
+        //death sound
         if (currentHealth <= 0)
         {
             return true;
@@ -77,6 +80,7 @@ public class Healthbar : MonoBehaviour
 
     public float GetMaxHealth()
     {
+    
         return maxHealth;
     }
 

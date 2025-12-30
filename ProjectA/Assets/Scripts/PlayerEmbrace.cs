@@ -54,6 +54,7 @@ public class PlayerEmbrace : MonoBehaviour
         timeManager = FindObjectOfType<TimeManager>();
         reticalManager = FindObjectOfType<EmbraceRetical>();
         playerCol = playerHealth.GetComponent<Collider>();
+        AudioManager.instance.PlayMusic("OutsideCastle");
     }
 
     void EmbraceAnimationEndEvent()
@@ -74,7 +75,7 @@ public class PlayerEmbrace : MonoBehaviour
         StartCoroutine(LingeringInvincibility(invDuration));
         //reset cooldown
         embraceTimer += embraceCooldown;
-
+        
     }
     // Start is called before the first frame update
     void Update()
@@ -275,5 +276,10 @@ public class PlayerEmbrace : MonoBehaviour
         yield return new WaitForSeconds(duration);
         // Debug.Log("Invincibility OFF");
         playerHealth.SetInvincible(false);
+    }
+
+    public void PlayPop()
+    {
+        AudioManager.instance.PlaySFX("EndEmbrace");
     }
 }

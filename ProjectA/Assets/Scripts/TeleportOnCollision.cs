@@ -11,8 +11,8 @@ public class TeleportOnCollision : MonoBehaviour
 
     [Header("Effects")]
     public ParticleSystem effectPrefab;
-    public AudioClip departureClip;
-    public AudioClip arrivalClip;
+    // public AudioClip departureClip;
+    // public AudioClip arrivalClip;
     public bool destroyAfter = false;
 
     PlayerMovement playerMovement;
@@ -38,6 +38,7 @@ public class TeleportOnCollision : MonoBehaviour
     
     private IEnumerator TeleportSequence(GameObject player)
     {
+        AudioManager.instance.PlaySFX("Warp");
         // Inside your teleport sequence or OnTriggerEnter
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
         if (sr != null)
@@ -53,8 +54,8 @@ public class TeleportOnCollision : MonoBehaviour
             Destroy(effect.gameObject, effect.main.duration + effect.main.startLifetime.constantMax);
         }
 
-        if (departureClip != null)
-            AudioSource.PlayClipAtPoint(departureClip, player.transform.position);
+        // if (departureClip != null)
+        //     AudioSource.PlayClipAtPoint(departureClip, player.transform.position);
 
         yield return new WaitForSeconds(teleportDelay);
 
@@ -73,7 +74,7 @@ public class TeleportOnCollision : MonoBehaviour
         if (rb != null) rb.isKinematic = false;
 
         playerMovement?.UnlockMovement();
-
+        AudioManager.instance.PlaySFX("WarpZap");
         // arrival effect
         if (effectPrefab != null)
         {
@@ -81,8 +82,8 @@ public class TeleportOnCollision : MonoBehaviour
             Destroy(effect.gameObject, effect.main.duration + effect.main.startLifetime.constantMax - 1f);
         }
 
-        if (arrivalClip != null)
-            AudioSource.PlayClipAtPoint(arrivalClip, teleportTarget.position);
+        // if (arrivalClip != null)
+        //     AudioSource.PlayClipAtPoint(arrivalClip, teleportTarget.position);
         if (door != null)
         {
             door.SetOpen(true);

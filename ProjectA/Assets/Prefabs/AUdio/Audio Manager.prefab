@@ -41,7 +41,7 @@ AudioSource:
   m_GameObject: {fileID: 1733114548246123633}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1260345039143953113, guid: a7e226a03af5399438ee4b0c87440b63, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -160,7 +160,7 @@ Transform:
   - {fileID: 663337231062035543}
   - {fileID: 7656487156903666121}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8765453120611762828
 MonoBehaviour:
@@ -197,7 +197,12 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  sfxSounds: []
+  sfxSounds:
+  - name: Beam
+    clip: {fileID: 8300000, guid: 17bdc9a8ea5552a4ab4d5bcd4ea1faf5, type: 3}
+    volume: 1
+    pitch: 0.999
+    source: {fileID: 0}
 --- !u!1 &6106219117159311136
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +244,7 @@ AudioSource:
   m_GameObject: {fileID: 6106219117159311136}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7349189304504070115, guid: a7e226a03af5399438ee4b0c87440b63, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

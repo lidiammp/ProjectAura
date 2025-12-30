@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Audio;
-
+using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     // audio source
@@ -20,23 +21,23 @@ public class AudioManager : MonoBehaviour
     void Awake()
     {
         // persistance
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            //if theres no instance of this orig, create a new one
-            instance = this;
-        }
-        else
-        {
-            //if there is destroy it
+             //if there is destroy it
             Destroy(gameObject);
+            return;
         }
+        //if theres no instance of this orig, create a new one
+        instance = this;
         DontDestroyOnLoad(gameObject);
-
-
     }
     void Start()
     {
-        PlayMusic("MainMenu");
+        if(SceneManager.GetActiveScene().name == "SplashScreen")
+        {
+            PlayMusic("MainMenu");
+        }
+        
     }
     
     public void PlayMusic(string name)
@@ -64,8 +65,16 @@ public class AudioManager : MonoBehaviour
         }
         else
         {   
-            SFXSource.PlayOneShot(s.clip);
+            SFXSource.loop = false;
+            
+            SFXSource.PlayOneShot(s.clip, s.volume);
         }
     }
+
+    void OnDestroy()
+    {
+        instance = null;
+    }
+
     
 }

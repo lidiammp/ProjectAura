@@ -32,7 +32,7 @@ public class CameraShake : MonoBehaviour
 
     }
 
-    
+    //layers
     //player 
         //camera shake<----
             //camera other stuff

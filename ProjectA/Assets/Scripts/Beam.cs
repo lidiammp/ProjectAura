@@ -32,7 +32,7 @@ public class Beam : MonoBehaviour
     // Reference to EnemyManager which tracks enemies in range
     private EnemyManager enemyManager;
 
-    private AudioSource audioSource;
+    // private AudioSource audioSource;
     private Animator handAnimator;
     private GameObject parent;
     // private Screenshake screenshake;
@@ -48,8 +48,8 @@ public class Beam : MonoBehaviour
     {
 
         playerMovement = GetComponentInParent<PlayerMovement>();
-        //beam sound
-        audioSource = GetComponent<AudioSource>();
+        // //beam sound
+        // audioSource = GetComponent<AudioSource>();
         enemyManager = FindObjectOfType<EnemyManager>();
         // Get the BoxCollider and configure its size/position to match beam range
         beamTrigger = GetComponent<BoxCollider>();
@@ -157,10 +157,10 @@ public class Beam : MonoBehaviour
         // playerMovement.ApplyKnockback(-1*transform.forward, 0.3f);
 
         //draw sphere for debuggin
-        audioSource.Stop();
-        audioSource.Play();
+        // audioSource.Stop();
+        // audioSource.Play();
 
-
+        AudioManager.instance.PlaySFX("Beam");
         // Loop through all enemies currently in beam range
         CheckIfHitEnemy();
 
