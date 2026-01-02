@@ -282,4 +282,12 @@ public class PlayerEmbrace : MonoBehaviour
     {
         AudioManager.instance.PlaySFX("EndEmbrace");
     }
+    public void PlayHeelStep()
+    {
+        if (playerMovement.isMoving)
+        {
+            AudioManager.instance.PlaySFX("HeelStep");
+        }
+        
+    }
 }

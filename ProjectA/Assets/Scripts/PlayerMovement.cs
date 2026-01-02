@@ -58,6 +58,11 @@ public class PlayerMovement : MonoBehaviour
     private float sprintToggleCooldown = 0.18f;
     private float lastSprintToggleTime = -1f;
     public bool isMoving = false;
+
+    [Header("Sound Parameters")]
+    public float stepDistance = 1.6f; // tune this
+    private float distanceSinceLastStep = 0f;
+    private Vector3 lastPosition;
 // Start is called before the first frame update
     void Start()
     {
@@ -74,14 +79,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //keyboard inputs
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");
+
         //shift holding still get sprint
         //if button is pressed and last frame, the button was pressed, its
         bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         // || Input.GetKey(KeyCode.JoystickButton8);
         isMoving = Mathf.Abs(inputX) > 0 || Mathf.Abs(inputZ) > 0;
+        //play foot sound based on last position
 
         //uncomment for sprint toglle toggle sprint
         if (Input.GetKeyDown(KeyCode.JoystickButton8) && Time.time - lastSprintToggleTime > sprintToggleCooldown)
@@ -90,8 +97,7 @@ public class PlayerMovement : MonoBehaviour
             lastSprintToggleTime = Time.time;
         }
 
-        bool sprintAllowed = !staminabarController.GetCoolDown()
-                     && staminabarController.playerStamina > 0f;
+        bool sprintAllowed = !staminabarController.GetCoolDown() && staminabarController.playerStamina > 0f;
         // If you previously used RT axis for sprint hold, we've removed that here.
         // sprintActive is true if player is using shift hold OR toggled on
         bool sprintActive = (shiftHeld || sprintToggled) && isMoving && sprintAllowed;
@@ -105,10 +111,7 @@ public class PlayerMovement : MonoBehaviour
 
         handAnimator.SetBool("isRunning", sprintActive);
 
-
-
-        //camera
-
+        //camera and FOV stuff
         if (!isDashing)
         {
             if (sprintActive)
@@ -194,6 +197,26 @@ public class PlayerMovement : MonoBehaviour
         sprintSpeed = speed;
     }
 
+    public void PlayHeelOnMove()
+    {
+        if(isMoving)
+        {
+            //accumalate distance
+            distanceSinceLastStep += Vector3.Distance(transform.position,lastPosition);
+            if(distanceSinceLastStep > stepDistance)
+            {
+                AudioManager.instance.PlaySFX("HeelStep");
+                //reset step counter/accumulator
+                distanceSinceLastStep = 0;
+            }
+        }
+        else
+        {
+            //not moving so reset counter
+            distanceSinceLastStep = 0;
+        }
+        lastPosition = gameObject.transform.position;
+    }
     // Handles player input and calculates movement direction
     void GetInput(float inputx, float inputz)
     {

@@ -93,7 +93,7 @@ public class Beam : MonoBehaviour
             //play charge start
             // chargeLoopStarted = false;
             handAnimator.SetBool("isCharging", true);
-
+            
 
             // lidia wants a sound here
         }
@@ -101,6 +101,7 @@ public class Beam : MonoBehaviour
         //while its chargin
         if (isCharging && (mouseHeld || triggerHeld))
         {
+            playerMovement.PlayHeelOnMove();
             chargeHeldTime += Time.deltaTime;
             //accumulate charge time
             CheckIfChargeAnimationEnd();
@@ -132,6 +133,7 @@ public class Beam : MonoBehaviour
         //check if its been long enough
         if (chargeHeldTime >= chargeTimeRequired)
         {
+            
             handAnimator.Play("HandBlast");
             // screenshake.StartShaking(0.5f);
             heartLaser.SpawnBullet();
