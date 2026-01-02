@@ -108494,8 +108494,76 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: chargeTimeRequired
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: adeb4a7fcd77a484598aefb3512ac155, type: 3}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[0].name
+      value: Charging
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5421a01d9acbfc844beca62075e824b5, type: 3}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[1].name
+      value: LaserDing
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: adeb4a7fcd77a484598aefb3512ac155, type: 3}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: Charging
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: adeb4a7fcd77a484598aefb3512ac155, type: 3}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[3].name
+      value: Charging
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[0].pitch
+      value: 1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[1].pitch
+      value: 1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[2].pitch
+      value: 1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[3].pitch
+      value: 1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.655
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214797231276529667, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: sounds.Array.data[3].volume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6004833602428209775, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_StepOffset
@@ -108565,6 +108633,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player+Essentials
       objectReference: {fileID: 0}
+    - target: {fileID: 8430253503446095823, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430253503446095823, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -1260345039143953113, guid: a7e226a03af5399438ee4b0c87440b63, type: 2}
     - target: {fileID: 8714396819145263239, guid: c87878d45000ce84ea835b59133e5cbe, type: 3}
       propertyPath: m_TagString
       value: BEAM

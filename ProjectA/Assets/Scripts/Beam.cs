@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Claims;
 using UnityEngine;
 
 public class Beam : MonoBehaviour
@@ -31,8 +32,11 @@ public class Beam : MonoBehaviour
     public LayerMask enemyLayerMask;
     // Reference to EnemyManager which tracks enemies in range
     private EnemyManager enemyManager;
+    [Header("ChargeBeam Sound Parametes")]
+    public Sound[] sounds;
+    private AudioSource audioSource;
+    private bool hasFullyCharged;
 
-    // private AudioSource audioSource;
     private Animator handAnimator;
     private GameObject parent;
     // private Screenshake screenshake;
@@ -49,7 +53,7 @@ public class Beam : MonoBehaviour
 
         playerMovement = GetComponentInParent<PlayerMovement>();
         // //beam sound
-        // audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         enemyManager = FindObjectOfType<EnemyManager>();
         // Get the BoxCollider and configure its size/position to match beam range
         beamTrigger = GetComponent<BoxCollider>();
@@ -89,11 +93,15 @@ public class Beam : MonoBehaviour
         if ((mousePressedThisFrame || triggerPressedThisFrame) && isCharging == false)
         {
             isCharging = true;
+            hasFullyCharged = false;
+
             chargeHeldTime = 0f; // reset when charging starts
             //play charge start
             // chargeLoopStarted = false;
             handAnimator.SetBool("isCharging", true);
-            
+            audioSource.clip = sounds[0].clip;
+            audioSource.volume = sounds[0].volume;
+            audioSource.Play();
 
             // lidia wants a sound here
         }
@@ -103,14 +111,28 @@ public class Beam : MonoBehaviour
         {
             playerMovement.PlayHeelOnMove();
             chargeHeldTime += Time.deltaTime;
+            if (!hasFullyCharged && chargeHeldTime >= chargeTimeRequired)
+            {
+                OnChargeComplete();
+            }
             //accumulate charge time
-            CheckIfChargeAnimationEnd();
+            // CheckIfChargeAnimationEnd();
         }
-
+        
         // if (isCharging && !chargeLoopStarted)
         // {
 
         // }
+
+    }
+    void OnChargeComplete()
+    {
+        handAnimator.Play("ChargeLoop");
+        hasFullyCharged = true;
+        audioSource.clip = sounds[1].clip;
+        audioSource.volume = sounds[1].volume;
+        audioSource.Play();
+
 
     }
     void CheckIfChargeAnimationEnd(){
@@ -118,7 +140,8 @@ public class Beam : MonoBehaviour
 
         if (stateInfo.IsName("ChargeStart") && stateInfo.normalizedTime >= 1.0f)
         {
-            handAnimator.Play("ChargeLoop");
+            
+
             // chargeLoopStarted = true;
         }
     }
