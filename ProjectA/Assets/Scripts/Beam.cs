@@ -78,9 +78,11 @@ public class Beam : MonoBehaviour
         if ((mouseReleased || triggerReleased) && isCharging)
         {
             ShootBeam();
-
+            audioSource.Stop();
+            audioSource.loop = false;
             // gunLaser.LaserVisual();
         }
+        
         triggerWasPressedLastFrame = triggerHeld;
     }
     void ChargeBeam()
@@ -129,8 +131,10 @@ public class Beam : MonoBehaviour
     {
         handAnimator.Play("ChargeLoop");
         hasFullyCharged = true;
-        audioSource.clip = sounds[1].clip;
-        audioSource.volume = sounds[1].volume;
+        audioSource.pitch =sounds[2].pitch;
+        audioSource.clip = sounds[2].clip;
+        audioSource.volume = sounds[2].volume;
+        audioSource.loop = true;
         audioSource.Play();
 
 

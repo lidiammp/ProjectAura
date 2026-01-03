@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Reflection;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -52,6 +53,7 @@ public class AudioManager : MonoBehaviour
             if(musicSource.clip == s.clip) return;
             musicSource.clip = s.clip;
             musicSource.loop = true;
+            SFXSource.pitch = s.pitch;
             musicSource.Play();
         }
     }
@@ -66,12 +68,12 @@ public class AudioManager : MonoBehaviour
         else
         {   
             SFXSource.loop = false;
-            
+            SFXSource.pitch = s.pitch;
             SFXSource.PlayOneShot(s.clip, s.volume);
         }
     }
 
-    public void PlaySFX(string name)
+    public void PlaySFXRandom(string name)
     {
         Sound s = Array.Find(sfxSounds, x => x.name==name);
         if(s == null)
@@ -80,9 +82,11 @@ public class AudioManager : MonoBehaviour
         }
         else
         {   
+            float originalPitch = SFXSource.pitch;
             SFXSource.loop = false;
-            
+            SFXSource.pitch = UnityEngine.Random.Range(s.pitchStart, s.pitchEnd);
             SFXSource.PlayOneShot(s.clip, s.volume);
+            SFXSource.pitch = originalPitch;
         }
     }
 

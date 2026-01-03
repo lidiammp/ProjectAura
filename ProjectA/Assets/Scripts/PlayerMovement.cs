@@ -205,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
             distanceSinceLastStep += Vector3.Distance(transform.position,lastPosition);
             if(distanceSinceLastStep > stepDistance)
             {
-                AudioManager.instance.PlaySFX("HeelStep");
+                AudioManager.instance.PlaySFXRandom("HeelStep");
                 //reset step counter/accumulator
                 distanceSinceLastStep = 0;
             }

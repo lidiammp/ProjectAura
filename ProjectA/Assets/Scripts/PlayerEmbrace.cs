@@ -286,11 +286,12 @@ public class PlayerEmbrace : MonoBehaviour
     {
         if (playerMovement.isMoving)
         {
-            AudioManager.instance.PlaySFX("HeelStep");
+            AudioManager.instance.PlaySFXRandom("HeelStep");
         }   
     }
     public void PlayChargeLoop()
     {
+        
         AudioManager.instance.PlaySFX("FullyCharged");
     }
 }
