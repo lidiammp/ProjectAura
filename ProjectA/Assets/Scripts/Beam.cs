@@ -189,7 +189,7 @@ public class Beam : MonoBehaviour
         // audioSource.Stop();
         // audioSource.Play();
 
-        AudioManager.instance.PlaySFX("Beam");
+
         // Loop through all enemies currently in beam range
         CheckIfHitEnemy();
 

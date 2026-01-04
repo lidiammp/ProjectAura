@@ -53,6 +53,7 @@ public class Room : MonoBehaviour
         if (aliveEnemies <= 0 && !isCleared)
         {
             TriggerClearEffects();
+            
         }
     }
     public int GetAliveEnemies()
@@ -86,7 +87,7 @@ public class Room : MonoBehaviour
     {
         if (isCleared) return;
         isCleared = true;
-
+        AudioManager.instance.PlaySFX("RoomClear");
         sparkleManager?.PlaySparkles();
         lightManager?.SetClearedLight();
 

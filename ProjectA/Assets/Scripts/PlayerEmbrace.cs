@@ -291,7 +291,13 @@ public class PlayerEmbrace : MonoBehaviour
     }
     public void PlayChargeLoop()
     {
-        
+
         AudioManager.instance.PlaySFX("FullyCharged");
+    }
+    public void PlayFireSounds()
+    {
+        AudioManager.instance.PlaySFX("Beam");
+        AudioManager.instance.PlaySFX("BeamBoom");
+        AudioManager.instance.PlaySFX("ElectricBlast");
     }
 }
