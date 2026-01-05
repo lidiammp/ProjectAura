@@ -12,7 +12,7 @@ public class EndingCreditUImanager : MonoBehaviour
     {
         videoPlayer = GetComponent<VideoPlayer>();
         videoLength = videoPlayer.clip.length;
-        AudioManager.instance.PlayMusic("EndTheme");
+        
     }
 
     // Update is called once per frame

@@ -15,6 +15,7 @@ public class FinalCutsceneTransition : MonoBehaviour
             other.GetComponent<PlayerMovement>().LockMovement();
             other.GetComponent<MouseLook>().LockMouse();
             bloomTransition.StartTransition();
+            AudioManager.instance.PlayMusic("EndTheme");
         }
     }
 }
