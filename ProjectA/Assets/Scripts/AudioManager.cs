@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Diagnostics;
 using System.Reflection;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
     [Header("------------- Sounds------------")]
-
+    
     public Sound[] musicSounds, sfxSounds;
     public static AudioManager instance;
 
@@ -46,7 +47,7 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(musicSounds, x => x.name==name);
         if(s == null)
         {
-            Debug.Log("Sound Not Found");
+            UnityEngine.Debug.Log("Sound Not Found");
         }
         else
         {   
@@ -63,7 +64,7 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sfxSounds, x => x.name==name);
         if(s == null)
         {
-            Debug.Log("Sound Not Found");
+            UnityEngine.Debug.Log("Sound Not Found");
         }
         else
         {   
@@ -78,7 +79,7 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sfxSounds, x => x.name==name);
         if(s == null)
         {
-            Debug.Log("Sound Not Found");
+            UnityEngine.Debug.Log("Sound Not Found");
         }
         else
         {   
@@ -90,6 +91,42 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayAudioSource(string name, AudioSource source)
+    {
+        //find string name that is same as the sounds name
+        Sound s = Array.Find(musicSounds, x => x.name==name);
+        if(s == null)
+        {
+            UnityEngine.Debug.Log("Sound "+name+"not found");
+        }
+        else
+        {
+            //uses inputed audiosource
+            source.loop = true;
+            source.clip = s.clip;
+            source.pitch = s.pitch;
+            source.Play();
+        }
+    }
+
+    public void PlaySFXAudioSource(string name, AudioSource source)
+    {
+        //find string name that is same as the sounds name
+        Sound s = Array.Find(sfxSounds, x => x.name==name);
+        if(s == null)
+        {
+            UnityEngine.Debug.Log("Sound "+name+" not found");
+        }
+        else
+        {
+            //uses inputed audiosource
+            float originalPitch = source.pitch;
+            source.loop = false;
+            source.pitch = UnityEngine.Random.Range(s.pitchStart, s.pitchEnd);
+            source.PlayOneShot(s.clip, s.volume);
+            source.pitch = originalPitch;
+        }
+    }
     void OnDestroy()
     {
         instance = null;

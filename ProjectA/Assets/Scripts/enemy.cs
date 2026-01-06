@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     private GameObject onhitEffect;
     [SerializeField] private Transform centrePoint;
     private Animator enemyAnimator;
+    public AudioSource enemyAudioSource;
     private EnemyAwareness enemyAwareness;
     private Transform playertransform;
     private UnityEngine.AI.NavMeshAgent enemyNavMeshAgent;
@@ -51,6 +52,7 @@ public class Enemy : MonoBehaviour
     {
         outlineManager = GetComponentInChildren<OutlineManager>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        enemyAudioSource = GetComponent<AudioSource>();
         originalColor = spriteRenderer.color;
         currentHealth = maxHealth;
         //if no centerpoint use enemys own position
@@ -130,6 +132,7 @@ public class Enemy : MonoBehaviour
         timeManager.Stop(0.15f);
         if (isPermaStunned) return;
         enemyAnimator.SetTrigger("isTakingDamage");
+        AudioManager.instance.PlaySFX("EnemyTakeDamage");
         // StartCoroutine(FlashRed());
         ApplyKnockback(10 * -transform.forward + Vector3.up, 0.3f);
         // if (isStunned) return; // Can't take damage while stunned

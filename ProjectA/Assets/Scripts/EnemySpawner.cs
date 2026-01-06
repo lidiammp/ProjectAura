@@ -104,7 +104,7 @@ public class EnemySpawner : MonoBehaviour
             spawnPoint = spawnPoints[UnityEngine.Random.Range(1, spawnPoints.Length)];
         }
         GameObject cloud = Instantiate(spawnCloudPrefab, spawnPoint.position, Quaternion.identity);
-        Destroy(cloud, 1f); // lasts 1 second
+        Destroy(cloud, 2f); // lasts 1 second
 
         GameObject enemy = WorldSpawner.Spawn(enemyPrefab, spawnPoint.position, roomTransform);
         enemy.GetComponent<Enemy>().OnDeath += EnemyDefeated;

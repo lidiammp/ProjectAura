@@ -297,7 +297,16 @@ public class PlayerEmbrace : MonoBehaviour
     public void PlayFireSounds()
     {
         AudioManager.instance.PlaySFX("Beam");
-        AudioManager.instance.PlaySFX("BeamBoom");
+        AudioManager.instance.PlaySFX("BeamBlast");
         AudioManager.instance.PlaySFX("ElectricBlast");
+    }
+    public void PlayMirrherDeath()
+    {
+        AudioManager.instance.PlaySFX("MirrherDeath");
+    }
+
+    public void PlayMunchkinDeath()
+    {
+         AudioManager.instance.PlaySFX("MunchkinDeath");
     }
 }

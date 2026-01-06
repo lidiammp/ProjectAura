@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
@@ -10,6 +11,7 @@ public class PowerUp : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             powerupEffect.Apply(collision.gameObject);
+            AudioManager.instance.PlaySFX("Pickup");
             Destroy(gameObject);
             
         }
