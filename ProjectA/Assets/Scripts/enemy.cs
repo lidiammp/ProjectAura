@@ -270,7 +270,7 @@ public class Enemy : MonoBehaviour
         // Instantiate(stunEffect, transform.position, Quaternion.identity);
         //set variables
         isStunned = true;
-
+        AudioManager.instance.PlaySFX("Stun");
         enemyAnimator.SetBool("isStunned", isStunned);
 
         outlineManager.SetOutlineColor(new Color(255, 255, 255));

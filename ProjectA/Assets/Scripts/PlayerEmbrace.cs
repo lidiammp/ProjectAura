@@ -309,4 +309,9 @@ public class PlayerEmbrace : MonoBehaviour
     {
          AudioManager.instance.PlaySFX("MunchkinDeath");
     }
+
+    public void PlayMunchkinHuh()
+    {
+        AudioManager.instance.PlaySFX("MunchkinHuh");
+    }
 }
