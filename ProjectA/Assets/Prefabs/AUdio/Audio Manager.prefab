@@ -181,27 +181,149 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7e2e24ba74f72854aa8896b2d734cc64, type: 3}
     volume: 1
     pitch: 1
+    pitchStart: 1
+    pitchEnd: 1
     source: {fileID: 0}
   - name: OutsideCastle
     clip: {fileID: 8300000, guid: bd9a9e6275783a447941a9aa35664598, type: 3}
     volume: 1
     pitch: 1
+    pitchStart: 1
+    pitchEnd: 1
     source: {fileID: 0}
   - name: MainTheme
     clip: {fileID: 8300000, guid: 7e2e24ba74f72854aa8896b2d734cc64, type: 3}
     volume: 1
     pitch: 1
+    pitchStart: 1
+    pitchEnd: 1
     source: {fileID: 0}
   - name: EndTheme
     clip: {fileID: 8300000, guid: 2aa47af12193b184eadd584b11af9c2b, type: 3}
     volume: 1
     pitch: 1
+    pitchStart: 1
+    pitchEnd: 1
     source: {fileID: 0}
   sfxSounds:
   - name: Beam
     clip: {fileID: 8300000, guid: 17bdc9a8ea5552a4ab4d5bcd4ea1faf5, type: 3}
-    volume: 1
+    volume: 0.48
     pitch: 0.999
+    pitchStart: 1
+    pitchEnd: 1
+    source: {fileID: 0}
+  - name: BeamBlast
+    clip: {fileID: 8300000, guid: d3abdf15b9bcc3149a2c7addb25cbe55, type: 3}
+    volume: 0
+    pitch: 2.06
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: ElectricBlast
+    clip: {fileID: 8300000, guid: 0269579051d1e19409eb223ed6223e8b, type: 3}
+    volume: 0.359
+    pitch: 1
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: Warp
+    clip: {fileID: 8300000, guid: 2d2530e537116264989ffc1ec05185ab, type: 3}
+    volume: 0.756
+    pitch: 0.999
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: TakeDamage
+    clip: {fileID: 8300000, guid: c8273405b72897242bc8092352f4d81b, type: 3}
+    volume: 0.612
+    pitch: 0.999
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: EndEmbrace
+    clip: {fileID: 8300000, guid: 263a1b39ae0e38a47a002747f54f505f, type: 3}
+    volume: 0.443
+    pitch: 0.999
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: WarpZap
+    clip: {fileID: 8300000, guid: c1158fe3ea5a09c4c8a7885c830939dd, type: 3}
+    volume: 0.518
+    pitch: 0.999
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: HeelStep
+    clip: {fileID: 8300000, guid: 5c48219814d931044875f82bd288bc1b, type: 3}
+    volume: 0.592
+    pitch: 0.999
+    pitchStart: 0.51
+    pitchEnd: 1
+    source: {fileID: 0}
+  - name: RoomClear
+    clip: {fileID: 8300000, guid: f502522da9b04834f84a1fc71f9a2989, type: 3}
+    volume: 0.448
+    pitch: 1.08
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: FullyCharged
+    clip: {fileID: 8300000, guid: d9161037454b24e4a9ed5b3cfae197af, type: 3}
+    volume: 1
+    pitch: 2.06
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: EnemyTakeDamage
+    clip: {fileID: 8300000, guid: fcddbf6ca4ab0704a905b6e6eb88924c, type: 3}
+    volume: 0.131
+    pitch: 2.11
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: EnemySpawn
+    clip: {fileID: 8300000, guid: 132dd6e688fb45f43800877d7b1f6d51, type: 3}
+    volume: 1
+    pitch: 1.06
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: Pickup
+    clip: {fileID: 8300000, guid: 5421a01d9acbfc844beca62075e824b5, type: 3}
+    volume: 0.458
+    pitch: 1.06
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: MunchkinDeath
+    clip: {fileID: 8300000, guid: 4afcf123309c01d459940c17f91e4847, type: 3}
+    volume: 0.539
+    pitch: 1.06
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: MirrherDeath
+    clip: {fileID: 8300000, guid: bb6b2afd3c45f4d408e2bfb03e485354, type: 3}
+    volume: 1
+    pitch: 1.06
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: Stun
+    clip: {fileID: 8300000, guid: a866a755346ad2f4cabc75c8e011b4c3, type: 3}
+    volume: 0.61
+    pitch: 1.04
+    pitchStart: 0
+    pitchEnd: 0
+    source: {fileID: 0}
+  - name: MunchkinHuh
+    clip: {fileID: 8300000, guid: 9f7f7aba7bcb68a4590eff3f44599bdf, type: 3}
+    volume: 0.319
+    pitch: 1.08
+    pitchStart: 0
+    pitchEnd: 0
     source: {fileID: 0}
 --- !u!1 &6106219117159311136
 GameObject:
