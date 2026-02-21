@@ -31,6 +31,7 @@ public class StartMenuManager : MonoBehaviour
             Cursor.visible = true;
             EventSystem.current.SetSelectedGameObject(null); // no highlight
         }
+        AudioManager.instance.PlayMusic("MainMenu");
     }
 
     void Update()
