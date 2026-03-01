@@ -18,6 +18,6 @@ public class MainMenuUI : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene("SplashScreen");
+        SceneManager.LoadSceneAsync("SplashScreen");
     }
 }

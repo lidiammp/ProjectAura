@@ -16,7 +16,7 @@ public class GameOverScreen : MonoBehaviour
         //get name of active scene
         string currentSceneName = SceneManager.GetActiveScene().name;
         //load it up
-        SceneManager.LoadScene(currentSceneName);
+        SceneManager.LoadSceneAsync(currentSceneName);
     }
 
     

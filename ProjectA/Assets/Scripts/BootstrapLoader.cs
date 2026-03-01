@@ -6,6 +6,6 @@ public class BootstrapLoader : MonoBehaviour
     void Start()
     {
         // Immediately load the Splash scene
-        SceneManager.LoadScene("SplashScreen");
+        SceneManager.LoadSceneAsync("SplashScreen");
     }
 }

@@ -28,6 +28,6 @@ public class AnimatedButtonController : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene("PostMentorMadnessBuild");
+        SceneManager.LoadSceneAsync("PostMentorMadnessBuild");
     }
 }

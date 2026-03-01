@@ -221,6 +221,6 @@ public class SettingsMenu : MonoBehaviour
         Time.timeScale = 1f;
 
         // Replace "HomeScene" with the name of your scene
-        SceneManager.LoadScene("SplashScreen");
+        SceneManager.LoadSceneAsync("SplashScreen");
     }
 }

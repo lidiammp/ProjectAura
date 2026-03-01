@@ -14,10 +14,10 @@ public class PlayButtonController : MonoBehaviour
 
     public void OnPlayButtonPressed()
     {
-        StartCoroutine(PlayAnimationAndLoadScene());
+        StartCoroutine(PlayAnimationAndLoadSceneAsync());
     }
 
-    IEnumerator PlayAnimationAndLoadScene()
+    IEnumerator PlayAnimationAndLoadSceneAsync()
     {
         // Trigger the image animation
         image1Animator.SetTrigger(triggerName);
@@ -26,6 +26,6 @@ public class PlayButtonController : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         // Load the next scene
-        SceneManager.LoadScene(nextSceneName);
+        SceneManager.LoadSceneAsync(nextSceneName);
     }
 }
