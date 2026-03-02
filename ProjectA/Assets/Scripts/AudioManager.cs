@@ -31,7 +31,6 @@ public class AudioManager : MonoBehaviour
         }
         //if theres no instance of this orig, create a new one
         instance = this;
-        DontDestroyOnLoad(gameObject);
     }
     void Start()
     {
