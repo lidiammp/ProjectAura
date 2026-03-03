@@ -90,46 +90,47 @@ public class MouseLook : MonoBehaviour
     }
     float NonLinearInput(float x)
     {
-        float SquareInput(float x)
-        {
-            return Mathf.Abs(x) * x;
-            //keep the sign
-        }
+        // float SquareInput(float x)
+        // {
+        //     return Mathf.Abs(x) * x;
+        //     //keep the sign
+        // }
 
-        float SmoothStepInput(float x)
-        {
-            //make sure its in 0 - 1
-            //make positive and then clamp
-            float t = Mathf.Clamp01(Mathf.Abs(x));
-            //smoothStep func
-            //keep sign
-            return Mathf.Sign(x) * Mathf.SmoothStep(0, 1, t);
-        }
+        // float SmoothStepInput(float x)
+        // {
+        //     //make sure its in 0 - 1
+        //     //make positive and then clamp
+        //     float t = Mathf.Clamp01(Mathf.Abs(x));
+        //     //smoothStep func
+        //     //keep sign
+        //     return Mathf.Sign(x) * Mathf.SmoothStep(0, 1, t);
+        // }
 
         
         // square input and then
         // smoothstep squared val
-        float CubeInput(float x)
-        {
-            return x * x * x;
-        }
+        // float CubeInput(float x)
+        // {
+        //     return x * x * x;
+        // }
 
-        float ApplyCurve(float x, float steepness)
-        {
-            //log till 0.5 and ehen curve up
-            if (x <= 0.5f)
-            {
-                // Log-like slow start (scaled to fit 0–0.5 range)
-                float t = x / 0.5f; // normalize 0–0.5 → 0–1
-                return (Mathf.Log(1 + steepness * t) / Mathf.Log(1 + steepness)) * 0.5f;
-            }
-            else
-            {
-                // Exponential finish (scaled to fit 0.5–1 range)
-                float t = (x - 0.5f) / 0.5f; // normalize 0.5–1 → 0–1
-                return x;
-            }
-        }
+        // float ApplyCurve(float x, float steepness)
+        // {
+        //     //log till 0.5 and ehen curve up
+        //     if (x <= 0.5f)
+        //     {
+        //         // Log-like slow start (scaled to fit 0–0.5 range)
+        //         float t = x / 0.5f; // normalize 0–0.5 → 0–1
+        //         return (Mathf.Log(1 + steepness * t) / Mathf.Log(1 + steepness)) * 0.5f;
+        //     }
+        //     else
+        //     {
+        //         // Exponential finish (scaled to fit 0.5–1 range)
+        //         float t = (x - 0.5f) / 0.5f; // normalize 0.5–1 → 0–1
+        //         return x;
+        //     }
+        // }
+
         return x;
     }
 

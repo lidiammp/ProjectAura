@@ -6,39 +6,35 @@ using UnityEngine;
 public class TooltipManager : MonoBehaviour
 {
     private Enemy enemy;
-    [SerializeField] private GameObject embraceTooltip;
-    [SerializeField] private GameObject shootTooltip;
-    [SerializeField] private GameObject dashTooltip;
-    void Start()
-    {
-
-    }
+    [SerializeField] private UI embraceTooltip;
+    [SerializeField] private UI shootTooltip;
+    [SerializeField] private UI dashTooltip;
 
     public void DisableEmbraceTooltip()
     {
-        embraceTooltip.SetActive(false);
+        embraceTooltip.CloseWindow(embraceTooltip.gameObject);
     }
 
     public void EnableEmbraceTooltip()
     {
-        embraceTooltip.SetActive(true);
+        embraceTooltip.OpenWindow(embraceTooltip.gameObject);
     }
     public void EnableDashTooltip()
     {
-        dashTooltip.SetActive(true);
+        dashTooltip.OpenWindow(dashTooltip.gameObject);
     }
     public void DisableDashTooltip()
     {
-        dashTooltip.SetActive(false);
+        dashTooltip.CloseWindow(dashTooltip.gameObject);
     }
 
     public void DisableShootTooltip()
     {
-        shootTooltip.SetActive(false);
+        shootTooltip.CloseWindow(shootTooltip.gameObject);
     }
 
     public void EnableShootTooltip()
     {
-        shootTooltip.SetActive(true);
+        shootTooltip.OpenWindow(shootTooltip.gameObject);
     }
 }
