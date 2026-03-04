@@ -36,11 +36,12 @@ public class DashTooltipTrigger : MonoBehaviour
         }
     }
     
-    // void OnTriggerExit(Collider other)
-    // {
-    //     if (other.GetComponent<PlayerMovement>())
-    //     {
-    //         tooltipManager.DisableDashTooltip();
-    //     }
-    // }
+    void OnTriggerExit(Collider other)
+    {
+        hasEntered = false;
+        if (other.GetComponent<PlayerMovement>())
+        {
+            tooltipManager.DisableDashTooltip();
+        }
+    }
 }
