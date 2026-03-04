@@ -1,0 +1,499 @@
+fileFormatVersion: 2
+guid: d65e0072e039d004bab5b05c4075511a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_0
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 3310
+        width: 875
+        height: 860
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a4e70d508d4bcc4b8d56b48926eaa17
+      internalID: -788293753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_1
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 3282
+        width: 875
+        height: 860
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 667f82f58c4404a4e854bfddb444b3ed
+      internalID: -1844445717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_2
+      rect:
+        serializedVersion: 2
+        x: 2229
+        y: 2546
+        width: 1340
+        height: 1706
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e6f2a6590d4eac4f96f5aa6a8d3ff18
+      internalID: 672087880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_3
+      rect:
+        serializedVersion: 2
+        x: 3856
+        y: 2546
+        width: 1340
+        height: 1706
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3bb62fe2a252848a9b66668365b016
+      internalID: 566478843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_4
+      rect:
+        serializedVersion: 2
+        x: 6562
+        y: 2511
+        width: 1168
+        height: 1917
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b190febf57920043ad58c3a2f732414
+      internalID: 336519491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_5
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 2158
+        width: 875
+        height: 860
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74a16508a9601054b9b0ae184313c23d
+      internalID: 1078431914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_6
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 2176
+        width: 875
+        height: 860
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31c7eb6bdc04a184795817f283a6bcdd
+      internalID: 728742169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_8
+      rect:
+        serializedVersion: 2
+        x: 1934
+        y: 2101
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 369f86d553be16347a7cdb2ac2822f8a
+      internalID: 874114661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_9
+      rect:
+        serializedVersion: 2
+        x: 3656
+        y: 1312
+        width: 828
+        height: 815
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0707c75a43819b043bbd3ba9c3026f08
+      internalID: -520550169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_10
+      rect:
+        serializedVersion: 2
+        x: 5773
+        y: 1350
+        width: 830
+        height: 811
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 593cab21d9a66824693777d1b9b2917a
+      internalID: 173291417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_11
+      rect:
+        serializedVersion: 2
+        x: 1965
+        y: 2082
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7325594612b54fd47a3b107441e97cb8
+      internalID: -178086251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_12
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 1157
+        width: 1744
+        height: 657
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f14ca9bc5d4f623419d3d2a7b3a874e4
+      internalID: 3888808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_13
+      rect:
+        serializedVersion: 2
+        x: 4879
+        y: 474
+        width: 830
+        height: 811
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6878c5a8adf4e44c8e19cb6a41fc655
+      internalID: -1076444696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_14
+      rect:
+        serializedVersion: 2
+        x: 5845
+        y: 455
+        width: 830
+        height: 815
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2039e23f4478d54c8e78f5c28a90012
+      internalID: 1077184707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_15
+      rect:
+        serializedVersion: 2
+        x: 6796
+        y: 0
+        width: 934
+        height: 1255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad4f51363227e09499aefe0dfcf32cb1
+      internalID: 1055511515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 217
+        width: 3286
+        height: 713
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 422271ef1bda64e47821887b629af5d8
+      internalID: 1332241864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: In-game Button UI Sprite Sheet (Fixed)_17
+      rect:
+        serializedVersion: 2
+        x: 3652
+        y: 331
+        width: 826
+        height: 815
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 786ce382b79cfeb4abf12891fb7b0817
+      internalID: 913739757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 0e1a27077bdefc341827ac58001507d5
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      In-game Button UI Sprite Sheet (Fixed)_0: -788293753
+      In-game Button UI Sprite Sheet (Fixed)_1: -1844445717
+      In-game Button UI Sprite Sheet (Fixed)_10: 173291417
+      In-game Button UI Sprite Sheet (Fixed)_11: -178086251
+      In-game Button UI Sprite Sheet (Fixed)_12: 3888808
+      In-game Button UI Sprite Sheet (Fixed)_13: -1076444696
+      In-game Button UI Sprite Sheet (Fixed)_14: 1077184707
+      In-game Button UI Sprite Sheet (Fixed)_15: 1055511515
+      In-game Button UI Sprite Sheet (Fixed)_16: 1332241864
+      In-game Button UI Sprite Sheet (Fixed)_17: 913739757
+      In-game Button UI Sprite Sheet (Fixed)_2: 672087880
+      In-game Button UI Sprite Sheet (Fixed)_3: 566478843
+      In-game Button UI Sprite Sheet (Fixed)_4: 336519491
+      In-game Button UI Sprite Sheet (Fixed)_5: 1078431914
+      In-game Button UI Sprite Sheet (Fixed)_6: 728742169
+      In-game Button UI Sprite Sheet (Fixed)_7: 2097112152
+      In-game Button UI Sprite Sheet (Fixed)_8: 874114661
+      In-game Button UI Sprite Sheet (Fixed)_9: -520550169
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

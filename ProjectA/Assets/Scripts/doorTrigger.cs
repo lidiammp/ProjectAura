@@ -12,7 +12,7 @@ public class doorTrigger : MonoBehaviour
     public Transform player;        // assign Player transform in inspector
 
     public bool playerLook = false;
-    public GameObject UIpopup;
+    public UI UIpopup;
 
     private bool isOn = false;
     void Start()
@@ -22,7 +22,7 @@ public class doorTrigger : MonoBehaviour
         {
             buttonRenderer.material.color = Color.red;
         }
-        UIpopup?.SetActive(false);
+        UIpopup?.CloseWindow(UIpopup.gameObject);
         //uianimator = UIpopup.GetComponent<Animator>(); when adding  animation to door 
         foreach (DoorController door in doors)
         {
@@ -51,7 +51,7 @@ public class doorTrigger : MonoBehaviour
             //check if player is in range and that the player has clicked e
             if (dist <= interactRange)
             {
-                UIpopup?.SetActive(true);
+                UIpopup?.OpenWindow(UIpopup.gameObject);
             }
             if (dist <= interactRange && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2)))
             {
@@ -83,7 +83,7 @@ public class doorTrigger : MonoBehaviour
         {
             playerLook = false;
             // Debug.Log("not here");
-            UIpopup?.SetActive(false);
+            UIpopup?.CloseWindow(UIpopup.gameObject);
             //uianimator.enabled = false;  when adding  animation to door 
 
         }
@@ -109,7 +109,7 @@ public class doorTrigger : MonoBehaviour
         
         //set the button off and turn off the ui prompt
         gameObject.SetActive(false);
-        UIpopup?.SetActive(false);
+        UIpopup?.CloseWindow(UIpopup.gameObject);
     }
 }
 
