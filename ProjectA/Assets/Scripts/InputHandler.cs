@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
     public enum InputMode{Keyboard, Controller, Touch}
-    private InputMode currentInputMode;
+    public InputMode currentInputMode;
     private InputMode lastFrameInputMode;
     public event Action<InputMode> OnInputModeChanged;
     public static InputHandler instance;
@@ -15,7 +16,6 @@ public class InputHandler : MonoBehaviour
         // persistance
         if (instance != null && instance != this)
         {
-             //if there is destroy it
             Destroy(gameObject);
             return;
         }
@@ -27,7 +27,6 @@ public class InputHandler : MonoBehaviour
     void Start()
     {
         currentInputMode = InputMode.Keyboard;
-        OnInputModeChanged?.Invoke(currentInputMode);
     }
 
     // Update is called once per frame

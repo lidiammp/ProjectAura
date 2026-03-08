@@ -7,11 +7,15 @@ public class InputTooltipManager : MonoBehaviour
 
     void OnEnable()
     {
-        InputHandler.instance.OnInputModeChanged +=  UpdateUI;
+        if (InputHandler.instance != null)
+        {
+            InputHandler.instance.OnInputModeChanged += UpdateUI;
+            UpdateUI(InputHandler.instance.currentInputMode);   
+        }
     }
     void OnDisable()
     {
-        InputHandler.instance.OnInputModeChanged +=  UpdateUI;
+        InputHandler.instance.OnInputModeChanged -=  UpdateUI;
     }
     void UpdateUI(InputHandler.InputMode mode)
     {
