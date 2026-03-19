@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class SettingsMenu : MonoBehaviour
+public class PauseInputHandler: MonoBehaviour
 {
     [Header("Panels")]
     public GameObject darkPanel;       // Main pause menu with Resume/Quit/Controls
@@ -17,9 +17,6 @@ public class SettingsMenu : MonoBehaviour
     public MouseLook mouselookReference;
     public PlayerMovement playerMoveReference;
     public Animator playerAnimator;
-
-    private bool gameIsPaused = false;
-    public bool GameIsPaused => gameIsPaused;
     private bool usingController = false;
 
     void Start()
@@ -32,10 +29,10 @@ public class SettingsMenu : MonoBehaviour
         // Toggle pause
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
         {
-            if (gameIsPaused)
-                Resume();
+            if (GameManager.instance.currentState == GameState.Paused)
+                GameManager.instance.SetState(GameState.Playing);
             else
-                Pause();
+                GameManager.instance.SetState(GameState.Paused);
         }
 
         HandleInputSwitching();
@@ -55,25 +52,13 @@ public class SettingsMenu : MonoBehaviour
     #region Pause / Resume
     public void Resume()
     {
-        darkPanel.SetActive(false);
-        controlsPanel.SetActive(false);
-
-        Time.timeScale = 1f;
-        gameIsPaused = false;
-
-        playerAnimator.enabled = true;
-        playerMoveReference.enabled = true;
-        mouselookReference.UnlockMouse();
-
+        
     }
 
     private void Pause()
     {
         darkPanel.SetActive(true);
-        controlsPanel.SetActive(false);
-
-        Time.timeScale = 0f;
-        gameIsPaused = true;
+        controlsPanel.SetActive(false);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
         playerAnimator.enabled = false;
         playerMoveReference.enabled = false;
@@ -194,7 +179,7 @@ public class SettingsMenu : MonoBehaviour
 
     private void UpdateCursorState()
     {
-        if (!gameIsPaused) 
+        if (GameManager.instance.currentState == GameState.Paused) 
         {
             // Gameplay state
             Cursor.lockState = CursorLockMode.Locked;

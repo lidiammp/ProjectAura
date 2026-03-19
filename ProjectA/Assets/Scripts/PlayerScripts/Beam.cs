@@ -47,7 +47,7 @@ public class Beam : MonoBehaviour
     private bool triggerWasPressedLastFrame;
     // private bool chargeLoopStarted;
     private AnimatorStateInfo stateInfo;
-    [SerializeField] private SettingsMenu settingsMenu;
+    // [SerializeField] private SettingsMenu settingsMenu;
     void Start()
     {
 
@@ -69,7 +69,7 @@ public class Beam : MonoBehaviour
 
     void Update()
     {
-        if (settingsMenu.GameIsPaused == true) return;
+        if (GameManager.instance.currentState == GameState.Paused) return;
         ChargeBeam();
         bool triggerHeld = Input.GetAxis("Controller RT") > 0.1f;
         bool triggerReleased = triggerHeld == false && triggerWasPressedLastFrame;
