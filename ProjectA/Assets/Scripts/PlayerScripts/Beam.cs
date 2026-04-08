@@ -69,7 +69,7 @@ public class Beam : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.currentState == GameState.Paused) return;
+        if (GameManager.instance.CurrentState == GameState.Paused) return;
         ChargeBeam();
         bool triggerHeld = Input.GetAxis("Controller RT") > 0.1f;
         bool triggerReleased = triggerHeld == false && triggerWasPressedLastFrame;

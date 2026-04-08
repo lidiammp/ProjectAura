@@ -29,7 +29,7 @@ public class PauseInputHandler: MonoBehaviour
         // Toggle pause
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
         {
-            if (GameManager.instance.currentState == GameState.Paused)
+            if (GameManager.instance.CurrentState == GameState.Paused)
                 GameManager.instance.SetState(GameState.Playing);
             else
                 GameManager.instance.SetState(GameState.Paused);
@@ -179,13 +179,13 @@ public class PauseInputHandler: MonoBehaviour
 
     private void UpdateCursorState()
     {
-        if (GameManager.instance.currentState == GameState.Paused) 
+        if (GameManager.instance.CurrentState == GameState.Playing) 
         {
             // Gameplay state
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        else 
+        else if(GameManager.instance.CurrentState == GameState.Paused)
         {
             // Paused state
             if (usingController)

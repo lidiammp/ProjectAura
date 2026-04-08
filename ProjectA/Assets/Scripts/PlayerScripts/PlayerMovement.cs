@@ -64,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
     private float distanceSinceLastStep = 0f;
     private Vector3 lastPosition;
 // Start is called before the first frame update
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -79,7 +81,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.instance.currentState == GameState.Paused) return;
+        if (GameManager.instance.CurrentState == GameState.Paused) 
+        {
+            StopMovement();
+            return;
+        }
         //keyboard inputs
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");

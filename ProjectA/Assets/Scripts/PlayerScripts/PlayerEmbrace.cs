@@ -206,7 +206,11 @@ public class PlayerEmbrace : MonoBehaviour
         }
 
         isSnapping = false;
-        timeManager.Stop(0.75f);
+        EventDispatcher.instance.SendEvent<PauseEvent>(new PauseEvent
+        {
+            duration = 0.75f,
+            timeScale = 0f
+        });
         EmbraceEnemy(enemy);
     }
     void EmbraceEnemy(Enemy target)

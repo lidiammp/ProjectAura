@@ -5,62 +5,43 @@ using UnityEngine;
 public enum GameState
 {
     Paused,
-    Playing
+    Playing,
+    GameOver
 }
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager instance;
+    private GameState currentState;
+    public GameState CurrentState { get { return currentState; } }
 
-    public GameState currentState;
-    void Awake()
+    private void Start()
     {
-        // persistance
-        if (instance != null && instance != this)
-        {
-             //if there is destroy it
-            Destroy(gameObject);
-            return;
-        }
-        //if theres no instance of this orig, create a new one
-        instance = this;
-    }
-    private PlayerMovement playerMovement;
-    private Healthbar playerHealth;
-    public GameOverScreen gameOverScreen;
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerMovement = FindObjectOfType<PlayerMovement>();
+        SetState(GameState.Playing);
     }
 
 
     public void SetState(GameState state)
     {
         currentState = state;
-        switch (state)
+        switch (currentState)
         {
-            case GameState.Playing:
-                Time.timeScale = 1f;
-                break;
-
             case GameState.Paused:
-                Time.timeScale = 0f;
+                EventDispatcher.instance.SendEvent<PauseEvent>(new PauseEvent
+                {
+                    duration = -1f,
+                    timeScale = 0f
+                });
                 break;
-        }
-        Debug.Log(currentState);
+            case GameState.Playing:
+                EventDispatcher.instance.SendEvent<ResumeEvent>( new ResumeEvent());
+                break;
+            case GameState.GameOver:
+                Debug.Log("Game Over!");
+                break;
+        };
+        Debug.Log(currentState.ToString());
     }
-    void Update()
-    {
-        playerHealth = playerMovement.GetComponent<Healthbar>();
-        if (playerHealth.Dead())
-        {
-            GameOver();
-        }
-    }
-    public void GameOver()
-    {
-        gameOverScreen.RestartButton();
-    }
-    // Update is called once per frame
+
+
+
     
 }

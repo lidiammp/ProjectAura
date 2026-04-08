@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-
+    private const float hitStopDuration = 0.08f;
     public int maxHealth = 100;
     private int currentHealth;
     [SerializeField] float groupAlertRadius = 5f;
@@ -40,7 +40,6 @@ public class Enemy : MonoBehaviour
     private Color originalColor;
     private SpriteRenderer spriteRenderer;
     [ColorUsage(true)] public Color pinkColor = new Color(1f, 0.75f, 0.8f, 1f);
-    private TimeManager timeManager;
 
     private Rigidbody enemyRigidBody;
     public float snapThreshold = 2f;
@@ -72,7 +71,6 @@ public class Enemy : MonoBehaviour
         playertransform = FindObjectOfType<PlayerMovement>().transform;
         enemyNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
-        timeManager = FindObjectOfType<TimeManager>();
         enemyRigidBody = GetComponent<Rigidbody>();
     }
 
@@ -129,7 +127,11 @@ public class Enemy : MonoBehaviour
     {
         // show the particles
         Instantiate(onhitEffect, transform.position, Quaternion.identity);
-        timeManager.Stop(0.15f);
+        EventDispatcher.instance.SendEvent <PauseEvent>(new PauseEvent
+        {
+            duration = hitStopDuration,
+            timeScale = 0f
+        });
         if (isPermaStunned) return;
         enemyAnimator.SetTrigger("isTakingDamage");
         AudioManager.instance.PlaySFX("EnemyTakeDamage");

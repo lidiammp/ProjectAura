@@ -28,8 +28,8 @@ public class MouseLook : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
-    {
+    void Update() { 
+
         if (characterController.enabled)
         {
             characterController.Move(moveDirection * Time.deltaTime);
