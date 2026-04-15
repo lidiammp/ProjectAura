@@ -7,7 +7,7 @@ public class PauseInputHandler: MonoBehaviour
 {
     [Header("Panels")]
     public GameObject darkPanel;       // Main pause menu with Resume/Quit/Controls
-    public GameObject controlsPanel;   // Controls subpanel only
+    public UIScreen pauseScreen;   // Controls subpanel only
 
     [Header("First Selected Buttons")]
     public GameObject resumeButton;        // Selected when darkPanel opens
@@ -30,19 +30,25 @@ public class PauseInputHandler: MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             if (GameManager.instance.CurrentState == GameState.Paused)
-                GameManager.instance.SetState(GameState.Playing);
+            {
+                Resume();
+            }
             else
+            {
                 GameManager.instance.SetState(GameState.Paused);
+                darkPanel.SetActive(true);
+                pauseScreen.open();
+            }
         }
 
-        HandleInputSwitching();
+            HandleInputSwitching();
 
         // Controller "Back" button in ControlsPanel
-        if (usingController && controlsPanel.activeSelf)
+        if (usingController)
         {
             if (Input.GetKeyDown(KeyCode.JoystickButton1)) // B button
             {
-                CloseControls();
+                UIManager.CloseScreen();
             }
         }
 
@@ -52,13 +58,15 @@ public class PauseInputHandler: MonoBehaviour
     #region Pause / Resume
     public void Resume()
     {
-        
+        GameManager.instance.SetState(GameState.Playing);
+        darkPanel.SetActive(false);
+        pauseScreen.close();
     }
 
     private void Pause()
     {
         darkPanel.SetActive(true);
-        controlsPanel.SetActive(false);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+        //controlsPanel.SetActive(false);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
         playerAnimator.enabled = false;
         playerMoveReference.enabled = false;
@@ -81,7 +89,7 @@ public class PauseInputHandler: MonoBehaviour
     #region Controls Panel
     public void OpenControls()
     {
-        controlsPanel.SetActive(true);
+        //controlsPanel.SetActive(true);
         darkPanel.SetActive(false);
 
         // Always select the Back button if controller is active
@@ -95,7 +103,7 @@ public class PauseInputHandler: MonoBehaviour
 
     public void CloseControls()
     {
-        controlsPanel.SetActive(false);
+        //controlsPanel.SetActive(false);
         darkPanel.SetActive(true); // go back to main dark panel
 
         if (usingController)
@@ -116,10 +124,10 @@ public class PauseInputHandler: MonoBehaviour
                 usingController = true;
 
 
-                if (controlsPanel.activeSelf)
-                    EventSystem.current.SetSelectedGameObject(controlsBackButton);
-                else
-                    EventSystem.current.SetSelectedGameObject(resumeButton);
+                //if (controlsPanel.activeSelf)
+                //    EventSystem.current.SetSelectedGameObject(controlsBackButton);
+                //else
+                //    EventSystem.current.SetSelectedGameObject(resumeButton);
             }
         }
 

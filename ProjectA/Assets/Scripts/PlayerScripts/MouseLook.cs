@@ -28,7 +28,8 @@ public class MouseLook : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update() { 
+    void Update() {
+        if (GameManager.instance.CurrentState == GameState.Paused) return;
 
         if (characterController.enabled)
         {
