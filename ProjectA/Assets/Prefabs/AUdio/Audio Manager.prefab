@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1514824976060610572}
-  SFXSource: {fileID: 7773429484079728333}
+  sfxGroup: {fileID: -1260345039143953113, guid: a7e226a03af5399438ee4b0c87440b63, type: 2}
   musicSounds:
   - name: MainMenu
     clip: {fileID: 8300000, guid: 7e2e24ba74f72854aa8896b2d734cc64, type: 3}
@@ -235,7 +235,7 @@ MonoBehaviour:
     pitchEnd: 0
     source: {fileID: 0}
   - name: TakeDamage
-    clip: {fileID: 8300000, guid: c8273405b72897242bc8092352f4d81b, type: 3}
+    clip: {fileID: 8300000, guid: 6bb8dd072b7ea664ab6d322ea1a4ee53, type: 3}
     volume: 0.612
     pitch: 0.999
     pitchStart: 0
@@ -325,6 +325,7 @@ MonoBehaviour:
     pitchStart: 0
     pitchEnd: 0
     source: {fileID: 0}
+  poolSize: 10
 --- !u!1 &6106219117159311136
 GameObject:
   m_ObjectHideFlags: 0
